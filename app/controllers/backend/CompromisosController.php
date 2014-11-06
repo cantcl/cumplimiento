@@ -32,7 +32,7 @@ class CompromisosController extends BaseController {
                 $data['filtros_count'][$name] = array_count_values($filters_id);
             }
 
-            $compromisos = Compromiso::whereIn('id', $ids)->with('hitos','institucionResposablePlan','usuario','mediosDeVerificacion','sectores');
+            $compromisos = Compromiso::whereIn('id', $ids)->with('hitos','institucionResposablePlan','usuario','sectores');
             if($q)
                 $compromisos->orderByRaw('FIELD(id,'.implode(',',$ids).')');
             else
@@ -74,7 +74,6 @@ class CompromisosController extends BaseController {
                         $row['tipo']=$c->tipo;
                         $row['avance']=$c->avance;
                         $row['avance_descripcion']=$c->avance_descripcion;
-                        $row['medios_de_verificacion']=$c->mediosDeVerificacion->implode('url',', ');
                         $row['beneficios']=$c->beneficios;
                         $row['metas']=$c->metas;
                         $row['sectores']=$c->sectores->implode('nombre',', ');
@@ -200,6 +199,8 @@ class CompromisosController extends BaseController {
                 $new_hito->avance=$h['avance']/100;
                 $new_hito->fecha_inicio=\Carbon\Carbon::parse($h['fecha_inicio']);
                 $new_hito->fecha_termino=\Carbon\Carbon::parse($h['fecha_termino']);
+                $new_hito->verificacion_descripcion=$h['verificacion_descripcion'];
+                $new_hito->verificacion_url=$h['verificacion_url'];
                 $compromiso->hitos()->save($new_hito);
             }
 
@@ -209,14 +210,6 @@ class CompromisosController extends BaseController {
                 $new_actor=new Actor();
                 $new_actor->nombre=$h['nombre'];
                 $compromiso->actores()->save($new_actor);
-            }
-
-
-            $compromiso->mediosDeVerificacion()->delete();
-            $medios=Input::get('medios-de-verificacion',array());
-            foreach($medios as $m){
-                $new_medio=new MedioDeVerificacion($m);
-                $compromiso->mediosDeVerificacion()->save($new_medio);
             }
 
             DB::connection()->getPdo()->commit();

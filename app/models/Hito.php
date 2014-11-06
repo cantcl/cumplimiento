@@ -9,7 +9,8 @@
 class Hito extends Eloquent{
 
     protected $table = 'hitos';
-    protected $fillable=array('descripcion','fecha_inicio','fecha_termino','ponderador','avance');
+    protected $fillable=array('descripcion','fecha_inicio','fecha_termino','ponderador','avance','verificacion_descripcion',
+    'verificacion_url');
 
     public function getDates()
     {

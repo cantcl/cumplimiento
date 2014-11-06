@@ -14,10 +14,6 @@ class Compromiso extends Eloquent{
         return $this->belongsTo('Fuente');
     }
 
-    public function mediosDeVerificacion(){
-        return $this->hasMany('MedioDeVerificacion');
-    }
-
     public function usuario(){
         return $this->belongsTo('Usuario');
     }

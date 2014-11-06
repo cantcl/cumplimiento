@@ -13,6 +13,8 @@
         <th>Responsable</th>
         <th>Fecha Inicio</th>
         <th>Fecha Término</th>
+        <th>Medio de Verificación</th>
+        <th>Medio de Verificación (URL)</th>
     </tr>
     </thead>
     <tbody>
@@ -23,6 +25,8 @@
         <td><?=$h->compromiso->usuario->nombres?> <?=$h->compromiso->usuario->apellidos?></td>
         <td><time><?=$h->fecha_inicio?></time></td>
         <td><time><?=$h->fecha_termino?></time></td>
+        <td><?=$h->verificacion_descripcion?></td>
+        <td><a href="<?=$h->verificacion_url?>" target="_blank"><?=$h->verificacion_url?></a></td>
     </tr>
     <?php endforeach ?>
     </tbody>

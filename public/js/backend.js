@@ -14,8 +14,6 @@ $(document).ready(function(){
 
     initFormCompromisosActores();
 
-    initFormCompromisosMediosDeVerificacion();
-
     initFiltrosBusqueda();
 
     modalEvents();
@@ -157,6 +155,8 @@ function initFormCompromisosHitos(){
                 '<td><input class="form-control" type="number" min="0" max="100" name="hitos['+maxid+'][avance]" value="" placeholder="Porcentaje de avance del hito (Valor entre 0 y 100)"/></td>' +
                 '<td><input data-provide="datepicker" data-date-format="dd-mm-yyyy" data-date-autoclose="true" class="form-control" type="text" name="hitos['+maxid+'][fecha_inicio]" value="" placeholder="Fecha de inicio del hito"/></td>' +
                 '<td><input data-provide="datepicker" data-date-format="dd-mm-yyyy" data-date-autoclose="true" class="form-control" type="text" name="hitos['+maxid+'][fecha_termino]" value="" placeholder="Fecha de término del hito"/></td>' +
+                '<td><input class="form-control" type="text" name="hitos['+maxid+'][verificacion_descripcion]" value="" placeholder="Medio de Verificación"/></td>' +
+                '<td><input class="form-control" type="text" name="hitos['+maxid+'][verificacion_url]" value="" placeholder="URL al Medio de Verificación"/></td>' +
                 '<td>' +
                 '<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>' +
                 '</td>' +
@@ -194,32 +194,6 @@ function initFormCompromisosActores(){
         });
     });
 
-}
-
-function initFormCompromisosMediosDeVerificacion(){
-    $('.form-medios').each(function(i,el){
-        $(el).find('.form-medios-table tbody tr').length?$(el).find('.form-medios-table').show():$(el).find('.form-medios-table').hide();
-        var maxid=$(el).find('.form-medios-table tbody tr').length;
-        $(el).find('.form-medios-agregar').on('click',function(){
-
-            var row='<tr>' +
-                '<td><input class="form-control" type="text" name="medios-de-verificacion['+maxid+'][descripcion]" value="" placeholder="Descripción del medio de verificación" /></td>' +
-                '<td><input class="form-control" type="text" name="medios-de-verificacion['+maxid+'][tipo]" value="" placeholder="pdf" /></td>' +
-                '<td><input class="form-control" type="text" name="medios-de-verificacion['+maxid+'][url]" value="" placeholder="http://www.diariooficial.cl" /></td>' +
-                '<td>' +
-                '<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>' +
-                '</td>' +
-                '</tr>';
-            $(el).find('.form-medios-table').append(row);
-            ++maxid;
-            $(el).find('.form-medios-table tbody tr').length?$(el).find('.form-medios-table').show():$(el).find('.form-medios-table').hide();
-        });
-        $(el).find('.form-medios-table').on('click','button',function(){
-            $(this).closest('tr').remove();
-            $(el).find('.form-medios-table tbody tr').length?$(el).find('.form-medios-table').show():$(el).find('.form-medios-table').hide();
-        });
-    });
-    
 }
 
 function actualizaEntidades (form) {

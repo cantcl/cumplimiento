@@ -229,10 +229,12 @@
                     <thead>
                         <tr>
                             <th>Descripción</th>
-                            <th>Ponderador (%)</th>
-                            <th>Avance (%)</th>
+                            <th>Ponderador</th>
+                            <th>Avance</th>
                             <th>Fecha Inicio</th>
                             <th>Fecha Termino</th>
+                            <th>Medio de Verificación</th>
+                            <th>Medio de Verificación (URL)</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -244,6 +246,8 @@
                             <td><input class="form-control" type="number" min="0" max="100" value="<?=$h->avance*100?>" name="hitos[<?=$i?>][avance]" placeholder="Porcentaje de avance (Valor entre 0 y 100)"/></td>
                             <td><input data-provide="datepicker" data-date-format="dd-mm-yyyy" data-date-autoclose="true" type="text" class="form-control" value="<?=$h->fecha_inicio->format('d-m-Y')?>" name="hitos[<?=$i?>][fecha_inicio]" placeholder="Fecha de inicio del hito" /></td>
                             <td><input data-provide="datepicker" data-date-format="dd-mm-yyyy" data-date-autoclose="true" type="text" class="form-control" value="<?=$h->fecha_termino->format('d-m-Y')?>" name="hitos[<?=$i?>][fecha_termino]" placeholder="Fecha de término del hito" /></td>
+                            <td><input class="form-control" type="text" value="<?=$h->verificacion_descripcion?>" name="hitos[<?=$i?>][verificacion_descripcion]" placeholder="Medio de Verificación"/></td>
+                            <td><input class="form-control" type="text" value="<?=$h->verificacion_url?>" name="hitos[<?=$i?>][verificacion_url]" placeholder="URL al Medio de Verificación"/></td>
                             <td>
                                 <button class="btn btn-danger" type="text"><span class="glyphicon glyphicon-remove"></span></button>
                             </td>
@@ -254,37 +258,6 @@
             </div>
         </div>
 
-        <hr />
-
-        <div class="row form-medios">
-            <div class="col-sm-12">
-                <label>Medios de verificación</label>
-                <div><button class="btn btn-default form-medios-agregar" type="button"><span class="glyphicon glyphicon-plus"></span> Agregar nuevo Medio de Verificación</button></div>
-
-                <table class="table form-medios-table">
-                    <thead>
-                    <tr>
-                        <th class="col-sm-6">Descripción</th>
-                        <th class="col-sm-3">Tipo</th>
-                        <th class="col-sm-3">Enlace</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php $i=0; foreach($compromiso->mediosDeVerificacion as $m):?>
-                    <tr>
-                        <td><input class="form-control" type="text" name="medios-de-verificacion[<?=$i?>][descripcion]" value="<?=$m->descripcion?>" placeholder="Descripción del medio de verificación" /></td>
-                        <td><input class="form-control" type="text" name="medios-de-verificacion[<?=$i?>][tipo]" value="<?=$m->tipo?>" placeholder="pdf" /></td>
-                        <td><input class="form-control" type="text" name="medios-de-verificacion[<?=$i?>][url]" value="<?=$m->url?>" placeholder="http://www.diariooficial.cl" /></td>
-                        <td>
-                            <button class="btn btn-danger" type="button"><span class="glyphicon glyphicon-remove"></span></button>
-                        </td>
-                    </tr>
-                    <?php $i++; endforeach; ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
 
     </fieldset>
     <hr/>
