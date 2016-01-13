@@ -31,7 +31,7 @@ class AuthController extends BaseController {
             }else{
                 $json->errors[]='Correo y/o contraseña incorrecto.';
 
-                $response=\Response::json($json,400);
+               $response=\Response::json($json,400);
             }
 
 

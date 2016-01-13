@@ -55,6 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => $_ENV['database.host'],
+			'port'      => $_ENV['database.port'],
 			'database'  => $_ENV['database.database'],
 			'username'  => $_ENV['database.username'],
 			'password'  => $_ENV['database.password'],
