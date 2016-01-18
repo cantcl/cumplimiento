@@ -22,18 +22,12 @@
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <div class="well" style="margin-top: 200px;">
-                <form method="post" class="ajaxForm" role="form">
-                    <legend>Autenticación</legend>
-                    <div class="validacion"></div>
+                <form method="post" role="form" action="/oauth">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Correo Electrónico</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" name="email">
+                        <img src="https://www.claveunica.cl/assets/img/logo.png">
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">Password</label>
-                        <input type="password" class="form-control" id="exampleInputPassword1" name="password">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <h2 class="form-signin-heading">Por favor, ingrese con su cuenta de ClaveUnica</h2>
+                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Siguiente">
                 </form>
             </div>
         </div>

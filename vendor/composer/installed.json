@@ -485,12 +485,12 @@
         "version_normalized": "1.0.8.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/d11wtq/boris.git",
+            "url": "https://github.com/borisrepl/boris.git",
             "reference": "125dd4e5752639af7678a22ea597115646d89c6e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/d11wtq/boris/zipball/125dd4e5752639af7678a22ea597115646d89c6e",
+            "url": "https://api.github.com/repos/borisrepl/boris/zipball/125dd4e5752639af7678a22ea597115646d89c6e",
             "reference": "125dd4e5752639af7678a22ea597115646d89c6e",
             "shasum": ""
         },
@@ -521,12 +521,12 @@
         "version_normalized": "1.0.2.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/mtdowling/ClassPreloader.git",
+            "url": "https://github.com/ClassPreloader/ClassPreloader.git",
             "reference": "2c9f3bcbab329570c57339895bd11b5dd3b00877"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/mtdowling/ClassPreloader/zipball/2c9f3bcbab329570c57339895bd11b5dd3b00877",
+            "url": "https://api.github.com/repos/ClassPreloader/ClassPreloader/zipball/2c9f3bcbab329570c57339895bd11b5dd3b00877",
             "reference": "2c9f3bcbab329570c57339895bd11b5dd3b00877",
             "shasum": ""
         },
@@ -1274,12 +1274,12 @@
         "target-dir": "Symfony/Component/HttpFoundation",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/HttpFoundation.git",
+            "url": "https://github.com/symfony/http-foundation.git",
             "reference": "138498f3d64981cfafcb5eec3b2b96fce44a178e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/HttpFoundation/zipball/138498f3d64981cfafcb5eec3b2b96fce44a178e",
+            "url": "https://api.github.com/repos/symfony/http-foundation/zipball/138498f3d64981cfafcb5eec3b2b96fce44a178e",
             "reference": "138498f3d64981cfafcb5eec3b2b96fce44a178e",
             "shasum": ""
         },
@@ -1331,12 +1331,12 @@
         "target-dir": "Symfony/Component/EventDispatcher",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/EventDispatcher.git",
+            "url": "https://github.com/symfony/event-dispatcher.git",
             "reference": "cb62ec8dd05893fc8e4f0e6e21e326e1fc731fe8"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/cb62ec8dd05893fc8e4f0e6e21e326e1fc731fe8",
+            "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/cb62ec8dd05893fc8e4f0e6e21e326e1fc731fe8",
             "reference": "cb62ec8dd05893fc8e4f0e6e21e326e1fc731fe8",
             "shasum": ""
         },
@@ -1392,12 +1392,12 @@
         "target-dir": "Symfony/Component/Debug",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/Debug.git",
+            "url": "https://github.com/symfony/debug.git",
             "reference": "6e721ae2cd7bde0f8dfa9c3186808a6c4140469c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/Debug/zipball/6e721ae2cd7bde0f8dfa9c3186808a6c4140469c",
+            "url": "https://api.github.com/repos/symfony/debug/zipball/6e721ae2cd7bde0f8dfa9c3186808a6c4140469c",
             "reference": "6e721ae2cd7bde0f8dfa9c3186808a6c4140469c",
             "shasum": ""
         },
@@ -1451,12 +1451,12 @@
         "target-dir": "Symfony/Component/HttpKernel",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/HttpKernel.git",
+            "url": "https://github.com/symfony/http-kernel.git",
             "reference": "084a126a36ed011b098158d4d28daa9883ecc8f7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/HttpKernel/zipball/084a126a36ed011b098158d4d28daa9883ecc8f7",
+            "url": "https://api.github.com/repos/symfony/http-kernel/zipball/084a126a36ed011b098158d4d28daa9883ecc8f7",
             "reference": "084a126a36ed011b098158d4d28daa9883ecc8f7",
             "shasum": ""
         },
@@ -1578,12 +1578,12 @@
         "target-dir": "Symfony/Component/DomCrawler",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/DomCrawler.git",
+            "url": "https://github.com/symfony/dom-crawler.git",
             "reference": "77881ef11c064a490515a9fb1729b695c632ffe5"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/DomCrawler/zipball/77881ef11c064a490515a9fb1729b695c632ffe5",
+            "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/77881ef11c064a490515a9fb1729b695c632ffe5",
             "reference": "77881ef11c064a490515a9fb1729b695c632ffe5",
             "shasum": ""
         },
@@ -1635,12 +1635,12 @@
         "target-dir": "Symfony/Component/BrowserKit",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/BrowserKit.git",
+            "url": "https://github.com/symfony/browser-kit.git",
             "reference": "5c80003d5772de6120b5429f4b2f6e22957d4a07"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/BrowserKit/zipball/5c80003d5772de6120b5429f4b2f6e22957d4a07",
+            "url": "https://api.github.com/repos/symfony/browser-kit/zipball/5c80003d5772de6120b5429f4b2f6e22957d4a07",
             "reference": "5c80003d5772de6120b5429f4b2f6e22957d4a07",
             "shasum": ""
         },
@@ -1694,12 +1694,12 @@
         "target-dir": "Symfony/Component/Console",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/Console.git",
+            "url": "https://github.com/symfony/console.git",
             "reference": "24f723436e62598c9dddee2a8573d6992504dc5d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/Console/zipball/24f723436e62598c9dddee2a8573d6992504dc5d",
+            "url": "https://api.github.com/repos/symfony/console/zipball/24f723436e62598c9dddee2a8573d6992504dc5d",
             "reference": "24f723436e62598c9dddee2a8573d6992504dc5d",
             "shasum": ""
         },
@@ -1751,12 +1751,12 @@
         "target-dir": "Symfony/Component/CssSelector",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/CssSelector.git",
+            "url": "https://github.com/symfony/css-selector.git",
             "reference": "268d0a51166edaf84dfcf043c57f273685cb7c93"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/CssSelector/zipball/268d0a51166edaf84dfcf043c57f273685cb7c93",
+            "url": "https://api.github.com/repos/symfony/css-selector/zipball/268d0a51166edaf84dfcf043c57f273685cb7c93",
             "reference": "268d0a51166edaf84dfcf043c57f273685cb7c93",
             "shasum": ""
         },
@@ -2037,12 +2037,12 @@
         "target-dir": "Symfony/Component/Filesystem",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/Filesystem.git",
+            "url": "https://github.com/symfony/filesystem.git",
             "reference": "98e831eac836a0a5911626ce82684155f21d0e4d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/Filesystem/zipball/98e831eac836a0a5911626ce82684155f21d0e4d",
+            "url": "https://api.github.com/repos/symfony/filesystem/zipball/98e831eac836a0a5911626ce82684155f21d0e4d",
             "reference": "98e831eac836a0a5911626ce82684155f21d0e4d",
             "shasum": ""
         },
@@ -2088,12 +2088,12 @@
         "target-dir": "Symfony/Component/ClassLoader",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/ClassLoader.git",
+            "url": "https://github.com/symfony/class-loader.git",
             "reference": "09e38e4d228c1f7f997f3dc7068d9d2fba9a10b0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/ClassLoader/zipball/09e38e4d228c1f7f997f3dc7068d9d2fba9a10b0",
+            "url": "https://api.github.com/repos/symfony/class-loader/zipball/09e38e4d228c1f7f997f3dc7068d9d2fba9a10b0",
             "reference": "09e38e4d228c1f7f997f3dc7068d9d2fba9a10b0",
             "shasum": ""
         },
@@ -2384,7 +2384,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/scalia/sphinxsearch/zipball/812f334a5b21f7e2abc2c99964d7eba0dce83874",
+            "url": "https://api.github.com/repos/scalia/sphinxsearch/zipball/ebad61d769de8bf8d1327b3d594839c7b2c71c2c",
             "reference": "812f334a5b21f7e2abc2c99964d7eba0dce83874",
             "shasum": ""
         },
@@ -2431,7 +2431,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/thujohn/pdf-l4/zipball/d8ae8a62e6c4cb1e288bcfc2b3665734eaa26783",
+            "url": "https://api.github.com/repos/thujohn/pdf-l4/zipball/e42bc4aff4512b742c8b7e9a2eb493b92ed9c5e9",
             "reference": "d8ae8a62e6c4cb1e288bcfc2b3665734eaa26783",
             "shasum": ""
         },
@@ -2699,7 +2699,7 @@
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/9aae3ea0d9dab99435da7921bfc0bd7f42223327",
+            "url": "https://api.github.com/repos/Maatwebsite/Laravel-Excel/zipball/88a2b5c467369a42a822e45f99dd0471480a94f8",
             "reference": "9aae3ea0d9dab99435da7921bfc0bd7f42223327",
             "shasum": ""
         },
@@ -2743,6 +2743,670 @@
             "export",
             "import",
             "laravel"
+        ]
+    },
+    {
+        "name": "zendframework/zend-json",
+        "version": "2.6.0",
+        "version_normalized": "2.6.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-json.git",
+            "reference": "e2945611a98e1fefcaaf69969350a0bfa6a8d574"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-json/zipball/e2945611a98e1fefcaaf69969350a0bfa6a8d574",
+            "reference": "e2945611a98e1fefcaaf69969350a0bfa6a8d574",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5"
+        },
+        "require-dev": {
+            "fabpot/php-cs-fixer": "1.7.*",
+            "phpunit/phpunit": "~4.0",
+            "zendframework/zend-http": "~2.5",
+            "zendframework/zend-server": "~2.5",
+            "zendframework/zend-stdlib": "~2.5",
+            "zendframework/zendxml": "~1.0"
+        },
+        "suggest": {
+            "zendframework/zend-http": "Zend\\Http component",
+            "zendframework/zend-server": "Zend\\Server component",
+            "zendframework/zend-stdlib": "To use the cache for Zend\\Server",
+            "zendframework/zendxml": "To support Zend\\Json\\Json::fromXml() usage"
+        },
+        "time": "2015-11-18 13:59:33",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.6-dev",
+                "dev-develop": "2.7-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zend\\Json\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "description": "provides convenience methods for serializing native PHP to JSON and decoding JSON to native PHP",
+        "homepage": "https://github.com/zendframework/zend-json",
+        "keywords": [
+            "json",
+            "zf2"
+        ]
+    },
+    {
+        "name": "zendframework/zend-stdlib",
+        "version": "2.7.4",
+        "version_normalized": "2.7.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-stdlib.git",
+            "reference": "cae029346a33663b998507f94962eb27de060683"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-stdlib/zipball/cae029346a33663b998507f94962eb27de060683",
+            "reference": "cae029346a33663b998507f94962eb27de060683",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5",
+            "zendframework/zend-hydrator": "~1.0"
+        },
+        "require-dev": {
+            "athletic/athletic": "~0.1",
+            "fabpot/php-cs-fixer": "1.7.*",
+            "phpunit/phpunit": "~4.0",
+            "zendframework/zend-config": "~2.5",
+            "zendframework/zend-eventmanager": "~2.5",
+            "zendframework/zend-filter": "~2.5",
+            "zendframework/zend-inputfilter": "~2.5",
+            "zendframework/zend-serializer": "~2.5",
+            "zendframework/zend-servicemanager": "~2.5"
+        },
+        "suggest": {
+            "zendframework/zend-eventmanager": "To support aggregate hydrator usage",
+            "zendframework/zend-filter": "To support naming strategy hydrator usage",
+            "zendframework/zend-serializer": "Zend\\Serializer component",
+            "zendframework/zend-servicemanager": "To support hydrator plugin manager usage"
+        },
+        "time": "2015-10-15 15:57:32",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.7-dev",
+                "dev-develop": "2.8-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zend\\Stdlib\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "homepage": "https://github.com/zendframework/zend-stdlib",
+        "keywords": [
+            "stdlib",
+            "zf2"
+        ]
+    },
+    {
+        "name": "zendframework/zend-hydrator",
+        "version": "1.0.0",
+        "version_normalized": "1.0.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-hydrator.git",
+            "reference": "f3ed8b833355140350bbed98d8a7b8b66875903f"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-hydrator/zipball/f3ed8b833355140350bbed98d8a7b8b66875903f",
+            "reference": "f3ed8b833355140350bbed98d8a7b8b66875903f",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5",
+            "zendframework/zend-stdlib": "^2.5.1"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0",
+            "squizlabs/php_codesniffer": "^2.0@dev",
+            "zendframework/zend-eventmanager": "^2.5.1",
+            "zendframework/zend-filter": "^2.5.1",
+            "zendframework/zend-inputfilter": "^2.5.1",
+            "zendframework/zend-serializer": "^2.5.1",
+            "zendframework/zend-servicemanager": "^2.5.1"
+        },
+        "suggest": {
+            "zendframework/zend-eventmanager": "^2.5.1, to support aggregate hydrator usage",
+            "zendframework/zend-filter": "^2.5.1, to support naming strategy hydrator usage",
+            "zendframework/zend-serializer": "^2.5.1, to use the SerializableStrategy",
+            "zendframework/zend-servicemanager": "^2.5.1, to support hydrator plugin manager usage"
+        },
+        "time": "2015-09-17 14:06:43",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "1.0-dev",
+                "dev-develop": "1.1-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zend\\Hydrator\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "homepage": "https://github.com/zendframework/zend-hydrator",
+        "keywords": [
+            "hydrator",
+            "zf2"
+        ]
+    },
+    {
+        "name": "zendframework/zend-eventmanager",
+        "version": "2.6.2",
+        "version_normalized": "2.6.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-eventmanager.git",
+            "reference": "b4354f75f694504d32e7d080641854f830acb865"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-eventmanager/zipball/b4354f75f694504d32e7d080641854f830acb865",
+            "reference": "b4354f75f694504d32e7d080641854f830acb865",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5",
+            "zendframework/zend-stdlib": "~2.5"
+        },
+        "require-dev": {
+            "athletic/athletic": "dev-master",
+            "fabpot/php-cs-fixer": "1.7.*",
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2016-01-12 23:08:36",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.6-dev",
+                "dev-develop": "3.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zend\\EventManager\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "homepage": "https://github.com/zendframework/zend-eventmanager",
+        "keywords": [
+            "eventmanager",
+            "zf2"
+        ]
+    },
+    {
+        "name": "zendframework/zend-session",
+        "version": "2.5.2",
+        "version_normalized": "2.5.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-session.git",
+            "reference": "f66caae318c40edb8a6edc22cc2a4e286cb4d064"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-session/zipball/f66caae318c40edb8a6edc22cc2a4e286cb4d064",
+            "reference": "f66caae318c40edb8a6edc22cc2a4e286cb4d064",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5",
+            "zendframework/zend-eventmanager": "~2.5",
+            "zendframework/zend-stdlib": "~2.5"
+        },
+        "require-dev": {
+            "fabpot/php-cs-fixer": "1.7.*",
+            "phpunit/phpunit": "~4.0",
+            "zendframework/zend-cache": "~2.5",
+            "zendframework/zend-db": "~2.5",
+            "zendframework/zend-http": "~2.5",
+            "zendframework/zend-servicemanager": "~2.5",
+            "zendframework/zend-validator": "~2.5"
+        },
+        "suggest": {
+            "zendframework/zend-cache": "Zend\\Cache component",
+            "zendframework/zend-db": "Zend\\Db component",
+            "zendframework/zend-eventmanager": "Zend\\EventManager component",
+            "zendframework/zend-http": "Zend\\Http component",
+            "zendframework/zend-servicemanager": "Zend\\ServiceManager component",
+            "zendframework/zend-validator": "Zend\\Validator component"
+        },
+        "time": "2015-07-29 19:44:43",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.5-dev",
+                "dev-develop": "2.6-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zend\\Session\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "description": "manage and preserve session data, a logical complement of cookie data, across multiple page requests by the same client",
+        "homepage": "https://github.com/zendframework/zend-session",
+        "keywords": [
+            "session",
+            "zf2"
+        ]
+    },
+    {
+        "name": "zendframework/zend-filter",
+        "version": "2.5.1",
+        "version_normalized": "2.5.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-filter.git",
+            "reference": "93e6990a198e6cdd811064083acac4693f4b29ae"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-filter/zipball/93e6990a198e6cdd811064083acac4693f4b29ae",
+            "reference": "93e6990a198e6cdd811064083acac4693f4b29ae",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.23",
+            "zendframework/zend-stdlib": "~2.5"
+        },
+        "require-dev": {
+            "fabpot/php-cs-fixer": "1.7.*",
+            "phpunit/phpunit": "~4.0",
+            "zendframework/zend-config": "~2.5",
+            "zendframework/zend-crypt": "~2.5",
+            "zendframework/zend-i18n": "~2.5",
+            "zendframework/zend-loader": "~2.5",
+            "zendframework/zend-servicemanager": "~2.5",
+            "zendframework/zend-uri": "~2.5"
+        },
+        "suggest": {
+            "zendframework/zend-crypt": "Zend\\Crypt component",
+            "zendframework/zend-i18n": "Zend\\I18n component",
+            "zendframework/zend-servicemanager": "Zend\\ServiceManager component",
+            "zendframework/zend-uri": "Zend\\Uri component for UriNormalize filter"
+        },
+        "time": "2015-06-03 15:32:01",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.5-dev",
+                "dev-develop": "2.6-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zend\\Filter\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "description": "provides a set of commonly needed data filters",
+        "homepage": "https://github.com/zendframework/zend-filter",
+        "keywords": [
+            "filter",
+            "zf2"
+        ]
+    },
+    {
+        "name": "zendframework/zend-validator",
+        "version": "2.5.3",
+        "version_normalized": "2.5.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-validator.git",
+            "reference": "53e567a58c8952a03da0b8edf0f075303a5ac5d1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-validator/zipball/53e567a58c8952a03da0b8edf0f075303a5ac5d1",
+            "reference": "53e567a58c8952a03da0b8edf0f075303a5ac5d1",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5",
+            "zendframework/zend-stdlib": "~2.5"
+        },
+        "require-dev": {
+            "fabpot/php-cs-fixer": "1.7.*",
+            "phpunit/phpunit": "~4.0",
+            "zendframework/zend-cache": "~2.5",
+            "zendframework/zend-config": "~2.5",
+            "zendframework/zend-db": "~2.5",
+            "zendframework/zend-filter": "~2.5",
+            "zendframework/zend-http": "~2.5",
+            "zendframework/zend-i18n": "~2.5",
+            "zendframework/zend-math": "~2.5",
+            "zendframework/zend-servicemanager": "~2.5",
+            "zendframework/zend-session": "~2.5",
+            "zendframework/zend-uri": "~2.5"
+        },
+        "suggest": {
+            "zendframework/zend-db": "Zend\\Db component",
+            "zendframework/zend-filter": "Zend\\Filter component, required by the Digits validator",
+            "zendframework/zend-i18n": "Zend\\I18n component to allow translation of validation error messages as well as to use the various Date validators",
+            "zendframework/zend-i18n-resources": "Translations of validator messages",
+            "zendframework/zend-math": "Zend\\Math component",
+            "zendframework/zend-servicemanager": "Zend\\ServiceManager component to allow using the ValidatorPluginManager and validator chains",
+            "zendframework/zend-session": "Zend\\Session component",
+            "zendframework/zend-uri": "Zend\\Uri component, required by the Uri and Sitemap\\Loc validators"
+        },
+        "time": "2015-09-03 19:06:11",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.5-dev",
+                "dev-develop": "2.6-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zend\\Validator\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "description": "provides a set of commonly needed validators",
+        "homepage": "https://github.com/zendframework/zend-validator",
+        "keywords": [
+            "validator",
+            "zf2"
+        ]
+    },
+    {
+        "name": "zendframework/zend-escaper",
+        "version": "2.5.1",
+        "version_normalized": "2.5.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-escaper.git",
+            "reference": "a4b227d8a477f4e7e9073f8e0a7ae7dbd3104a73"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-escaper/zipball/a4b227d8a477f4e7e9073f8e0a7ae7dbd3104a73",
+            "reference": "a4b227d8a477f4e7e9073f8e0a7ae7dbd3104a73",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.23"
+        },
+        "require-dev": {
+            "fabpot/php-cs-fixer": "1.7.*",
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2015-06-03 14:05:37",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.5-dev",
+                "dev-develop": "2.6-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zend\\Escaper\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "homepage": "https://github.com/zendframework/zend-escaper",
+        "keywords": [
+            "escaper",
+            "zf2"
+        ]
+    },
+    {
+        "name": "zendframework/zend-uri",
+        "version": "2.5.1",
+        "version_normalized": "2.5.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-uri.git",
+            "reference": "fe6c7f4c8d9037fe551898a538a2b6d39483f572"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-uri/zipball/fe6c7f4c8d9037fe551898a538a2b6d39483f572",
+            "reference": "fe6c7f4c8d9037fe551898a538a2b6d39483f572",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.23",
+            "zendframework/zend-escaper": "~2.5",
+            "zendframework/zend-validator": "~2.5"
+        },
+        "require-dev": {
+            "fabpot/php-cs-fixer": "1.7.*",
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2015-06-03 15:32:03",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.5-dev",
+                "dev-develop": "2.6-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zend\\Uri\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "description": "a component that aids in manipulating and validating » Uniform Resource Identifiers (URIs)",
+        "homepage": "https://github.com/zendframework/zend-uri",
+        "keywords": [
+            "uri",
+            "zf2"
+        ]
+    },
+    {
+        "name": "zendframework/zend-loader",
+        "version": "2.5.1",
+        "version_normalized": "2.5.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-loader.git",
+            "reference": "c5fd2f071bde071f4363def7dea8dec7393e135c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-loader/zipball/c5fd2f071bde071f4363def7dea8dec7393e135c",
+            "reference": "c5fd2f071bde071f4363def7dea8dec7393e135c",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.23"
+        },
+        "require-dev": {
+            "fabpot/php-cs-fixer": "1.7.*",
+            "phpunit/phpunit": "~4.0"
+        },
+        "time": "2015-06-03 14:05:47",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.5-dev",
+                "dev-develop": "2.6-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zend\\Loader\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "homepage": "https://github.com/zendframework/zend-loader",
+        "keywords": [
+            "loader",
+            "zf2"
+        ]
+    },
+    {
+        "name": "zendframework/zend-http",
+        "version": "2.5.3",
+        "version_normalized": "2.5.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/zendframework/zend-http.git",
+            "reference": "21174ba162cfda8d0b1d172d9f80a8bea0b767be"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/zendframework/zend-http/zipball/21174ba162cfda8d0b1d172d9f80a8bea0b767be",
+            "reference": "21174ba162cfda8d0b1d172d9f80a8bea0b767be",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5",
+            "zendframework/zend-loader": "~2.5",
+            "zendframework/zend-stdlib": "~2.5",
+            "zendframework/zend-uri": "~2.5",
+            "zendframework/zend-validator": "~2.5"
+        },
+        "require-dev": {
+            "fabpot/php-cs-fixer": "1.7.*",
+            "phpunit/phpunit": "~4.0",
+            "zendframework/zend-config": "~2.5"
+        },
+        "time": "2015-09-14 15:58:07",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.5-dev",
+                "dev-develop": "2.6-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Zend\\Http\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "description": "provides an easy interface for performing Hyper-Text Transfer Protocol (HTTP) requests",
+        "homepage": "https://github.com/zendframework/zend-http",
+        "keywords": [
+            "http",
+            "zf2"
+        ]
+    },
+    {
+        "name": "ivan-novakov/php-openid-connect-client",
+        "version": "0.2.0",
+        "version_normalized": "0.2.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ivan-novakov/php-openid-connect-client.git",
+            "reference": "6458bebe8c3356a7423cd3148fd57ab689861950"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/ivan-novakov/php-openid-connect-client/zipball/6458bebe8c3356a7423cd3148fd57ab689861950",
+            "reference": "6458bebe8c3356a7423cd3148fd57ab689861950",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.3",
+            "zendframework/zend-eventmanager": ">=2.2.1",
+            "zendframework/zend-filter": ">=2.2.1",
+            "zendframework/zend-http": ">=2.2.1",
+            "zendframework/zend-json": ">=2.2.1",
+            "zendframework/zend-session": ">=2.2.1",
+            "zendframework/zend-stdlib": ">=2.2.1"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.4"
+        },
+        "time": "2014-12-28 08:20:36",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "InoOicClient\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Ivan Novakov",
+                "homepage": "http://novakov.cz/"
+            }
+        ],
+        "description": "OAuth2/OpenID Connect client library",
+        "homepage": "https://github.com/ivan-novakov/php-openid-connect-client",
+        "keywords": [
+            "Authentication",
+            "OpenID Connect",
+            "Zend Framework",
+            "authorization",
+            "client",
+            "library",
+            "oauth2",
+            "zf2"
         ]
     }
 ]

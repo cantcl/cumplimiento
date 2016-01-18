@@ -9,7 +9,8 @@
         "scalia/sphinxsearch": "dev-master",
         "thujohn/pdf": "dev-master",
         "guzzle/guzzle": "3.8.*@dev",
-        "maatwebsite/excel": "1.1.*@dev"
+        "maatwebsite/excel": "1.1.*@dev",
+		"ivan-novakov/php-openid-connect-client": "^0.2.0"
 	},
 	"autoload": {
 		"classmap": [

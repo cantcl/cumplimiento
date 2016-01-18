@@ -8,6 +8,7 @@ class CompromisosController extends BaseController {
 
 
     public function getIndex($extension='.html'){
+        
         $q=Input::get('q');
         $input = Input::all();
         unset($input['q']);
