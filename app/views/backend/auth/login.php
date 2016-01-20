@@ -22,12 +22,19 @@
     <div class="row">
         <div class="col-md-offset-3 col-md-6">
             <div class="well" style="margin-top: 200px;">
+                <?php if (isset($error_msg)) {?>
+                <div class="alert alert-danger">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    <?php print $error_msg;?>
+                </div>
+                <?php } ?>
                 <form method="post" role="form" action="/oauth">
-                    <div class="form-group">
+                    <div class="form-group text-center">
                         <img src="https://www.claveunica.cl/assets/img/logo.png">
                     </div>
-                    <h2 class="form-signin-heading">Por favor, ingrese con su cuenta de ClaveUnica</h2>
-                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Siguiente">
+                    <h2 class="form-signin-heading text-center">Por favor, ingrese con su cuenta de Claveúnica</h2>
+                    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Continuar">
                 </form>
             </div>
         </div>
