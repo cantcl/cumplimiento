@@ -11,6 +11,8 @@ $(document).ready(function(){
     initFormUsuario();
 
     initFormCompromisosHitos();
+    initFormCompromisosMesas();
+    initFormCompromisosNoticias();
 
     initFormCompromisosActores();
 
@@ -88,10 +90,17 @@ function initAjaxForm(){
             //    left: ($(form).width()/2 - $(ajaxLoader).width()/2)+"px",
             //    top: ($(form).height()/2 - $(ajaxLoader).height()/2)+"px"
             //});
+            var formu = document.forms.namedItem("ajaxFormName"); // high importance!, here you need change "yourformname" with the name of your form
+            var formdata = new FormData(formu); // high importance!
+
             $.ajax({
                 url: form.action,
-                data: $(form).serialize(),
+                /*data: $(form).serialize(),*/
                 type: form.method,
+                data: formdata, // high importance!
+                contentType: false, // high importance!
+                async: true,
+                processData: false, // high importance!
                 dataType: "json",
                 success: function(response){
                     if(response.redirect){
@@ -152,12 +161,13 @@ function initFormCompromisosHitos(){
             var row='<tr>' +
                 '<td><input class="form-control" type="text" name="hitos['+maxid+'][descripcion]" value="" placeholder="Descripción del hito"/></td>' +
                 '<td><input class="form-control" type="number" min="0" max="100" name="hitos['+maxid+'][ponderador]" value="" placeholder="Ponderador del hito (Valor entre 0 y 100)"/></td>' +
-                '<td><input class="form-control" type="number" min="0" max="100" name="hitos['+maxid+'][avance]" value="" placeholder="Porcentaje de avance del hito (Valor entre 0 y 100)"/></td>' +
-                '<td><input data-provide="datepicker" data-date-format="dd-mm-yyyy" data-date-autoclose="true" class="form-control" type="text" name="hitos['+maxid+'][fecha_inicio]" value="" placeholder="Fecha de inicio del hito"/></td>' +
-                '<td><input data-provide="datepicker" data-date-format="dd-mm-yyyy" data-date-autoclose="true" class="form-control" type="text" name="hitos['+maxid+'][fecha_termino]" value="" placeholder="Fecha de término del hito"/></td>' +
-                '<td><input class="form-control" type="text" name="hitos['+maxid+'][verificacion_descripcion]" value="" placeholder="Medio de Verificación"/></td>' +
+                /*'<td><input class="form-control" type="number" min="0" max="100" name="hitos['+maxid+'][avance]" value="" placeholder="Porcentaje de avance del hito (Valor entre 0 y 100)"/></td>' +*/
+                '<td><select style="width: 110px !important" class="form-control" name="hitos['+maxid+'][avance]" placeholder="Porcentaje de avance (Valor entre 0 y 100)"><option value="10">0 a 20%</option><option value="30">21 a 40%</option><option value="50">41 a 60%</option><option value="70">61 a 80%</option><option value="90">81 a 100%</option></select></td>'+
+                '<td><input data-provide="datepicker" data-date-format="mm-yyyy" data-date-autoclose="true" class="form-control" type="text" name="hitos['+maxid+'][fecha_inicio]" value="" placeholder="Fecha de inicio del hito"/></td>' +
+                '<td><input data-provide="datepicker" data-date-format="mm-yyyy" data-date-autoclose="true" class="form-control" type="text" name="hitos['+maxid+'][fecha_termino]" value="" placeholder="Fecha de término del hito"/></td>' +
+                '<td><select class="form-control" name="hitos['+maxid+'][verificacion_descripcion]" placeholder="Medio de Verificación"><option value="Ley">Ley</option><option value="Resolución">Resolución</option><option value="Oficio">Oficio</option><option value="Norma">Norma</option><option value="Memo">Memo</option><option value="Acta">Acta</option><option value="Documento de trabajo">Documento de trabajo</option><option value="Informe">Informe</option><option value="Sitio web">Sitio web</option><option value="Otro">Otro</option></select></td>' +
                 '<td><input class="form-control" type="text" name="hitos['+maxid+'][verificacion_url]" value="" placeholder="URL al Medio de Verificación"/></td>' +
-                '<td>' +
+                '<td><input type="file" name="medio_verificacion_hito_'+maxid+'"><td>' +
                 '<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>' +
                 '</td>' +
                 '</tr>';
@@ -171,6 +181,75 @@ function initFormCompromisosHitos(){
         });
     });
 
+}
+
+function initFormCompromisosMesas(){
+    $('.form-mesas').each(function(i,el){
+        $(el).find('.form-mesas-table tbody tr').length?$(el).find('.form-mesas-table').show():$(el).find('.form-mesas-table').hide();
+        var maxid=$(el).find('.form-mesas-table tbody tr').length;
+        $(el).find('.form-mesas-agregar').on('click',function(){
+            var row='<tr>' +
+                '<td><input class="form-control" type="text" name="mesas['+maxid+'][descripcion]" value="" placeholder="Descripción de la mesa"/></td>' +
+                '<td><input class="form-control" type="text" name="mesas['+maxid+'][tema]" value="" placeholder="Tema de la mesa"/></td>' +
+                '<td><select class="form-control" placeholder="Tipo de la mesa" name="mesas['+maxid+'][tipo]" ><option value="Público - privada">Público - privada</option><option value="Publica">Publica</option><option value="Privada">Privada</option><option value="Sociedad civil">Sociedad civil</option><option value="Sectorial">Sectorial</option></select></td>' +
+                '<td><input class="form-control" type="text" name="mesas['+maxid+'][sesiones]" value="" placeholder="Sesiones de Trabajo"/></td>' +
+                '<td><input class="form-control" type="text" name="mesas['+maxid+'][verificacion]" value="" placeholder="Medio de Verificación"/></td>' +
+                '<td><input type="file" name="medio_verificacion_mesa_'+maxid+'"><td>' +
+                '<td><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>' +
+                '</tr>';
+            $(el).find('.form-mesas-table').append(row);
+            ++maxid;
+            $(el).find('.form-mesas-table tbody tr').length?$(el).find('.form-mesas-table').show():$(el).find('.form-mesas-table').hide();
+        });
+        $(el).find('.form-mesas-table').on('click','button',function(){
+            $(this).closest('tr').remove();
+            $(el).find('.form-mesas-table tbody tr').length?$(el).find('.form-mesas-table').show():$(el).find('.form-mesas-table').hide();
+        });
+    });
+}
+
+function initFormCompromisosNoticias(){
+    $('.form-noticias').each(function(i,el){
+        $(el).find('.form-noticias-table tbody tr').length?$(el).find('.form-noticias-table').show():$(el).find('.form-noticias-table').hide();
+        var maxid=$(el).find('.form-noticias-table tbody tr').length;
+        $(el).find('.form-noticias-agregar').on('click',function(){
+            var row='<tr>'+
+                      '<td>'+
+                        '<table style="width: 100%">'+
+                          '<tr>'+
+                            '<td>Titulo</td>'+
+                          '</tr><tr>'+
+                            '<td><input class="form-control" type="text" name="noticias['+maxid+'][titulo]" value="" placeholder="Titulo"/></td>' +
+                          '</tr><tr>'+
+                            '<td>Descripción</td>'+
+                          '</tr><tr>'+
+                            '<td>'+
+                            '<textarea class="form-control tinymce" rows="6" placeholder="Descripción" name="noticias['+maxid+'][descripcion]"></textarea>'+
+                            '</td>'+
+                          '</tr><tr>'+
+                            '<td>Link Institucional</td>'+
+                          '</tr><tr>'+
+                            '<td><input class="form-control" type="text" name="noticias['+maxid+'][link]" value="" placeholder="Link Institucional"/></td>' +
+                          '</tr><tr>'+
+                            '<td>Imagen</td>'+
+                          '</tr><tr>'+
+                            '<td><input type="file" name="medio_verificacion_noticia_'+maxid+'"><td>' +
+                          '</tr>'+
+                        '</table>'+
+                      '</td>'+
+                      '<td style="width: 60px; text-align: right"><button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button></td>' +
+                    '</tr>';
+            $(el).find('.form-noticias-table').append(row);
+            ++maxid;
+            $(el).find('.form-noticias-table tbody tr').length?$(el).find('.form-noticias-table').show():$(el).find('.form-noticias-table').hide();
+        });
+        $(el).find('.form-noticias-table').on('click','button',function(){
+            $(this).closest('tr').remove();
+            $(this).closest('tr').remove();
+            $(this).closest('tr').remove();
+            $(el).find('.form-noticias-table tbody tr').length?$(el).find('.form-noticias-table').show():$(el).find('.form-noticias-table').hide();
+        });
+    });
 }
 
 function initFormCompromisosActores(){
@@ -276,4 +355,28 @@ function initMoment(){
         var time=moment($(el).text());
         $(el).text(time.fromNow());
     });
+}
+
+/*Actualiza comunas en base a filtro de regiones*/
+function updateComunas(region_id){
+  //limpiar select
+  $("#comuna").empty();
+  select = document.getElementById('comuna');
+  //cargar las comunas de la region indicada por region_id
+  $.ajax({
+      url: '/backend/compromisos/comunas',
+      data: { region_id : region_id },
+      type: 'GET',
+      dataType: "json",
+      success: function(response){
+        $.each(response, function(i,resp) {
+          /*console.log(resp.id+" "+resp.nombre)*/
+          var opt = document.createElement('option');
+          opt.value = resp.id;
+          opt.innerHTML = resp.nombre;
+          select.appendChild(opt);
+        });
+      }
+    });
+
 }

@@ -22,4 +22,4 @@ class Sector extends Eloquent{
     public function hijos(){
         return $this->hasMany('Sector', 'sector_padre_id', 'id');
     }
-} 
+}

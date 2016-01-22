@@ -8,7 +8,6 @@ class CompromisosController extends BaseController {
 
 
     public function getIndex($extension='.html'){
-        
         $q=Input::get('q');
         $input = Input::all();
         unset($input['q']);
@@ -134,6 +133,7 @@ class CompromisosController extends BaseController {
         $data['compromiso'] = $compromiso;
         $data['instituciones'] = Institucion::whereNull('institucion_padre_id')->get();
         $data['sectores'] = Sector::whereNull('sector_padre_id')->get();
+        	$data['comunas'] = Sector::whereNull('sector_padre_id')->get();
         $data['fuentes'] = Fuente::whereNull('fuente_padre_id')->get();
         $data['usuarios'] = Usuario::all();
         $data['tags']=Tag::all()->lists('nombre');
@@ -144,13 +144,14 @@ class CompromisosController extends BaseController {
     }
 
     public function postGuardar($compromiso_id = null){
+
         $validator = Validator::make(Input::all(),array(
             'nombre' => 'required',
-            'publico' => 'required',
-            'fuente' => 'required',
+            /*'publico' => 'required',*/
+            /*'fuente' => 'required',*/
             'institucion_responsable_plan' => 'required',
             'institucion_responsable_implementacion' => 'required',
-            'usuario' => 'required',
+            /*'usuario' => 'required',*/
             'url'=>'url',
             'presupuesto'=>'numeric'
         ));
@@ -161,19 +162,55 @@ class CompromisosController extends BaseController {
 
             $compromiso = $compromiso_id ? Compromiso::find($compromiso_id) : new Compromiso();
 
+            $compromiso->number = Input::get('number');
             $compromiso->nombre = Input::get('nombre');
-            $compromiso->url = Input::get('url');
+						$compromiso->iniciativa = Input::get('iniciativa');
+						$compromiso->linea_accion = Input::get('linea_accion');
+						$compromiso->eje_estrategico = Input::get('eje_estrategico');
+						$compromiso->prioridad = Input::get('prioridad');
+
+            	$compromiso->url = Input::get('url','-');
             $compromiso->descripcion = Input::get('descripcion','');
+            $compromiso->impacto = Input::get('impacto','');
             $compromiso->objetivo = Input::get('objetivo','');
-            $compromiso->publico=Input::get('publico');
+            	$compromiso->publico=Input::get('publico',1);
             $compromiso->avance_descripcion=Input::get('avance_descripcion');
             $compromiso->plazo=Input::get('plazo');
             $compromiso->presupuesto=Input::get('presupuesto',null);
             $compromiso->institucionResposablePlan()->associate(Institucion::find(Input::get('institucion_responsable_plan')));
             $compromiso->institucionResposableImplementacion()->associate(Institucion::find(Input::get('institucion_responsable_implementacion')));
             $compromiso->departamento=Input::get('departamento');
-            $compromiso->fuente()->associate(Fuente::find(Input::get('fuente')));
-            $compromiso->usuario()->associate(Usuario::find(Input::get('usuario')));
+            /*$compromiso->fuente()->associate(Fuente::find(Input::get('fuente')));*/
+            /*$compromiso->usuario()->associate(Usuario::find(Input::get('usuario')));*/
+							$compromiso->fuente()->associate(Fuente::find(1));
+							$compromiso->usuario()->associate(Usuario::find(1));
+
+						$compromiso->presupuesto_publico=Input::get('presupuesto_publico');
+						$compromiso->porcentaje_ejec=Input::get('porcentaje_ejec');
+
+						/* ini: save asociados */
+							$compromiso->asociados()->delete();
+							$asociados=Input::get('asociados',array());
+							foreach($asociados as $a){
+	            	$new_asociado=new Asociado();
+									$new_asociado->asociado = $a;
+								$compromiso->asociados()->save($new_asociado);
+							}
+						/* fin: save asociados */
+
+						/*UPLOAD FILES*/
+							/* ini: Archivo medio_verificacion */
+							if (Input::hasFile('medio_verificacion')){
+							    $file = Input::file('medio_verificacion');
+									$new_name = time()."_".$file->getClientOriginalName();
+							    $file->move('uploads', $new_name);
+									$compromiso->medio_verificacion = $new_name;
+							}else{
+								if(Input::get('delete_medio_verificacion')){
+									$compromiso->medio_verificacion = '';
+								}
+							}
+							/* end: Archivo medio_verificacion */
 
             if(!Auth::user()->super && $compromiso->usuario_id!=Auth::user()->id)
                 App::abort(403, 'Unauthorized action.');
@@ -190,19 +227,108 @@ class CompromisosController extends BaseController {
             $compromiso->tags()->sync($tag_ids);
 
             $compromiso->sectores()->sync(Input::get('sectores',array()));
+            /*Guardar las comunas*/
 
             $compromiso->hitos()->delete();
             $hitos=Input::get('hitos',array());
-            foreach($hitos as $h){
+						$count_hitos = 0;
+						foreach($hitos as $h){
                 $new_hito=new Hito();
                 $new_hito->descripcion=$h['descripcion'];
                 $new_hito->ponderador=$h['ponderador']/100;
                 $new_hito->avance=$h['avance']/100;
+
+								$h['fecha_inicio']	= "01-".$h['fecha_inicio'];
+								$h['fecha_termino']	= "28-".$h['fecha_termino'];
+
                 $new_hito->fecha_inicio=\Carbon\Carbon::parse($h['fecha_inicio']);
                 $new_hito->fecha_termino=\Carbon\Carbon::parse($h['fecha_termino']);
                 $new_hito->verificacion_descripcion=$h['verificacion_descripcion'];
                 $new_hito->verificacion_url=$h['verificacion_url'];
+
+								$new_hito->medio_verificacion = '';
+								/*UPLOAD FILES*/
+									/* ini: Archivo medio_verificacion */
+									if( Input::hasFile('medio_verificacion_hito_'.$count_hitos) ){
+									    $file = Input::file('medio_verificacion_hito_'.$count_hitos);
+											$new_name = time()."_".$file->getClientOriginalName();
+									    $file->move('uploads', $new_name);
+											$new_hito->medio_verificacion = $new_name;
+									}else{
+										if(Input::get('delete_medio_verificacion_hito_'.$count_hitos)){
+											$new_hito->medio_verificacion = '';
+										}else{
+											$new_hito->medio_verificacion = Input::get('medio_verificacion_hito_'.$count_hitos);
+										}
+									}
+									/* end: Archivo medio_verificacion */
+
                 $compromiso->hitos()->save($new_hito);
+								$count_hitos++;
+            }
+
+						/*ingresar mesas*/
+						$compromiso->mesas()->delete();
+						$mesas=Input::get('mesas',array());
+						$count_mesas = 0;
+						foreach($mesas as $m){
+                $new_mesa=new Mesa();
+                $new_mesa->nombre=$m['nombre'];
+                $new_mesa->tema=$m['tema'];
+                $new_mesa->tipo=$m['tipo'];
+                $new_mesa->sesiones=$m['sesiones'];
+                $new_mesa->verificacion=$m['verificacion'];
+
+								$new_mesa->medio_verificacion = '';
+								/*UPLOAD FILES*/
+									/* ini: Archivo medio_verificacion */
+									if( Input::hasFile('medio_verificacion_mesa_'.$count_mesas) ){
+									    $file = Input::file('medio_verificacion_mesa_'.$count_mesas);
+											$new_name = time()."_".$file->getClientOriginalName();
+									    $file->move('uploads', $new_name);
+											$new_mesa->medio_verificacion = $new_name;
+									}else{
+										if(Input::get('delete_medio_verificacion_mesa_'.$count_mesas)){
+											$new_mesa->medio_verificacion = '';
+										}else{
+											$new_mesa->medio_verificacion = Input::get('medio_verificacion_mesa_'.$count_mesas);
+										}
+									}
+									/* end: Archivo medio_verificacion */
+
+                $compromiso->mesas()->save($new_mesa);
+								$count_mesas++;
+            }
+
+						/*ingresar noticias*/
+						$compromiso->noticias()->delete();
+						$noticias=Input::get('noticias',array());
+						$count_noticias = 0;
+            foreach($noticias as $n){
+                $new_noticia=new Noticia();
+								$new_noticia->titulo=$n['titulo'];
+								$new_noticia->descripcion=$n['descripcion'];
+								$new_noticia->link=$n['link'];
+
+								$new_noticia->medio_verificacion = '';
+								/*UPLOAD FILES*/
+									/* ini: Archivo medio_verificacion */
+									if( Input::hasFile('medio_verificacion_noticia_'.$count_noticias) ){
+									    $file = Input::file('medio_verificacion_noticia_'.$count_noticias);
+											$new_name = time()."_".$file->getClientOriginalName();
+									    $file->move('uploads', $new_name);
+											$new_noticia->medio_verificacion = $new_name;
+									}else{
+										if(Input::get('delete_medio_verificacion_noticia_'.$count_noticias)){
+											$new_noticia->medio_verificacion = '';
+										}else{
+											$new_noticia->medio_verificacion = Input::get('medio_verificacion_noticia_'.$count_noticias);
+										}
+									}
+									/* end: Archivo medio_verificacion */
+
+                $compromiso->noticias()->save($new_noticia);
+								$count_noticias++;
             }
 
             $compromiso->actores()->delete();
@@ -231,6 +357,14 @@ class CompromisosController extends BaseController {
 
         return $response;
     }
+
+		public function getComunas(){
+			$region_id = $_GET['region_id'];
+			$json = Sector::with('hijos.hijos')->where('sector_padre_id', $region_id)->get();
+
+			$response = Response::json($json);
+			return $response;
+		}
 
     public function getEliminar($compromiso_id){
         $compromiso = Compromiso::find($compromiso_id);

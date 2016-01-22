@@ -1405,7 +1405,7 @@
 		orientation: "auto",
 		rtl: false,
 		startDate: -Infinity,
-		startView: 0,
+		startView: 1,
 		todayBtn: false,
 		todayHighlight: false,
 		weekStart: 0
