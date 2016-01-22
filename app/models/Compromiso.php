@@ -34,8 +34,20 @@ class Compromiso extends Eloquent{
         return $this->belongsToMany('Tag');
     }
 
+    public function asociados(){
+        return $this->hasMany('Asociado');
+    }
+
     public function hitos(){
         return $this->hasMany('Hito');
+    }
+
+    public function mesas(){
+        return $this->hasMany('Mesa');
+    }
+
+    public function noticias(){
+        return $this->hasMany('Noticia');
     }
 
     public function actores(){
@@ -77,4 +89,4 @@ class Compromiso extends Eloquent{
         return array_values($data);
     }
 
-} 
+}
