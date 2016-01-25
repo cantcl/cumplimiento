@@ -19,6 +19,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
 </head>
 <body>
 <header>
@@ -87,6 +88,7 @@
 </div>
 
 <script src="<?=URL::asset('bower_components/jquery/dist/jquery.min.js')?>"></script>
+<script src="<?=URL::asset('js/jquery.Rut.js')?>"></script>
 <script src="<?=URL::asset('bower_components/bootstrap/dist/js/bootstrap.min.js')?>"></script>
 <script src="<?=URL::asset('bower_components/select2/select2.min.js')?>"></script>
 <script src="<?=URL::asset('bower_components/tinymce/tinymce.min.js')?>"></script>
