@@ -7,6 +7,7 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Actor' => $baseDir . '/app/models/Actor.php',
+    'AddAutoridadResponsableToCompromisos' => $baseDir . '/app/database/migrations/2016_02_02_120908_add_autoridad_responsable_to_compromisos.php',
     'AddDepartamentoToCompromisoTable' => $baseDir . '/app/database/migrations/2014_06_19_143725_add_departamento_to_compromiso_table.php',
     'AddFieldsToCompromisosTable' => $baseDir . '/app/database/migrations/2016_01_20_171024_add_fields_to_compromisos_table.php',
     'AddFilesToCompromisoTable' => $baseDir . '/app/database/migrations/2016_01_21_162427_add_files_to_compromiso_table.php',

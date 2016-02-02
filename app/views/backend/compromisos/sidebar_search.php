@@ -9,7 +9,7 @@
                 <input type="text" class="form-control" name="q" id="q-filtros" value="<?= isset($q)?strip_tags($q):''; ?>"/>
             </div>
 
-            <div class="panel-heading">Fuentes</div>
+            <div class="panel-heading">Ejes estratégicos</div>
             <div class="panel-body panel-filtro-anidado">
                 <div class="checkbox">
                     <ul>
@@ -154,24 +154,7 @@
 
 
 
-            <div class="panel-heading">Sectorialista Responsable</div>
-            <div class="panel-body panel-filtro-anidado">
-                <div class="checkbox">
-                    <ul>
-                        <?php foreach($usuarios as $usuario): ?>
-                            <li <?= in_array($usuario->id, $filtros['usuario']) ? 'class="active"' : ''; ?>>
-                                <label>
-                                    <input name="usuarios[]" <?= in_array($usuario->id, $input['usuarios']) ? 'checked' : ''; ?> value="<?= $usuario->id; ?>" type="checkbox"/>
-                                    <?= $usuario->nombres; ?> <?=$usuario->apellidos?>
-                                    <?php if(isset($filtros_count['usuario'][$usuario->id])): ?>
-                                        <span class="badge"><?= array_get($filtros_count['usuario'],$usuario->id); ?></span>
-                                    <?php endif ?>
-                                </label>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            </div>
+            
 
         </div>
     </form>

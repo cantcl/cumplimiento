@@ -32,7 +32,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?= URL::to('/backend'); ?>">Cumplimiento</a>
+                <a class="navbar-brand" href="<?= URL::to('/backend'); ?>">Seguimiento Agenda Digital 2020</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -40,8 +40,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menú<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<?= URL::to('/backend/compromisos'); ?>">Compromisos</a></li>
-                            <?php if(Auth::user()->super):?><li><a href="<?= URL::to('/backend/fuentes'); ?>">Fuentes</a></li><?php endif ?>
+                            <li><a href="<?= URL::to('/backend/compromisos'); ?>">Medidas</a></li>
+                            <?php if(Auth::user()->super):?><li><a href="<?= URL::to('/backend/fuentes'); ?>">Ejes estratégicos</a></li><?php endif ?>
                             <li><a href="<?= URL::to('/backend/hitos'); ?>">Hitos</a></li>
                             <?php if(Auth::user()->super):?><li><a href="<?= URL::to('/backend/usuarios'); ?>">Usuarios</a></li><?php endif ?>
                         </ul>

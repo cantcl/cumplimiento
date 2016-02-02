@@ -1,21 +1,21 @@
 <ol class="breadcrumb">
     <li><a href="<?=URL::to('backend')?>">Inicio</a></li>
-    <li><a href="<?=URL::to('backend/compromisos')?>">Compromisos</a></li>
+    <li><a href="<?=URL::to('backend/compromisos')?>">Medida</a></li>
     <li class="active"><?= $compromiso->id ? 'Editar' : 'Nuevo'; ?></li>
 </ol>
 
 
 <form name="ajaxFormName" class="ajaxForm" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" action="<?= URL::to('backend/compromisos/guardar/' . $compromiso->id); ?>">
     <fieldset>
-        <legend><?= $compromiso->id ? 'Editar' : 'Nuevo'; ?> Compromiso</legend>
+        <legend><?= $compromiso->id ? 'Editar' : 'Nuevo'; ?> Medida</legend>
         <div class="validacion"></div>
         <div class="form-group col-sm-3">
-            <label for="number" class="control-label">Número</label>
-            <input type="text" class="form-control" name="number" id="number" value="<?= $compromiso->number; ?>" placeholder="Numero del compromiso"/>
+            <label for="number" class="control-label">Número de la medida</label>
+            <input type="text" class="form-control" name="number" id="number" value="<?= $compromiso->number; ?>" placeholder="Numero de la medida"/>
         </div>
         <div class="form-group col-sm-9">
-            <label for="nombre" class="control-label">Nombre</label>
-            <input type="text" class="form-control" name="nombre" id="nombre" value="<?= $compromiso->nombre; ?>" placeholder="Nombre del compromiso"/>
+            <label for="nombre" class="control-label">Nombre de la medida</label>
+            <input type="text" class="form-control" name="nombre" id="nombre" value="<?= $compromiso->nombre; ?>" placeholder="Nombre de la medida"/>
         </div>
 
         <div class="form-group col-sm-12">
@@ -26,10 +26,26 @@
             <label for="nombre" class="control-label">Linea de acción</label>
             <input type="text" class="form-control" name="linea_accion" id="linea_accion" value="<?= $compromiso->linea_accion; ?>" placeholder="Linea de acción"/>
         </div>
-        <div class="form-group col-sm-12">
-            <label for="nombre" class="control-label">Eje estrategico de la agenda</label>
-            <input type="text" class="form-control" name="eje_estrategico" id="eje_estrategico" value="<?= $compromiso->eje_estrategico; ?>" placeholder="Eje estrategico de la agenda"/>
+        <div class="form-group col-sm-3">
+            <label for="number" class="control-label">Autoridad responsable</label>
+            <input type="text" class="form-control" name="autoridad_responsable" id="autoridad_responsable" value="<?= $compromiso->autoridad_responsable; ?>" placeholder="Nombre de la autoridad responsable de la medida"/>
         </div>
+        <div class="form-group col-sm-12 form-group-fuente">
+                <label for="fuente" class="control-label">Eje estratégico de la agenda al que pertenece</label>
+                <select class="form-control form-control-select2" name="fuente" id="area" data-placeholder="Seleccionar eje estratégico">
+                    <option></option>
+                    <?php foreach($fuentes as $f): ?>
+                    <option value="<?= $f->id; ?>" <?=$f->id==$compromiso->fuente_id?'selected':''?>><?= $f->nombre; ?></option>
+                    <?php foreach($f->hijos as $h):?>
+                    <option value="<?= $h->id; ?>" <?=$h->id==$compromiso->fuente_id?'selected':''?>> - <?= $h->nombre; ?></option>
+                    <?php foreach($h->hijos as $n):?>
+                    <option value="<?= $n->id; ?>" <?=$n->id==$compromiso->fuente_id?'selected':''?>> -- <?= $n->nombre; ?></option>
+                    <?php endforeach ?>
+                    <?php endforeach ?>
+                    <?php endforeach ?>
+                </select>
+        </div>
+
         <div class="form-group col-sm-12">
             <label for="nombre" class="control-label">Prioridad</label>
             <input type="text" class="form-control" name="prioridad" id="prioridad" value="<?= $compromiso->prioridad; ?>" placeholder="Priodidad"/>
@@ -95,36 +111,12 @@
                       <?php if($s->tipo == 'region'): ?>
                         <option value="<?= $s->id; ?>" <?=$compromiso->sectores->find($s->id)?'selected':''?>><?= $s->nombre; ?></option>
                         <?php foreach($s->hijos as $h): ?>
-                            <option value="<?= $h->id; ?>" <?=$compromiso->sectores->find($h->id)?'selected':''?>> - Provincia de <?= $h->nombre; ?></option>
+                            <?php foreach($h->hijos as $hh): ?>
+                                <option region="<?php echo $s->id; ?>" value="<?= $hh->id; ?>" <?=$compromiso->sectores->find($hh->id)?'selected':''?>>Comuna de <?= $hh->nombre; ?></option>
+                            <?php endforeach; ?>
                         <?php endforeach; ?>
                       <?php endif; ?>
                     <?php endforeach; ?>
-                </select>
-            </div>
-            <div class="form-group col-sm-6">
-                <label for="sector" class="control-label">Región</label>
-                <select onchange="updateComunas(this.value)" class="form-control form-control-select2" name="region" id="region">
-                    <option></option>
-                    <?php foreach($sectores as $s): ?>
-                      <?php if($s->tipo == 'region'): ?>
-                        <option value="<?= $s->id; ?>" <?=$compromiso->sectores->find($s->id)?'selected':''?>><?= $s->nombre; ?></option>
-                        <?php /*foreach($s->hijos as $h): ?>
-                            <option value="<?= $h->id; ?>" <?=$compromiso->sectores->find($h->id)?'selected':''?>> - Provincia de <?= $h->nombre; ?></option>
-                        <?php endforeach;*/ ?>
-                      <?php endif; ?>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-            <div class="form-group col-sm-6">
-                <label for="sector" class="control-label">Comuna</label>
-                <select class="form-control form-control-select2" name="comunas[]" id="comuna" data-placeholder="Comunas" multiple>
-                  <?php foreach($sectores as $s): ?>
-                      <?php foreach($s->hijos as $h): ?>
-                          <?php foreach($h->hijos as $hh): ?>
-                              <option region="<?php echo $s->id; ?>" value="<?= $hh->id; ?>" <?=$compromiso->sectores->find($hh->id)?'selected':''?>><?= $hh->nombre; ?></option>
-                          <?php endforeach; ?>
-                      <?php endforeach; ?>
-                  <?php endforeach; ?>
                 </select>
             </div>
 
@@ -162,9 +154,6 @@
                           <option></option>
                           <?php foreach($instituciones as $i): ?>
                               <option value="<?= $i->id; ?>" <?=$i->id==$compromiso->institucion_responsable_plan_id?'selected':''?>><?= $i->nombre; ?></option>
-                              <?php foreach($i->hijos as $h): ?>
-                                  <option value="<?= $h->id; ?>" <?=$h->id==$compromiso->institucion_responsable_plan_id?'selected':''?>> - <?= $h->nombre; ?></option>
-                              <?php endforeach; ?>
                           <?php endforeach; ?>
                       </select>
                   <!--</div>-->
@@ -177,10 +166,11 @@
                       <select class="form-control form-control-select2" name="institucion_responsable_implementacion" id="institucion_responsable_implementacion" data-placeholder="Seleccionar institución">
                           <option></option>
                           <?php foreach($instituciones as $i): ?>
-                              <option value="<?= $i->id; ?>" <?=$i->id==$compromiso->institucion_responsable_implementacion_id?'selected':''?>><?= $i->nombre; ?></option>
+                              <optgroup label="<?= $i->nombre; ?>">
                               <?php foreach($i->hijos as $h): ?>
-                                  <option value="<?= $h->id; ?>" <?=$h->id==$compromiso->institucion_responsable_implementacion_id?'selected':''?>> - <?= $h->nombre; ?></option>
+                                  <option value="<?= $h->id; ?>" <?=$h->id==$compromiso->institucion_responsable_implementacion_id?'selected':''?>><?= $h->nombre; ?></option>
                               <?php endforeach; ?>
+                              </optgroup>
                           <?php endforeach; ?>
                       </select>
                   <!--</div>-->
@@ -193,7 +183,7 @@
                 <div class="form-group">
                     <label for="departamento" class="control-label">Coordinación con otros Actores</label>
                     <!--<div class="col-sm-12">-->
-                        <input class="form-control" type="text" name="departamento" id="departamento" value="<?=$compromiso->departamento?>" placeholder="Unidad/División/Departamento responsable" />
+                        <input class="form-control" type="text" name="departamento" id="departamento" value="<?=$compromiso->departamento?>" placeholder="" />
                     <!--</div>-->
                 </div>
             </div>
@@ -234,7 +224,7 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="descripcion">Descripción de la Medida</label>
-                    <textarea class="form-control tinymce" rows="6" placeholder="Descripción sobre lo que consiste el compromiso." id="descripcion" name="descripcion"><?=$compromiso->descripcion?></textarea>
+                    <textarea class="form-control tinymce" rows="6" placeholder="Descripción sobre lo que consiste la medida." id="descripcion" name="descripcion"><?=$compromiso->descripcion?></textarea>
                 </div>
             </div>
         </div>
@@ -252,7 +242,7 @@
             <div class="col-sm-12">
                 <div class="form-group">
                     <label for="objetivo">Meta de la Medida</label>
-                    <textarea class="form-control tinymce" rows="6" placeholder="Descripción sobre el objetivo general del compromiso." id="objetivo" name="objetivo"><?=$compromiso->objetivo?></textarea>
+                    <textarea class="form-control tinymce" rows="6" placeholder="Descripción sobre el objetivo general de la medida." id="objetivo" name="objetivo"><?=$compromiso->objetivo?></textarea>
                 </div>
             </div>
         </div>
@@ -297,14 +287,7 @@
                 <label for="presupuesto">Presupuesto ($CLP)</label>
                 <input class="form-control" type="number" step="0.01" id="presupuesto" name="presupuesto" value="<?=$compromiso->presupuesto?>" placeholder="En CLP"/>
             </div>
-            <div class="col-sm-6">
-                <label for="publico">Origen del Presupuesto</label>
-                <br>
-                <select class="form-control form-control-select2" name="presupuesto_publico" id="presupuesto_publico">
-                  <option value="0">Privado</option>
-                  <option value="1">Público</option>
-                </select>
-            </div>
+            
             <div class="col-sm-6">
                 <label for="publico">% de ejecución presupuestaria</label>
                 <input class="form-control" type="text" id="porcentaje_ejec" name="porcentaje_ejec" value="<?=$compromiso->porcentaje_ejec?>"/>
@@ -422,11 +405,12 @@
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Tema</th>
-                            <th>Tipo</th>
-                            <th>Sesiones de Trabajo</th>
+                            <th>Tema</th> <!-- no va -->
+                            <th>Participantes</th>
+                            <th>Nº de Sesiones de Trabajo</th>
                             <th>Medio de Verificación</th>
                             <th>Adjunto</th>
+                            <!-- añadir frecuencia de sesiones -->
                             <th></th>
                         </tr>
                     </thead>
@@ -569,7 +553,7 @@
     </fieldset>
     <hr/>
     <div class="text-right">
-        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span> Guardar</button>
-        <a href="javascript:history.back();" class="btn btn-warning"><span class="glyphicon glyphicon-ban-circle"></span> Cancelar</a>
+        <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span>Guardar</button>
+        <a href="javascript:history.back();" class="btn btn-warning"><span class="glyphicon glyphicon-ban-circle"></span>Cancelar</a>
     </div>
 </form>

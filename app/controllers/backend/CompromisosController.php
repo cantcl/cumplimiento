@@ -148,12 +148,11 @@ class CompromisosController extends BaseController {
         $validator = Validator::make(Input::all(),array(
             'nombre' => 'required',
             /*'publico' => 'required',*/
-            /*'fuente' => 'required',*/
+            'autoridad_responsable' => 'required',
+            'fuente' => 'required',
             'institucion_responsable_plan' => 'required',
             'institucion_responsable_implementacion' => 'required',
-            /*'usuario' => 'required',*/
-            'url'=>'url',
-            'presupuesto'=>'numeric'
+            'url'=>'url'
         ));
 
         $json = new stdClass();
@@ -164,16 +163,16 @@ class CompromisosController extends BaseController {
 
             $compromiso->number = Input::get('number');
             $compromiso->nombre = Input::get('nombre');
-						$compromiso->iniciativa = Input::get('iniciativa');
-						$compromiso->linea_accion = Input::get('linea_accion');
-						$compromiso->eje_estrategico = Input::get('eje_estrategico');
-						$compromiso->prioridad = Input::get('prioridad');
-
-            	$compromiso->url = Input::get('url','-');
+            $compromiso->iniciativa = Input::get('iniciativa');
+            $compromiso->autoridad_responsable = Input::get('autoridad_responsable');
+            $compromiso->linea_accion = Input::get('linea_accion');
+            $compromiso->prioridad = Input::get('prioridad');
+            $compromiso->fuente = Input::get('fuente');
+            $compromiso->url = Input::get('url','-');
             $compromiso->descripcion = Input::get('descripcion','');
             $compromiso->impacto = Input::get('impacto','');
             $compromiso->objetivo = Input::get('objetivo','');
-            	$compromiso->publico=Input::get('publico',1);
+            $compromiso->publico=Input::get('publico',1);
             $compromiso->avance_descripcion=Input::get('avance_descripcion');
             $compromiso->plazo=Input::get('plazo');
             $compromiso->presupuesto=Input::get('presupuesto',null);
@@ -182,20 +181,20 @@ class CompromisosController extends BaseController {
             $compromiso->departamento=Input::get('departamento');
             /*$compromiso->fuente()->associate(Fuente::find(Input::get('fuente')));*/
             /*$compromiso->usuario()->associate(Usuario::find(Input::get('usuario')));*/
-							$compromiso->fuente()->associate(Fuente::find(1));
-							$compromiso->usuario()->associate(Usuario::find(1));
+            $compromiso->fuente()->associate(Fuente::find(1));
+            $compromiso->usuario()->associate(Usuario::find(1));
 
-						$compromiso->presupuesto_publico=Input::get('presupuesto_publico');
-						$compromiso->porcentaje_ejec=Input::get('porcentaje_ejec');
+            $compromiso->presupuesto_publico=Input::get('presupuesto_publico');
+            $compromiso->porcentaje_ejec=Input::get('porcentaje_ejec');
 
-						/* ini: save asociados */
-							$compromiso->asociados()->delete();
-							$asociados=Input::get('asociados',array());
-							foreach($asociados as $a){
-	            	$new_asociado=new Asociado();
-									$new_asociado->asociado = $a;
-								$compromiso->asociados()->save($new_asociado);
-							}
+            /* ini: save asociados */
+            $compromiso->asociados()->delete();
+            $asociados=Input::get('asociados',array());
+            foreach($asociados as $a){
+                $new_asociado=new Asociado();
+                $new_asociado->asociado = $a;
+                $compromiso->asociados()->save($new_asociado);
+            }
 						/* fin: save asociados */
 
 						/*UPLOAD FILES*/
