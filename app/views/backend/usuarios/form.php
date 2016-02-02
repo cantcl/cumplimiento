@@ -3,7 +3,7 @@
     <li><a href="<?=URL::to('backend/usuarios'); ?>">Usuarios</a></li>
     <li class="active"><?= $usuario->id ? 'Editar' : 'Nuevo'; ?></li>
 </ol>
-<form class="ajaxForm form-horizontal form-usuario" method="post" action="<?= URL::to('backend/usuarios/guardar/' . $usuario->id); ?>" name="userForm">
+<form class="ajaxForm form-horizontal form-usuario" method="post" action="<?= URL::to('backend/usuarios/guardar/' . $usuario->id); ?>" name="ajaxFormName">
     <fieldset>
         <legend><?= $usuario->id ? 'Editar' : 'Nuevo'; ?> Usuario</legend>
         <div class="validacion"></div>

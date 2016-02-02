@@ -11,7 +11,7 @@
         <div class="validacion"></div>
         <div class="form-group col-sm-3">
             <label for="number" class="control-label">Número de la medida</label>
-            <input type="text" class="form-control" name="number" id="number" value="<?= $compromiso->number; ?>" placeholder="Numero de la medida"/>
+            <input type="text" class="form-control" name="numero" id="numero" value="<?= $compromiso->number; ?>" placeholder="Numero de la medida"/>
         </div>
         <div class="form-group col-sm-9">
             <label for="nombre" class="control-label">Nombre de la medida</label>
@@ -285,7 +285,7 @@
             </div>
             <div class="col-sm-6">
                 <label for="presupuesto">Presupuesto ($CLP)</label>
-                <input class="form-control" type="number" step="0.01" id="presupuesto" name="presupuesto" value="<?=$compromiso->presupuesto?>" placeholder="En CLP"/>
+                <input class="form-control" type="number" step="0.01" id="presupuesto_publico" name="presupuesto_publico" value="<?=$compromiso->presupuesto_publico?>" placeholder="En CLP"/>
             </div>
             
             <div class="col-sm-6">
@@ -416,7 +416,7 @@
                     </thead>
                     <tbody>
                         <?php $i=0; foreach($compromiso->mesas as $m):?>
-                        <tr class="<?=$i?>">
+                        <tr>
                             <td><input class="form-control" type="text" value="<?=$m->nombre?>" name="mesas[<?=$i?>][nombre]" placeholder="Nombre de la mesa"/></td>
                             <td><input class="form-control" type="text" value="<?=$m->frecuencia?>" name="mesas[<?=$i?>][frecuencia]" placeholder="Frecuencia de sesiones"/></td>
                             <td>

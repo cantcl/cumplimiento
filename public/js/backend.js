@@ -91,7 +91,7 @@ function initAjaxForm(){
             //    left: ($(form).width()/2 - $(ajaxLoader).width()/2)+"px",
             //    top: ($(form).height()/2 - $(ajaxLoader).height()/2)+"px"
             //});
-            var formu = document.forms.namedItem("userForm"); // high importance!, here you need change "yourformname" with the name of your form
+            var formu = document.forms.namedItem("ajaxFormName"); // high importance!, here you need change "yourformname" with the name of your form
             var formdata = new FormData(formu); // high importance!
 
             $.ajax({
