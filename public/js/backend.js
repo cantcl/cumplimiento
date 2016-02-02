@@ -190,8 +190,8 @@ function initFormCompromisosMesas(){
         var maxid=$(el).find('.form-mesas-table tbody tr').length;
         $(el).find('.form-mesas-agregar').on('click',function(){
             var row='<tr>' +
-                '<td><input class="form-control" type="text" name="mesas['+maxid+'][descripcion]" value="" placeholder="Descripción de la mesa"/></td>' +
-                '<td><input class="form-control" type="text" name="mesas['+maxid+'][tema]" value="" placeholder="Tema de la mesa"/></td>' +
+                '<td><input class="form-control" type="text" name="mesas['+maxid+'][descripcion]" value="" placeholder="Nombre de la mesa"/></td>' +
+                '<td><input class="form-control" type="text" name="mesas['+maxid+'][tema]" value="" placeholder="Frecuencia de sesiones"/></td>' +
                 '<td><select class="form-control" placeholder="Tipo de la mesa" name="mesas['+maxid+'][tipo]" ><option value="Público - privada">Público - privada</option><option value="Publica">Publica</option><option value="Privada">Privada</option><option value="Sociedad civil">Sociedad civil</option><option value="Sectorial">Sectorial</option></select></td>' +
                 '<td><input class="form-control" type="text" name="mesas['+maxid+'][sesiones]" value="" placeholder="Sesiones de Trabajo"/></td>' +
                 '<td><input class="form-control" type="text" name="mesas['+maxid+'][verificacion]" value="" placeholder="Medio de Verificación"/></td>' +

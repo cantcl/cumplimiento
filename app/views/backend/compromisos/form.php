@@ -1,6 +1,6 @@
 <ol class="breadcrumb">
     <li><a href="<?=URL::to('backend')?>">Inicio</a></li>
-    <li><a href="<?=URL::to('backend/compromisos')?>">Medida</a></li>
+    <li><a href="<?=URL::to('backend/compromisos')?>">Medidas</a></li>
     <li class="active"><?= $compromiso->id ? 'Editar' : 'Nuevo'; ?></li>
 </ol>
 
@@ -405,7 +405,7 @@
                     <thead>
                         <tr>
                             <th>Nombre</th>
-                            <th>Tema</th> <!-- no va -->
+                            <th>Frecuencia de Sesiones</th>
                             <th>Participantes</th>
                             <th>Nº de Sesiones de Trabajo</th>
                             <th>Medio de Verificación</th>
@@ -416,9 +416,9 @@
                     </thead>
                     <tbody>
                         <?php $i=0; foreach($compromiso->mesas as $m):?>
-                        <tr>
+                        <tr class="<?=$i?>">
                             <td><input class="form-control" type="text" value="<?=$m->nombre?>" name="mesas[<?=$i?>][nombre]" placeholder="Nombre de la mesa"/></td>
-                            <td><input class="form-control" type="text" value="<?=$m->tema?>" name="mesas[<?=$i?>][tema]" placeholder="Tema de la mesa"/></td>
+                            <td><input class="form-control" type="text" value="<?=$m->frecuencia?>" name="mesas[<?=$i?>][frecuencia]" placeholder="Frecuencia de sesiones"/></td>
                             <td>
                               <!--<input class="form-control" type="text" value="<?=$m->tipo?>" name="mesas[<?=$i?>][tipo]" placeholder="Tipo de la mesa"/>-->
                               <select class="form-control" placeholder="Tipo de la mesa" name="mesas[<?=$i?>][tipo]" >

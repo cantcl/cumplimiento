@@ -14,6 +14,7 @@ return array(
     'AddFilesToHitoTable' => $baseDir . '/app/database/migrations/2016_01_21_165718_add_files_to_hito_table.php',
     'AddFilesToMesaTable' => $baseDir . '/app/database/migrations/2016_01_21_173842_add_files_to_mesa_table.php',
     'AddFilesToNoticiaTable' => $baseDir . '/app/database/migrations/2016_01_21_173853_add_files_to_noticia_table.php',
+    'AddFrecuenciaToMesas' => $baseDir . '/app/database/migrations/2016_02_02_121937_add_frecuencia_to_mesas.php',
     'AddNumberToCompromisosTable' => $baseDir . '/app/database/migrations/2016_01_20_170123_add_number_to_compromisos_table.php',
     'AddOtherFieldsToCompromisoTable' => $baseDir . '/app/database/migrations/2016_01_21_014040_add_other_fields_to_compromiso_table.php',
     'AddPonderadorToHitoTable' => $baseDir . '/app/database/migrations/2014_06_18_150437_add_ponderador_to_hito_table.php',

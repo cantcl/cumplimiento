@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddAutoridadResponsableToCompromisos extends Migration {
+class AddFrecuenciaToMesas extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,9 @@ class AddAutoridadResponsableToCompromisos extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('compromisos', function($table)
+		Schema::table('mesas', function($table)
 		{
-		    $table->string('autoridad_responsable')->after('presupuesto');
+		    $table->string('frecuencia')->after('compromiso_id');
 		});
 	}
 
@@ -25,9 +25,9 @@ class AddAutoridadResponsableToCompromisos extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('compromisos', function($table)
+		Schema::table('mesas', function($table)
 		{
-		    $table->dropColumn('autoridad_responsable');
+		    $table->dropColumn('frecuencia');
 		});
 	}
 

@@ -277,6 +277,7 @@ class CompromisosController extends BaseController {
                 $new_mesa->tipo=$m['tipo'];
                 $new_mesa->sesiones=$m['sesiones'];
                 $new_mesa->verificacion=$m['verificacion'];
+                $new_mesa->frecuencia=$m['frecuencia'];
 
 								$new_mesa->medio_verificacion = '';
 								/*UPLOAD FILES*/
@@ -296,7 +297,7 @@ class CompromisosController extends BaseController {
 									/* end: Archivo medio_verificacion */
 
                 $compromiso->mesas()->save($new_mesa);
-								$count_mesas++;
+				$count_mesas++;
             }
 
 						/*ingresar noticias*/
