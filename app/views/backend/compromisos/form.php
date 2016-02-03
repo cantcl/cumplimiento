@@ -17,19 +17,11 @@
             <label for="nombre" class="control-label">Nombre de la medida</label>
             <input type="text" class="form-control" name="nombre" id="nombre" value="<?= $compromiso->nombre; ?>" placeholder="Nombre de la medida"/>
         </div>
-
-        <div class="form-group col-sm-12">
-            <label for="nombre" class="control-label">Iniciativa</label>
-            <input type="text" class="form-control" name="iniciativa" id="iniciativa" value="<?= $compromiso->iniciativa; ?>" placeholder="Iniciativa"/>
-        </div>
         <div class="form-group col-sm-12">
             <label for="nombre" class="control-label">Linea de acción</label>
             <input type="text" class="form-control" name="linea_accion" id="linea_accion" value="<?= $compromiso->linea_accion; ?>" placeholder="Linea de acción"/>
         </div>
-        <div class="form-group col-sm-3">
-            <label for="number" class="control-label">Autoridad responsable</label>
-            <input type="text" class="form-control" name="autoridad_responsable" id="autoridad_responsable" value="<?= $compromiso->autoridad_responsable; ?>" placeholder="Nombre de la autoridad responsable de la medida"/>
-        </div>
+        
         <div class="form-group col-sm-12 form-group-fuente">
                 <label for="fuente" class="control-label">Eje estratégico de la agenda al que pertenece</label>
                 <select class="form-control form-control-select2" name="fuente" id="area" data-placeholder="Seleccionar eje estratégico">
@@ -177,9 +169,12 @@
               </div>
             <!--</div>-->
         <!--</div>-->
-
+        <div class="form-group col-sm-12">
+            <label for="number" class="control-label">Autoridad responsable</label>
+            <input type="text" class="form-control" name="autoridad_responsable" id="autoridad_responsable" value="<?= $compromiso->autoridad_responsable; ?>" placeholder="Nombre de la autoridad responsable de la medida"/>
+        </div>
         <!--<div class="row form-horizontal">-->
-            <div class="col-sm-12">
+            <div class="col-sm-12 hide">
                 <div class="form-group">
                     <label for="departamento" class="control-label">Coordinación con otros Actores</label>
                     <!--<div class="col-sm-12">-->
@@ -192,7 +187,7 @@
         <div class="row form-actores">
             <div class="col-sm-12">
             <div class="col-sm-12">
-                <label>Otros actores involucrados</label>
+                <label>Coordinación con otros Actores</label>
 
                 <div><button class="btn btn-default form-actores-agregar" type="button"><span class="glyphicon glyphicon-plus"></span> Agregar nuevo actor</button></div>
                 <table class="table form-actores-table">

@@ -55,8 +55,8 @@
             </div>
 
             <?php if(!empty($filtros['tag'])):?>
-            <div class="panel-heading">Tags</div>
-            <div class="panel-body panel-filtro-anidado">
+            <div class="panel-heading ">Tags</div>
+            <div class="panel-body panel-filtro-anidado ">
                 <div class="checkbox">
                     <ul>
                         <?php foreach($tags as $usuario): ?>
@@ -75,6 +75,27 @@
             </div>
             <?php endif ?>
 
+            <?php if(!empty($filtros['linea_accion'])):?>
+            <div class="panel-heading ">Líneas de acción</div>
+            <div class="panel-body panel-filtro-anidado ">
+                <div class="checkbox">
+                    <ul>
+                        <?php foreach($tags as $usuario): ?>
+                            <li <?= in_array($usuario->id, $filtros['linea_accion']) ? 'class="active"' : ''; ?>>
+                                <label>
+                                    <input name="lineas_accion" <?= $input['lineas_accion'] ? 'checked' : ''; ?> value="<?= $usuario->id; ?>" type="checkbox"/>
+                                    <?= $usuario->nombre; ?>
+                                    <?php if(isset($filtros_count['linea_accion'][$usuario->id])): ?>
+                                        <span class="badge"><?= array_get($filtros_count['linea_accion'],$usuario->id); ?></span>
+                                    <?php endif ?>
+                                </label>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            </div>
+            <?php endif ?>
+           
             <div class="panel-heading">Institución responsable</div>
             <div class="panel-body panel-filtro-anidado">
                 <div class="checkbox">
@@ -107,54 +128,6 @@
                 </div>
             </div>
 
-            <div class="panel-heading">Sector Geográfico</div>
-            <div class="panel-body panel-filtro-anidado">
-                <div class="checkbox">
-                    <ul>
-                        <?php foreach($sectores as $usuario): ?>
-                            <li <?= in_array($usuario->id, $filtros['sector']) ? 'class="active"' : ''; ?>>
-                                <label>
-                                    <input name="sectores[]" <?= in_array($usuario->id, $input['sectores']) ? 'checked' : ''; ?> value="<?= $usuario->id; ?>" type="checkbox"/>
-                                    <?= $usuario->nombre; ?>
-                                    <?php if(isset($filtros_count['sector'][$usuario->id])): ?>
-                                        <span class="badge"><?= array_get($filtros_count['sector'],$usuario->id); ?></span>
-                                    <?php endif ?>
-                                </label>
-                                <ul>
-                                    <?php foreach($usuario->hijos as $sectorHijo): ?>
-                                        <li <?= in_array($sectorHijo->id, $filtros['sector']) ? 'class="active"' : ''; ?>>
-                                            <label>
-                                                <input name="sectores[]" <?= in_array($sectorHijo->id, $input['sectores']) ? 'checked' : ''; ?> value="<?= $sectorHijo->id; ?>" type="checkbox"/>
-                                                Provincia de <?= $sectorHijo->nombre; ?>
-                                                <?php if(isset($filtros_count['sector'][$sectorHijo->id])): ?>
-                                                    <span class="badge"><?= array_get($filtros_count['sector'],$sectorHijo->id); ?></span>
-                                                <?php endif ?>
-                                            </label>
-                                            <ul>
-                                                <?php foreach($sectorHijo->hijos as $n): ?>
-                                                    <li <?= in_array($n->id, $filtros['sector']) ? 'class="active"' : ''; ?>>
-                                                        <label>
-                                                            <input name="sectores[]" <?= in_array($n->id, $input['sectores']) ? 'checked' : ''; ?> value="<?= $n->id; ?>" type="checkbox"/>
-                                                            <?= $n->nombre; ?>
-                                                            <?php if(isset($filtros_count['sector'][$n->id])): ?>
-                                                                <span class="badge"><?= array_get($filtros_count['sector'],$n->id); ?></span>
-                                                            <?php endif ?>
-                                                        </label>
-                                                    </li>
-                                                <?php endforeach; ?>
-                                            </ul>
-                                        </li>
-                                    <?php endforeach; ?>
-                                </ul>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </div>
-            </div>
-
-
-
-            
 
         </div>
     </form>

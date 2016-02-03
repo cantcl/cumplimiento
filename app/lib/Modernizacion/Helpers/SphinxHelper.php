@@ -55,6 +55,9 @@ class SphinxHelper {
         if($options['avances'])
             $sqb->filter('avance', $options['avances']);
 
+        if($options['lineas_accion'])
+            $sqb->filter('linea_accion', $options['lineas_accion']);
+
         if(empty($text))
             $sqb->setMatchMode(\Sphinx\SphinxClient::SPH_MATCH_FULLSCAN);
 

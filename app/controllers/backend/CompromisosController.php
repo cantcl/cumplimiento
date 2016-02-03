@@ -13,8 +13,8 @@ class CompromisosController extends BaseController {
         unset($input['q']);
 
         $data['compromisos'] = $data['compromisos_chart'] = $data['fuentes'] = $data['instituciones'] = $data['tags'] = $data['usuarios'] = $data['sectores'] = $data['tipos'] = $data['avances'] = array();
-        $data['input'] = array_merge(array('instituciones' => array(),'tags'=>array(), 'usuarios'=>array(), 'sectores' => array(), 'fuentes' => array(), 'tipos' => array(), 'avances'=> array()), $input);
-
+        $data['input'] = array_merge(array('instituciones' => array(),'tags'=>array(), 'usuarios'=>array(), 'sectores' => array(), 'fuentes' => array(), 'tipos' => array(), 'avances'=> array(), 'lineas_accion' => array()), $input);
+       
         if(!Auth::user()->super)
             $data['input']['usuarios']=array(Auth::user()->id);
 
@@ -23,7 +23,6 @@ class CompromisosController extends BaseController {
         $result = $sphinxHelper->search($q, $data['input']);
 
         $ids = $result['ids'];
-
         if($ids){
             $data['filtros'] = $data['filtros_count'] = array();
             foreach($result['filters'] as $name => $filter){
@@ -44,6 +43,7 @@ class CompromisosController extends BaseController {
             $data['sectores'] = Sector::with('hijos.hijos')->whereNull('sector_padre_id')->get();
             $data['tags'] = Tag::all();
             $data['usuarios'] = Usuario::all();
+            // $data['lineas_accion'] = Compromiso::select(DB::raw('count(*) as medidas, linea_accion'))->distinct()-get();
         }
 
 
@@ -130,8 +130,10 @@ class CompromisosController extends BaseController {
         if(!Auth::user()->super && $compromiso->usuario_id!=Auth::user()->id)
             App::abort(403, 'Unauthorized action.');
 
+        $ministerios = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,387]; // no todos los que son padres son ministerios
+
         $data['compromiso'] = $compromiso;
-        $data['instituciones'] = Institucion::whereNull('institucion_padre_id')->get();
+        $data['instituciones'] = Institucion::whereIn('id',$ministerios)->get();
         $data['sectores'] = Sector::whereNull('sector_padre_id')->get();
         	$data['comunas'] = Sector::whereNull('sector_padre_id')->get();
         $data['fuentes'] = Fuente::whereNull('fuente_padre_id')->get();
@@ -172,11 +174,16 @@ class CompromisosController extends BaseController {
         if($validator->passes()){
             DB::connection()->getPdo()->beginTransaction();
 
-            $compromiso = $compromiso_id ? Compromiso::find($compromiso_id) : new Compromiso();
-
+            // $compromiso = $compromiso_id ? Compromiso::find($compromiso_id) : new Compromiso();
+            if (isset($compromiso_id)) {
+                $compromiso = Compromiso::find($compromiso_id);
+                $done_label = 'actualizado';
+            } else {
+                $compromiso = new Compromiso();
+                $done_label = 'creado';
+            }
             $compromiso->number = Input::get('numero');
             $compromiso->nombre = Input::get('nombre');
-            $compromiso->iniciativa = Input::get('iniciativa');
             $compromiso->autoridad_responsable = Input::get('autoridad_responsable');
             $compromiso->linea_accion = Input::get('linea_accion');
             $compromiso->prioridad = Input::get('prioridad');
@@ -282,16 +289,16 @@ class CompromisosController extends BaseController {
             $mesas=Input::get('mesas',array());
             $count_mesas = 0;
             foreach($mesas as $m){
-            $new_mesa=new Mesa();
-            $new_mesa->nombre=$m['nombre'];
-            $new_mesa->tema=$m['tema'];
-            $new_mesa->tipo=$m['tipo'];
-            $new_mesa->sesiones=$m['sesiones'];
-            $new_mesa->verificacion=$m['verificacion'];
-            $new_mesa->frecuencia=$m['frecuencia'];
+                $new_mesa=new Mesa();
+                $new_mesa->nombre=$m['nombre'];
+                $new_mesa->tema=$m['tema'];
+                $new_mesa->tipo=$m['tipo'];
+                $new_mesa->sesiones=$m['sesiones'];
+                $new_mesa->verificacion=$m['verificacion'];
+                $new_mesa->frecuencia=$m['frecuencia'];
 
-			$new_mesa->medio_verificacion = '';
-			/*UPLOAD FILES*/
+    			$new_mesa->medio_verificacion = '';
+			    /*UPLOAD FILES*/
 				/* ini: Archivo medio_verificacion */
 				if( Input::hasFile('medio_verificacion_mesa_'.$count_mesas) ){
 				    $file = Input::file('medio_verificacion_mesa_'.$count_mesas);
@@ -351,16 +358,13 @@ class CompromisosController extends BaseController {
             }
 
             DB::connection()->getPdo()->commit();
-            exec('killall searchd');
-            sleep(1);
-            exec('cd '.base_path().'/sphinx; searchd; indexer --rotate --all');
+            exec('killall searchd && cd '.base_path().'/sphinx && searchd && indexer --rotate --all');
             sleep(2); //Tiempo para que el indexador termine.
-            exec('killall searchd');
 
             $json->errors = array();
             $json->redirect = URL::to('backend/compromisos');
 
-            Session::flash('messages', array('success' => 'El compromiso "'. $compromiso->nombre .'" ha sido creado.'));
+            Session::flash('messages', array('success' => 'El compromiso "'. $compromiso->nombre .'" ha sido '.$done_label.'.'));
 
             $response = Response::json($json, 200);
         } else {
