@@ -21,7 +21,6 @@ class CompromisosController extends BaseController {
 
         $sphinxHelper=new SphinxHelper(new \Scalia\SphinxSearch\SphinxSearch());
         $result = $sphinxHelper->search($q, $data['input']);
-
         $ids = $result['ids'];
         if($ids){
             $data['filtros'] = $data['filtros_count'] = array();

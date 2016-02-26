@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('/', 'HomeController@getIndex');
+
 Route::post('/oauth', 'AuthController@requestOauth');
 Route::get('/oauth/callback', 'AuthController@responseOauth');
 

@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cumplimiento - <?=$title?></title>
+    <title>Medidas AgendaDigital 2020 - <?=$title?></title>
 
     <!-- Bootstrap -->
     <link href="<?=URL::asset('bower_components/bootstrap/dist/css/bootstrap.min.css')?>" rel="stylesheet">
     <link href="<?=URL::asset('bower_components/select2/select2.css')?>" rel="stylesheet">
     <link href="<?=URL::asset('bower_components/select2-bootstrap-css/select2-bootstrap.css')?>" rel="stylesheet">
     <link href="<?=URL::asset('bower_components/bootstrap-datepicker/css/datepicker3.css')?>" rel="stylesheet">
-    <link rel="stylesheet" href="<?= URL::asset('css/styles.css'); ?>"/>
+    <link href="<?= URL::asset('css/styles.css'); ?>" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

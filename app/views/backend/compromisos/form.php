@@ -11,7 +11,7 @@
         <div class="validacion"></div>
         <div class="form-group col-sm-3">
             <label for="number" class="control-label">Número de la medida</label>
-            <input type="text" class="form-control" name="numero" id="numero" value="<?= $compromiso->number; ?>" placeholder="Numero de la medida"/>
+            <input type="number" class="form-control" name="numero" id="numero" value="<?= $compromiso->number; ?>" placeholder="Numero de la medida"/>
         </div>
         <div class="form-group col-sm-9">
             <label for="nombre" class="control-label">Nombre de la medida</label>
@@ -50,8 +50,8 @@
         <hr />
 
         <div class="form-group col-sm-12">
-            <label for="tags" class="control-label">Etiquetas</label>
-            <input type="text" class="form-control form-control-select2-tags" name="tags" data-tags='<?=json_encode($tags)?>' value="<?=implode(',',$compromiso->tags->lists('nombre'))?>" />
+            <label for="tags" class="control-label">Etiquetas (listado de tags)</label>
+            <input type="text" class="form-control form-control-select2-tags" name="tags" data-tags='<?=json_encode($tags)?>' value="<?=implode(',',$compromiso->tags->lists('nombre'))?>" placeholder="Escriba y presione enter para ingresar una etiqueta nueva a la lista. Puede ingresar varias"/>
         </div>
 
         <!--<div class="row form-horizontal">-->
@@ -285,7 +285,7 @@
             
             <div class="col-sm-6">
                 <label for="publico">% de ejecución presupuestaria</label>
-                <input class="form-control" type="text" id="porcentaje_ejec" name="porcentaje_ejec" value="<?=$compromiso->porcentaje_ejec?>"/>
+                <input class="form-control" type="number" id="porcentaje_ejec" name="porcentaje_ejec" value="<?=$compromiso->porcentaje_ejec?>"/ placeholder="ej: 99.99%" >
             </div>
 
         </div>

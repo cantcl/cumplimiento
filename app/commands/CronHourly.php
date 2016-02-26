@@ -38,7 +38,9 @@ class CronHourly extends Command {
 	public function fire()
 	{
 		$this->info('Ejecutando indexación de búsqueda');
-		exec('killall searchd && cd '.base_path().'/sphinx && searchd && indexer --rotate --all');
+		exec('killall searchd');
+		sleep(2);
+    system('cd '.base_path('sphinx').'; searchd; indexer --rotate --all');
     sleep(2);
 	}
 
