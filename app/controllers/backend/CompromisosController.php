@@ -274,7 +274,7 @@ class CompromisosController extends BaseController {
 						$count_mesas = 0;
 						foreach($mesas as $m){
                 $new_mesa=new Mesa();
-                $new_mesa->nombre=$m['descripcion'];
+                $new_mesa->nombre=$m['nombre'];
                 $new_mesa->tema=$m['tema'];
                 $new_mesa->tipo=$m['tipo'];
                 $new_mesa->sesiones=$m['sesiones'];

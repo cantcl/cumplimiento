@@ -4,98 +4,79 @@
     <li class="active"><?= $compromiso->id ? 'Editar' : 'Nuevo'; ?></li>
 </ol>
 
+<?php
+  if( $compromiso->id == '' ){
+
+  }else{
+    $json_display_compromiso = DisplayCompromiso::where('compromiso_id' , '=', $compromiso->id)->get()->first()->campos;
+    $array_display_compromiso = json_decode($json_display_compromiso);
+  }
+?>
 
 <form name="ajaxFormName" class="ajaxForm" method="POST" accept-charset="UTF-8" enctype="multipart/form-data" action="<?= URL::to('backend/compromisos/guardar/' . $compromiso->id); ?>">
     <fieldset>
         <legend><?= $compromiso->id ? 'Editar' : 'Nuevo'; ?> Compromiso</legend>
         <div class="validacion"></div>
+
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('number', $array_display_compromiso)) { ?>
         <div class="form-group col-sm-3">
-            <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[number]" checked /><?php endif; ?>
+            <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[number]" <?php if(array_key_exists('number', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
             <label for="number" class="control-label">Número</label>
             <input type="text" class="form-control" name="number" id="number" value="<?= $compromiso->number; ?>" placeholder="Numero del compromiso"/>
         </div>
+        <?php } ?>
+
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('nombre', $array_display_compromiso)) { ?>
         <div class="form-group col-sm-9">
-            <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[nombre]" checked /><?php endif; ?>
+            <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[nombre]" <?php if(array_key_exists('nombre', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
             <label for="nombre" class="control-label">Nombre</label>
             <input type="text" class="form-control" name="nombre" id="nombre" value="<?= $compromiso->nombre; ?>" placeholder="Nombre del compromiso"/>
         </div>
+        <?php } ?>
 
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('iniciativa', $array_display_compromiso)) { ?>
         <div class="form-group col-sm-12">
-          <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[iniciativa]" checked /><?php endif; ?>
+          <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[iniciativa]" <?php if(array_key_exists('iniciativa', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
             <label for="nombre" class="control-label">Iniciativa</label>
             <input type="text" class="form-control" name="iniciativa" id="iniciativa" value="<?= $compromiso->iniciativa; ?>" placeholder="Iniciativa"/>
         </div>
+        <?php } ?>
+
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('linea_accion', $array_display_compromiso)) { ?>
         <div class="form-group col-sm-12">
-            <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[linea_accion]" checked /><?php endif; ?>
+            <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[linea_accion]" <?php if(array_key_exists('linea_accion', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
             <label for="nombre" class="control-label">Linea de acción</label>
             <input type="text" class="form-control" name="linea_accion" id="linea_accion" value="<?= $compromiso->linea_accion; ?>" placeholder="Linea de acción"/>
         </div>
+        <?php } ?>
+
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('eje_estrategico', $array_display_compromiso)) { ?>
         <div class="form-group col-sm-12">
-            <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[eje_estrategico]" checked /><?php endif; ?>
+            <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[eje_estrategico]" <?php if(array_key_exists('eje_estrategico', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
             <label for="nombre" class="control-label">Eje estrategico de la agenda</label>
             <input type="text" class="form-control" name="eje_estrategico" id="eje_estrategico" value="<?= $compromiso->eje_estrategico; ?>" placeholder="Eje estrategico de la agenda"/>
         </div>
+        <?php } ?>
+
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('prioridad', $array_display_compromiso)) { ?>
         <div class="form-group col-sm-12">
-            <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[prioridad]" checked /><?php endif; ?>
+            <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[prioridad]" <?php if(array_key_exists('prioridad', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
             <label for="nombre" class="control-label">Prioridad</label>
             <input type="text" class="form-control" name="prioridad" id="prioridad" value="<?= $compromiso->prioridad; ?>" placeholder="Priodidad"/>
         </div>
-
-        <!--<div class="form-group">
-            <label for="url" class="control-label">URL</label>
-            <input type="text" class="form-control" name="url" id="url" value="<?= $compromiso->url; ?>" placeholder="URL del proyecto o información relacionada"/>
-        </div>-->
+        <?php } ?>
         <hr />
-
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('tags', $array_display_compromiso)) { ?>
         <div class="form-group col-sm-12">
-            <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[tags]" checked /><?php endif; ?>
+            <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[tags]" <?php if(array_key_exists('tags', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
             <label for="tags" class="control-label">Etiquetas</label>
             <input type="text" class="form-control form-control-select2-tags" name="tags" data-tags='<?=json_encode($tags)?>' value="<?=implode(',',$compromiso->tags->lists('nombre'))?>" />
         </div>
-
-        <!--<div class="row form-horizontal">-->
-            <!--<div class="col-sm-6">
-                <div class="form-group form-group-fuente">
-                    <label for="publico" class="col-sm-3 control-label">Privacidad</label>
-                    <div class="col-sm-9">
-                        <select class="form-control form-control-select2" name="publico" id="publico">
-                            <option value="0">Privado</option>
-                            <option value="1">Público</option>
-                        </select>
-                    </div>
-
-                </div>
-                <div class="form-group form-group-fuente">
-                    <label for="fuente" class="col-sm-3 control-label">Fuente</label>
-                    <div class="col-sm-9">
-                        <select class="form-control form-control-select2" name="fuente" id="area" data-placeholder="Seleccionar fuente">
-                            <option></option>
-                            <?php foreach($fuentes as $f): ?>
-                                <option value="<?= $f->id; ?>" <?=$f->id==$compromiso->fuente_id?'selected':''?>><?= $f->nombre; ?></option>
-                                <?php foreach($f->hijos as $h):?>
-                                    <option value="<?= $h->id; ?>" <?=$h->id==$compromiso->fuente_id?'selected':''?>> - <?= $h->nombre; ?></option>
-                                    <?php foreach($h->hijos as $n):?>
-                                        <option value="<?= $n->id; ?>" <?=$n->id==$compromiso->fuente_id?'selected':''?>> -- <?= $n->nombre; ?></option>
-                                    <?php endforeach ?>
-                                <?php endforeach ?>
-                            <?php endforeach ?>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="tags" class="col-sm-3 control-label">Etiquetas</label>
-                    <div class="col-sm-9">
-                        <input type="text" class="form-control form-control-select2-tags" name="tags" data-tags='<?=json_encode($tags)?>' value="<?=implode(',',$compromiso->tags->lists('nombre'))?>" />
-                    </div>
-                </div>
-
-            </div>-->
-
-            <hr>
-
+        <?php } ?>
+        <hr>
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('sectores', $array_display_compromiso)) { ?>
             <div class="form-group col-sm-12">
-                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[sectores]" checked /><?php endif; ?>
+                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[sectores]" <?php if(array_key_exists('sectores', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                 <label for="sector" class="control-label">Territorio al que afecta</label>
                 <select class="form-control form-control-select2" name="sectores[]" id="sector" data-placeholder="Chile" multiple>
                     <option></option>
@@ -109,8 +90,11 @@
                     <?php endforeach; ?>
                 </select>
             </div>
+            <?php } ?>
+
+            <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('region', $array_display_compromiso)) { ?>
             <div class="form-group col-sm-6">
-                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[region]" checked /><?php endif; ?><label for="sector" class="control-label">Región</label>
+                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[region]" <?php if(array_key_exists('region', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?><label for="sector" class="control-label">Región</label>
                 <select onchange="updateComunas(this.value)" class="form-control form-control-select2" name="region" id="region">
                     <option></option>
                     <?php foreach($sectores as $s): ?>
@@ -123,8 +107,10 @@
                     <?php endforeach; ?>
                 </select>
             </div>
+            <?php } ?>
+            <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('comuna', $array_display_compromiso)) { ?>
             <div class="form-group col-sm-6">
-                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[comuna]" checked /><?php endif; ?>
+                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[comuna]" <?php if(array_key_exists('comuna', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                 <label for="sector" class="control-label">Comuna</label>
                 <select class="form-control form-control-select2" name="comunas[]" id="comuna" data-placeholder="Comunas" multiple>
                   <?php foreach($sectores as $s): ?>
@@ -136,36 +122,14 @@
                   <?php endforeach; ?>
                 </select>
             </div>
-
-            <!--<div class="col-sm-6">-->
-
-                <!--<div class="form-group">
-                    <label for="usuario" class="col-sm-3 control-label">Usuario responsable</label>
-                    <div class="col-sm-9">
-                        <?php if(Auth::user()->super):?>
-                        <select class="form-control form-control-select2" name="usuario" id="usuario" data-placeholder="Seleccionar usuario">
-                            <option></option>
-                            <?php foreach($usuarios as $usuario): ?>
-                                <option value="<?= $usuario->id; ?>" <?=$usuario->id==$compromiso->usuario_id?'selected':''?>><?= $usuario->nombres; ?> <?=$usuario->apellidos?></option>
-                            <?php endforeach; ?>
-                        </select>
-                        <?php else: ?>
-                        <input type="text" class="form-control" readonly value="<?=Auth::user()->nombres.' '.Auth::user()->apellidos?>" />
-                        <input type="hidden" name="usuario" value="<?=Auth::user()->id?>" />
-                        <?php endif ?>
-                    </div>
-                </div>-->
-
-            <!--</div>-->
-
-        <!--</div>-->
-
-        <hr />
+            <?php } ?>
+            <hr />
 
         <!--<div class="row form-horizontal">-->
             <!--<div class="col-sm-6">-->
+            <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('institucion_responsable_plan', $array_display_compromiso)) { ?>
               <div class="form-group col-sm-6">
-                  <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[institucion_responsable_plan]" checked /><?php endif; ?>
+                  <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[institucion_responsable_plan]" <?php if(array_key_exists('institucion_responsable_plan', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                   <label for="institucion_responsable_plan" class="control-label">Ministerio Responsable</label>
                   <!--<div class="col-sm-9">-->
                       <select class="form-control form-control-select2" name="institucion_responsable_plan" id="institucion_responsable_plan" data-placeholder="Seleccionar institución">
@@ -179,10 +143,12 @@
                       </select>
                   <!--</div>-->
               </div>
+              <?php } ?>
             <!--</div>
             <div class="col-sm-6">-->
+            <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('institucion_responsable_implementacion', $array_display_compromiso)) { ?>
               <div class="form-group col-sm-6">
-                  <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[institucion_responsable_implementacion]" checked /><?php endif; ?>
+                  <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[institucion_responsable_implementacion]" <?php if(array_key_exists('institucion_responsable_implementacion', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                   <label for="institucion_responsable_implementacion" class="control-label">Institución Responsable</label>
                   <!--<div class="col-sm-9">-->
                       <select class="form-control form-control-select2" name="institucion_responsable_implementacion" id="institucion_responsable_implementacion" data-placeholder="Seleccionar institución">
@@ -196,25 +162,29 @@
                       </select>
                   <!--</div>-->
               </div>
+              <?php } ?>
             <!--</div>-->
         <!--</div>-->
 
         <!--<div class="row form-horizontal">-->
+          <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('departament', $array_display_compromiso)) { ?>
             <div class="col-sm-12">
                 <div class="form-group">
-                    <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[departamento]" checked /><?php endif; ?>
+                    <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[departamento]" <?php if(array_key_exists('departamento', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                     <label for="departamento" class="control-label">Coordinación con otros Actores</label>
                     <!--<div class="col-sm-12">-->
                         <input class="form-control" type="text" name="departamento" id="departamento" value="<?=$compromiso->departamento?>" placeholder="Unidad/División/Departamento responsable" />
                     <!--</div>-->
                 </div>
             </div>
+          <?php } ?>
         <!--</div>-->
 
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('actores', $array_display_compromiso)) { ?>
         <div class="row form-actores">
             <div class="col-sm-12">
             <div class="col-sm-12">
-                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[actores]" checked /><?php endif; ?>
+                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[actores]" <?php if(array_key_exists('actores', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                 <label>Otros actores involucrados</label>
 
                 <div><button class="btn btn-default form-actores-agregar" type="button"><span class="glyphicon glyphicon-plus"></span> Agregar nuevo actor</button></div>
@@ -239,39 +209,45 @@
             </div>
             </div>
         </div>
+        <?php } ?>
 
         <hr />
 
-
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('descripcion', $array_display_compromiso)) { ?>
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[descripcion]" checked /><?php endif; ?>
+                    <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[descripcion]" <?php if(array_key_exists('descripcion', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                     <label for="descripcion">Descripción de la Medida</label>
                     <textarea class="form-control tinymce" rows="6" placeholder="Descripción sobre lo que consiste el compromiso." id="descripcion" name="descripcion"><?=$compromiso->descripcion?></textarea>
                 </div>
             </div>
         </div>
+        <?php } ?>
 
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('impacto', $array_display_compromiso)) { ?>
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[impacto]" checked /><?php endif; ?>
+                    <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[impacto]" <?php if(array_key_exists('impacto', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                     <label for="descripcion">Impactos de la Medida</label>
                     <textarea class="form-control tinymce" rows="6" placeholder="Impacos de la medida." id="impacto" name="impacto"><?=$compromiso->impacto?></textarea>
                 </div>
             </div>
         </div>
+        <?php } ?>
 
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('objetivo', $array_display_compromiso)) { ?>
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-group">
-                    <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[objetivo]" checked /><?php endif; ?>
+                    <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[objetivo]" <?php if(array_key_exists('objetivo', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                     <label for="objetivo">Meta de la Medida</label>
                     <textarea class="form-control tinymce" rows="6" placeholder="Descripción sobre el objetivo general del compromiso." id="objetivo" name="objetivo"><?=$compromiso->objetivo?></textarea>
                 </div>
             </div>
         </div>
+        <?php } ?>
 
         <hr />
 
@@ -294,11 +270,13 @@
                 ?>
                 <input type="text" class="form-control" value="<?php echo $nivel_avance; ?>" readonly />
             </div>
+            <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('avance_descripcion', $array_display_compromiso)) { ?>
             <div class="col-sm-8">
-                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[avance_descripcion]" checked /><?php endif; ?>
+                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[avance_descripcion]" <?php if(array_key_exists('avance_descripcion', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                 <label>Observaciones del Estado de avance de la medida</label>
                 <textarea class="form-control tinymce" rows="6" name="avance_descripcion"><?=$compromiso->avance_descripcion?></textarea>
             </div>
+            <?php } ?>
         </div>
 
 
@@ -306,18 +284,23 @@
         <hr />
 
         <div class="row">
+            <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('plazo', $array_display_compromiso)) { ?>
             <div class="col-sm-6">
-                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[plazo]" checked /><?php endif; ?>
+                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[plazo]" <?php if(array_key_exists('plazo', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                 <label for="plazo">Plazo comprometido de la medida</label>
                 <input class="form-control" type="text" id="plazo" name="plazo" value="<?=$compromiso->plazo?>"/>
             </div>
+            <?php } ?>
+            <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('presupuesto', $array_display_compromiso)) { ?>
             <div class="col-sm-6">
-                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[presupuesto]" checked /><?php endif; ?>
+                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[presupuesto]" <?php if(array_key_exists('presupuesto', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                 <label for="presupuesto">Presupuesto ($CLP)</label>
                 <input class="form-control" type="number" step="0.01" id="presupuesto" name="presupuesto" value="<?=$compromiso->presupuesto?>" placeholder="En CLP"/>
             </div>
+            <?php } ?>
+            <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('presupuesto_publico', $array_display_compromiso)) { ?>
             <div class="col-sm-6">
-                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[presupuesto_publico]" checked /><?php endif; ?>
+                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[presupuesto_publico]" <?php if(array_key_exists('presupuesto_publico', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                 <label for="publico">Origen del Presupuesto</label>
                 <br>
                 <select class="form-control form-control-select2" name="presupuesto_publico" id="presupuesto_publico">
@@ -325,17 +308,21 @@
                   <option value="1">Público</option>
                 </select>
             </div>
+            <?php } ?>
+            <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('porcentaje_ejec', $array_display_compromiso)) { ?>
             <div class="col-sm-6">
-                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[porcentaje_ejec]" checked /><?php endif; ?>
+                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[porcentaje_ejec]" <?php if(array_key_exists('porcentaje_ejec', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                 <label for="publico">% de ejecución presupuestaria</label>
                 <input class="form-control" type="text" id="porcentaje_ejec" name="porcentaje_ejec" value="<?=$compromiso->porcentaje_ejec?>"/>
             </div>
+            <?php } ?>
 
         </div>
         <hr />
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('medio_verificacion', $array_display_compromiso)) { ?>
         <div class="row">
             <div class="col-sm-12">
-                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[medio_verificacion]" checked /><?php endif; ?>
+                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[medio_verificacion]" <?php if(array_key_exists('medio_verificacion', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                 <label for="">Medio de Verificación</label>
                 <?php
                   $fichero = public_path()."/uploads/".$compromiso->medio_verificacion;
@@ -352,12 +339,14 @@
                 ?>
             </div>
         </div>
+        <?php } ?>
 
         <hr />
 
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('hitos', $array_display_compromiso)) { ?>
         <div class="row form-hitos">
             <div class="col-sm-12">
-                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[hitos]" checked /><?php endif; ?>
+                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[hitos]" <?php if(array_key_exists('hitos', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                 <label>Hitos</label>
                 <div><button class="btn btn-default form-hitos-agregar" type="button"><span class="glyphicon glyphicon-plus"></span> Agregar nuevo hito</button></div>
                 <table class="table form-hitos-table">
@@ -434,12 +423,14 @@
                 </table>
             </div>
         </div>
+        <?php } ?>
 
         <hr>
 
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('mesas', $array_display_compromiso)) { ?>
         <div class="row form-mesas">
             <div class="col-sm-12">
-                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[mesas]" checked /><?php endif; ?>
+                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[mesas]" <?php if(array_key_exists('mesas', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                 <label>Mesas de Trabajo</label>
                 <div><button class="btn btn-default form-mesas-agregar" type="button"><span class="glyphicon glyphicon-plus"></span> Agregar nueva Mesa de Trabajo</button></div>
                 <table class="table form-mesas-table">
@@ -498,12 +489,12 @@
                 </table>
             </div>
         </div>
-
+        <?php } ?>
         <hr>
-
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('noticias', $array_display_compromiso)) { ?>
         <div class="row form-noticias">
             <div class="col-sm-12">
-                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[noticias]" checked /><?php endif; ?>
+                <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[noticias]" <?php if(array_key_exists('noticias', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                 <label>Noticias de la Medida</label>
                 <div><button class="btn btn-default form-noticias-agregar" type="button"><span class="glyphicon glyphicon-plus"></span> Agregar nueva Noticia</button></div>
                 <table class="table form-noticias-table">
@@ -556,27 +547,27 @@
                 </table>
             </div>
         </div>
-
+        <?php } ?>
         <hr />
-
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('proveedores', $array_display_compromiso)) { ?>
         <div class="form-group col-sm-12">
-            <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[proveedores]" checked /><?php endif; ?>
+            <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[proveedores]" <?php if(array_key_exists('proveedores', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
             <label for="proveedores" class="control-label">Proveedores y/o Consultores Asociados.</label>
             <textarea class="form-control tinymce" rows="6" placeholder="Proveedores y/o Consultores Asociados" id="proveedores" name="proveedores"><?=$compromiso->proveedores?></textarea>
         </div>
-
+        <?php } ?>
         <hr />
-
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('contacto', $array_display_compromiso)) { ?>
         <div class="form-group col-sm-12">
-            <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[contacto]" checked /><?php endif; ?>
+            <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[contacto]" <?php if(array_key_exists('contacto', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
             <label for="contacto" class="control-label">Jefe de Proyecto y Contacto.</label>
             <textarea class="form-control tinymce" rows="6" placeholder="Jefe de Proyecto y Contacto." id="contacto" name="contacto"><?=$compromiso->contacto?></textarea>
         </div>
-
+        <?php } ?>
         <hr />
-
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('asociados', $array_display_compromiso)) { ?>
         <div class="form-group col-sm-12">
-          <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[asociados]" checked /><?php endif; ?>
+          <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[asociados]" <?php if(array_key_exists('asociados', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
           <label for="asociados" class="control-label">Medidas Asociadas.</label>
           <?php
             $aAsociados = array();
@@ -592,7 +583,7 @@
             <?php endforeach; ?>
           </select>
         </div>
-
+        <?php } ?>
 
     </fieldset>
     <hr/>

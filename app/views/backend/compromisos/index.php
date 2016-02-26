@@ -4,7 +4,9 @@
 </ol>
 
 
-<p><a href="<?=URL::to('backend/compromisos/nuevo')?>" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Crear Compromiso</a></p>
+<?php if (Auth::user()->perfiles_id == 1): ?>
+  <p><a href="<?=URL::to('backend/compromisos/nuevo')?>" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Crear Compromiso</a></p>
+<?php endif; ?>
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
@@ -62,5 +64,3 @@
         <div class="chart pie" data-data='<?=json_encode($compromisos_chart)?>'></div>
     </div>
 </div>
-
-
