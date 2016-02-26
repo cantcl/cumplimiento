@@ -1,0 +1,169 @@
+<div class="container">
+   
+      <div id="contenido" class="row intro">
+        <div class="close close-intro hide" ng-click="closeIntro()"><i class="fa fa-times-circle"></i></div>
+        <div class="container intro-agenda">
+          <div class="pull-left logotipo top-buffer-70">
+            <img src="img/agenda-digital-logotipo-intro.png"/>
+          </div>
+          <div class="pull-left logo top-buffer-70">
+            <img src="img/agenda-digital_logo-intro.png"/>
+          </div>
+          <div class="pull-left texto top-buffer-70">
+            <!-- <p>
+              Es una hoja de ruta para avanzar hacia 
+              un desarrollo inclusivo y sostenible 
+              a través de la Tecnologías de la 
+              Información y la Comunicación
+            </p> -->
+            <img src="img/agenda-digital_texto-intro.png" />
+            <a href class="btn agenda-download"> <span class="fa fa-arrow-down">&nbsp;</span> Descarga la Agenda</a>
+          </div>
+        </div>
+        <div class="container actions">
+          <div id="navbar2" class="menu-ejes-estrategicos">
+            <ul class="nav navbar-nav">
+              <li><div class="eje-tab derechos" ng-click="showTab('derechos')"></div><p>Derechos</p></li>
+              <li><div class="eje-tab conectividad" ng-click="showTab('conectividad')"></div><p>Conectividad</p></li>
+              <li><div class="eje-tab gobierno" ng-click="showTab('gobierno')"></div><p>Gobierno</p></li>
+              <li><div class="eje-tab economia" ng-click="showTab('economia')"></div><p>Economia</p></li>
+              <li><div class="eje-tab competencia" ng-click="showTab('competencia')"></div><p>Competencias</p></li>
+            </ul>
+
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+
+      <div class="container">
+          
+        <div ng-include="'include_seguimientoejes.html'"></div>
+        
+      </div>
+
+      <div class="row bottomline">
+        
+        <div class="col-xs-4 col-md-4 col-lg-4 notas">
+          <h3>Voces</h3>
+          <div class="detalle">
+            <p>sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt</p>
+            <div class="autor">
+              <img class="pull-left" src="img/agenda_foto-perfil-01.png"/>
+              <div class="pull-left">
+                <p>Claudia Santibañez</p>
+                <p>Subsecretaria</p>
+                <p>Ministerio de Economía</p>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+
+          <div class="detalle">
+            <p>sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt</p>
+            <div class="autor">
+              <img class="pull-left" src="img/agenda_foto-perfil-02.png"/>
+              <div class="pull-left">
+                <p>Claudia Santibañez</p>
+                <p>Subsecretaria</p>
+                <p>Ministerio de Economía</p>
+              </div>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+
+          <h3>Multimedia</h3>
+          <div class="multimedia">
+            <img src="img/video-sps.jpg"/>
+          </div>
+        </div>
+
+        <div class="col-xs-4 col-md-4 col-lg-4 actualizaciones">
+          <h3>Últimas Actualizaciones</h3>
+
+          <p class="time-ago">hace 5 minutos</p>
+          <div class="box actualizacion derechos">
+            <p class="titulo">Derechos Para el Desarrollo Digital</p>
+            <div class="content">Laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</div>
+            <div class="eje"></div>
+          </div>
+          <p class="time-ago">hace 1 día</p>
+          <div class="box actualizacion conectividad">
+            <p class="titulo">Gobierno Digital</p>
+            <div class="content">Laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</div>
+            <div class="eje"></div>
+          </div>
+
+
+        </div>
+
+        <div class="col-xs-4 col-md-4 col-lg-4 noticias">
+
+          <h3>Noticias</h3>
+
+          <div class="noticia">
+            <p class="titulo">Valdivia Lanza programa de Municipios Digitales 2016<p>
+            <img src="img/noticias-foto-01.png"/>
+            <p class="bajada">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+          </div>
+
+          <div class="noticia">
+            <p class="titulo">Interior y Segpres alistan aplicación para atencion a Estudiantes<p>
+            <img src="img/noticias-foto-02.png"/>
+            <p class="bajada">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
+          </div>
+
+          
+        </div>
+      
+      </div>
+
+    </div>
+
+    <script id="popover_template" type="text/html">
+      <ul>
+        <li>Laudantium, totam rem aperiam, eaque ipsa quae</li>
+        <li>consectetur adipiscing elit, sed do eiusmod tempor incididunt</li>
+        <li>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</li>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed</li>
+      </ul>
+    </script>
+
+    <script id="detalle_template" type="text/html">
+      <div class="col-xs-3 izq">
+        <div class="ico-eje"></div>
+        <h1></h1>
+        <p>Una oferta de valor para la ciudadanía</p>
+      </div>
+      <div class="col-xs-3 cent">
+        <div><p class="pull-left">Masificar el uso de los servicios en línea del Estado y garantizar su calidad</p><i class="pull-right fa fa-play"></i></div>
+        <div class="active"><p class="pull-left">Apoyar la políticas sectoriales del Estado mediante uso de tecnologías</p><i class="pull-right fa fa-play"></i></div>
+        <div><p class="pull-left">Fortalecer un estado abierto y transparente</p><i class="pull-right fa fa-play"></i></div>
+        <div><p class="pull-left">Promover un Estado más dinámico e innovador</p><i class="pull-right fa fa-play"></i></div>
+      </div>
+      <div class="col-xs-6 der">        
+        <table>
+          <tr>
+            <td><i class="fa fa-circle-o"></i></td><td class="texto">Elaboración de una estrategia de ciberseguridad</td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-circle-o"></i></td><td class="texto">Sistema de informatización de la Red Asistencias: Ficha Médica Electrónica</td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-circle-o"></i></td><td class="texto">Monitoreo a distancia de personas con enfermedades crónicas complejas</td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-circle-o"></i></td><td class="texto">Plan de mejoramiento de la plataforma tecnológica de FONASA</td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-circle-o"></i></td><td class="texto">Sistema integral de Información y Atención Ciudadana (SIAC)</td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-circle-o"></i></td><td class="texto">Sistema de vigilancia en salud pública y alertas sanitarias</td>
+          </tr>
+          <tr>
+            <td><i class="fa fa-circle-o"></i></td><td class="texto">Siste,a de información para la gestion de emergencia y desastre</td>
+          </tr>
+
+        </ul>
+      </div>
+    </script>

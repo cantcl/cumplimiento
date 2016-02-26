@@ -1,0 +1,52 @@
+<div class="quienes-somos">
+	<div class="container">
+
+		<div class="row">
+			<h1>Agenda Digital</h1>
+		</div>
+		
+		<div class="row fichas">
+
+			<div class="col-xs-8 col-md-8 col-lg-8">
+				<div class="mark-down fa fa-caret-down"></div>
+				<h2>{{titulo}}</h2>
+				<p class="descripcion" ng-bind="descripcion"></p>
+				<div class="descargas">
+					<ul class="descargas">
+						<li class="row" ng-repeat="descarga in descargas">
+							<div class="col-xs-1">
+								<span class="bullet fa fa-circle-o">&nbsp;</span>
+							</div>
+							<div class="col-xs-7 detalle">
+								<h5 ng-bind="descarga.titulo"></h5>
+								<p ng-bind="descarga.descripcion">
+							</div>
+							<div class="col-xs-4">
+								<a href="{{descarga.archivo}}"class="btn agenda-download"> <span class="fa fa-arrow-down">&nbsp;</span> Descarga</a>
+							</div>
+							<div class="col-xs-12"><hr></div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="col-der col-xs-4 col-md-4 col-lg-4">
+				<div class="menu">
+					<ul>
+						<li ng-class="{active: active=='otras-agendas'}"><span class="menu-bullet fa fa-play"></span><a href="#/documentos/otras-agendas">Otras Agendas</a></li>
+						<li role="separator" class="divider"></li>
+						<li ng-class="{active: active=='decreto-vigente'}"><span class="menu-bullet fa fa-play"></span><a href="#/documentos/decreto-vigente">Decreto Vigente</a></li>
+						<li role="separator" class="divider"></li>
+						<li ng-class="{active: active=='actas-comite'}"><span class="menu-bullet fa fa-play"></span><a href="#/documentos/actas-comite">Actas del Comité</a></li>
+						<li role="separator" class="divider"></li>
+					</ul>
+				</div>
+
+				<div ng-include="'include_lateral.html'" ng-controller="IncludeController"></div>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>

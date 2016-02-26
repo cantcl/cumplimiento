@@ -1,0 +1,40 @@
+<div class="quienes-somos">
+	<div class="container">
+
+		<div class="row">
+			<h1>Agenda Digital</h1>
+		</div>
+		
+		<div class="row fichas">
+
+			<div class="col-xs-8 col-md-8 col-lg-8">
+				<div class="mark-down fa fa-caret-down"></div>
+				<h2>{{titulo}}</h2>
+				<div id="contenido-agenda">
+					<div ng-include="template"></div>
+				</div>
+
+			</div>
+
+			<div class="col-der col-xs-4 col-md-4 col-lg-4">
+				<div class="menu">
+					<ul>
+						<li ng-class="{active: active=='que'}"><span class="menu-bullet fa fa-play"></span><a href="#/agenda/que">¿Qué es la Agenda?</a></li>
+						<li role="separator" class="divider"></li>
+						<li ng-class="{active: active=='caracteristicas'}"><span class="menu-bullet fa fa-play"></span><a href="#/agenda/caracteristicas">Carácterísticas</a></li>
+						<li role="separator" class="divider"></li>
+						<li ng-class="{active: active=='como'}"><span class="menu-bullet fa fa-play"></span><a href="#/agenda/como">Cómo se Construyó</a></li>
+						<li role="separator" class="divider"></li>
+						<li ng-class="{active: active=='contenido'}"><span class="menu-bullet fa fa-play"></span><a href="#/agenda/contenido">Contenido de la Agenda</a></li>
+						<li role="separator" class="divider"></li>
+					</ul>
+				</div>
+
+				<div ng-include="'include_lateral.html'" ng-controller="IncludeController"></div>
+
+			</div>
+
+		</div>
+
+	</div>
+</div>
