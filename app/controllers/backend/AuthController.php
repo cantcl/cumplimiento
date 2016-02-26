@@ -13,7 +13,7 @@ class AuthController extends BaseController {
         $this->authConfig = array(
             'client_info' => array(
                 'client_id' => $_ENV['claveunica_client_id'],
-                'redirect_uri' => 'http://dev.desarrollodigital.modernizacion.gob.cl/oauth/callback',
+                'redirect_uri' => 'http://localhost:8000/oauth/callback',
                 'authorization_endpoint' => 'https://www.claveunica.cl/oauth2/auth',
                 'token_endpoint' => 'https://www.claveunica.cl/oauth2/token',
                 'user_info_endpoint' => 'https://apis.modernizacion.cl/registrocivil/informacionpersonal/v1/info.php?access_token=',
@@ -65,13 +65,13 @@ class AuthController extends BaseController {
                 $user->apellido_paterno = $infoPersonal['apellidoPaterno'];
                 $user->apellido_materno = $infoPersonal['apellidoMaterno'];
             }
-            \Auth::login($user); 
-            return Redirect::to('backend/compromisos');   
+            \Auth::login($user);
+            return Redirect::to('backend/compromisos');
         } else {
             $error_msg = "Su usuario no se encuentra registrado en esta aplicación. Contacte al Administrador del sistema";
             return View::make('backend/auth/login')->with('error_msg', $error_msg);
         }
-        
+
     }
 
     public function getLogout(){

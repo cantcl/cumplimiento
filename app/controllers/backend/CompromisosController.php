@@ -183,7 +183,8 @@ class CompromisosController extends BaseController {
             /*$compromiso->fuente()->associate(Fuente::find(Input::get('fuente')));*/
             /*$compromiso->usuario()->associate(Usuario::find(Input::get('usuario')));*/
 							$compromiso->fuente()->associate(Fuente::find(1));
-							$compromiso->usuario()->associate(Usuario::find(1));
+							//$compromiso->usuario()->associate(Usuario::find(1));
+							$compromiso->usuario()->associate(Usuario::find(Auth::user()->id));
 
 						$compromiso->presupuesto_publico=Input::get('presupuesto_publico');
 						$compromiso->porcentaje_ejec=Input::get('porcentaje_ejec');
@@ -273,7 +274,7 @@ class CompromisosController extends BaseController {
 						$count_mesas = 0;
 						foreach($mesas as $m){
                 $new_mesa=new Mesa();
-                $new_mesa->nombre=$m['nombre'];
+                $new_mesa->nombre=$m['descripcion'];
                 $new_mesa->tema=$m['tema'];
                 $new_mesa->tipo=$m['tipo'];
                 $new_mesa->sesiones=$m['sesiones'];
@@ -338,6 +339,15 @@ class CompromisosController extends BaseController {
                 $new_actor->nombre=$h['nombre'];
                 $compromiso->actores()->save($new_actor);
             }
+
+						/*GUARDAR CAMPOS ADMIN*/
+						if( Auth::user()->super ){
+							$compromiso->display_compromisos()->delete();
+							$display = json_encode(Input::get('display'));
+							$display_compromisos = new DisplayCompromiso();
+							$display_compromisos->campos=$display;
+							$compromiso->display_compromisos()->save($display_compromisos);
+						}
 
             DB::connection()->getPdo()->commit();
 
