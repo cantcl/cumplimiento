@@ -167,6 +167,9 @@ class CompromisosController extends BaseController {
             'presupuesto_publico.required' => '<strong>Presupuesto ($CLP)</strong> es obligatorio y debe ser un valor numérico'
         );
 
+				$input['iniciativa'] = '-';
+				$input['eje_estrategico'] = '-';
+
         $validator = Validator::make($input, $rules, $messages);
 
         $json = new stdClass();
@@ -181,6 +184,10 @@ class CompromisosController extends BaseController {
                 $compromiso = new Compromiso();
                 $done_label = 'creado';
             }
+
+						$compromiso->iniciativa = $input['iniciativa'];
+						$compromiso->eje_estrategico = $input['eje_estrategico'];
+
             $compromiso->number = Input::get('numero');
             $compromiso->nombre = Input::get('nombre');
             $compromiso->autoridad_responsable = Input::get('autoridad_responsable');
@@ -290,12 +297,16 @@ class CompromisosController extends BaseController {
             $count_mesas = 0;
             foreach($mesas as $m){
                 $new_mesa=new Mesa();
-                $new_mesa->nombre=$m['nombre'];
+								if( isset($m['nombre']) ){
+									$new_mesa->nombre=$m['nombre'];
+								}else{
+									$new_mesa->nombre=$m['descripcion'];
+								}
                 $new_mesa->tema=$m['tema'];
                 $new_mesa->tipo=$m['tipo'];
                 $new_mesa->sesiones=$m['sesiones'];
                 $new_mesa->verificacion=$m['verificacion'];
-                $new_mesa->frecuencia=$m['frecuencia'];
+                $new_mesa->frecuencia='-';//$m['frecuencia'];
 
     			$new_mesa->medio_verificacion = '';
 			    /*UPLOAD FILES*/

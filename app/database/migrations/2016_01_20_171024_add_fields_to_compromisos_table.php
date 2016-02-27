@@ -14,7 +14,7 @@ class AddFieldsToCompromisosTable extends Migration {
 	{
 		Schema::table('compromisos', function(Blueprint $table)
 		{
-			$table->string('iniciativa',512);
+			$table->string('iniciativa',512)->nullable();
 			$table->string('linea_accion',512);
 			$table->string('eje_estrategico',512);
 			$table->string('prioridad',512);

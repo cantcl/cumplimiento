@@ -14,7 +14,7 @@ class AddFilesToCompromisoTable extends Migration {
 	{
 		Schema::table('compromisos', function(Blueprint $table)
 		{
-			$table->string('medio_verificacion', 512)->nullable();;
+			$table->string('medio_verificacion', 512)->nullable();
 		});
 	}
 
