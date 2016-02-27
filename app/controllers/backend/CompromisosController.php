@@ -13,7 +13,7 @@ class CompromisosController extends BaseController {
         unset($input['q']);
 
         $data['compromisos'] = $data['compromisos_chart'] = $data['fuentes'] = $data['instituciones'] = $data['tags'] = $data['usuarios'] = $data['sectores'] = $data['tipos'] = $data['avances'] = array();
-        $data['input'] = array_merge(array('instituciones' => array(),'tags'=>array(), 'usuarios'=>array(), 'sectores' => array(), 'fuentes' => array(), 'tipos' => array(), 'avances'=> array()), $input);
+        $data['input'] = array_merge(array('instituciones' => array(),'tags'=>array(), 'usuarios'=>array(), 'sectores' => array(), 'fuentes' => array(), 'tipos' => array(), 'avances'=> array(), 'lineas_accion' => array()), $input);
 
         if(!Auth::user()->super)
             $data['input']['usuarios']=array(Auth::user()->id);
@@ -21,9 +21,7 @@ class CompromisosController extends BaseController {
 
         $sphinxHelper=new SphinxHelper(new \Scalia\SphinxSearch\SphinxSearch());
         $result = $sphinxHelper->search($q, $data['input']);
-
         $ids = $result['ids'];
-
         if($ids){
             $data['filtros'] = $data['filtros_count'] = array();
             foreach($result['filters'] as $name => $filter){
@@ -44,6 +42,7 @@ class CompromisosController extends BaseController {
             $data['sectores'] = Sector::with('hijos.hijos')->whereNull('sector_padre_id')->get();
             $data['tags'] = Tag::all();
             $data['usuarios'] = Usuario::all();
+            // $data['lineas_accion'] = Compromiso::select(DB::raw('count(*) as medidas, linea_accion'))->distinct()-get();
         }
 
 
@@ -130,8 +129,10 @@ class CompromisosController extends BaseController {
         if(!Auth::user()->super && $compromiso->usuario_id!=Auth::user()->id)
             App::abort(403, 'Unauthorized action.');
 
+        $ministerios = [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,387]; // no todos los que son padres son ministerios
+
         $data['compromiso'] = $compromiso;
-        $data['instituciones'] = Institucion::whereNull('institucion_padre_id')->get();
+        $data['instituciones'] = Institucion::whereIn('id',$ministerios)->get();
         $data['sectores'] = Sector::whereNull('sector_padre_id')->get();
         	$data['comunas'] = Sector::whereNull('sector_padre_id')->get();
         $data['fuentes'] = Fuente::whereNull('fuente_padre_id')->get();
@@ -144,74 +145,89 @@ class CompromisosController extends BaseController {
     }
 
     public function postGuardar($compromiso_id = null){
-
-        $validator = Validator::make(Input::all(),array(
+        $input = Input::all();
+        $rules = array(
+            'numero' => 'required',
             'nombre' => 'required',
-            /*'publico' => 'required',*/
-            /*'fuente' => 'required',*/
+            'autoridad_responsable' => 'required',
+            'fuente' => 'required',
             'institucion_responsable_plan' => 'required',
             'institucion_responsable_implementacion' => 'required',
-            /*'usuario' => 'required',*/
             'url'=>'url',
-            'presupuesto'=>'numeric'
-        ));
+            'presupuesto_publico' => 'required'
+        );
+        $messages = array(
+            'numero.required' => '<strong>Número de la medida</strong> es obligatorio',
+            'numero.number' => '<strong>Número de la medida</strong> debe ser un avalor numérico',
+            'nombre.required' => '<strong>Nombre de la medida</strong> es obligatorio',
+            'autoridad_responsable.required' => '<strong>Autoridad responsable</strong> es obligatorio',
+            'fuente.required' => '<strong>Eje estratégico</strong> es obligatorio',
+            'institucion_responsable_plan.required' => '<strong>Ministerio responsable</strong> es obligatorio',
+            'institucion_responsable_implementacion.required' => '<strong>Institución responsable</strong> es obligatorio',
+            'presupuesto_publico.required' => '<strong>Presupuesto ($CLP)</strong> es obligatorio y debe ser un valor numérico'
+        );
+
+        $validator = Validator::make($input, $rules, $messages);
 
         $json = new stdClass();
         if($validator->passes()){
             DB::connection()->getPdo()->beginTransaction();
 
-            $compromiso = $compromiso_id ? Compromiso::find($compromiso_id) : new Compromiso();
-
-            $compromiso->number = Input::get('number');
+            // $compromiso = $compromiso_id ? Compromiso::find($compromiso_id) : new Compromiso();
+            if (isset($compromiso_id)) {
+                $compromiso = Compromiso::find($compromiso_id);
+                $done_label = 'actualizado';
+            } else {
+                $compromiso = new Compromiso();
+                $done_label = 'creado';
+            }
+            $compromiso->number = Input::get('numero');
             $compromiso->nombre = Input::get('nombre');
-						$compromiso->iniciativa = Input::get('iniciativa');
-						$compromiso->linea_accion = Input::get('linea_accion');
-						$compromiso->eje_estrategico = Input::get('eje_estrategico');
-						$compromiso->prioridad = Input::get('prioridad');
-
-            	$compromiso->url = Input::get('url','-');
+            $compromiso->autoridad_responsable = Input::get('autoridad_responsable');
+            $compromiso->linea_accion = Input::get('linea_accion');
+            $compromiso->prioridad = Input::get('prioridad');
+            $compromiso->fuente_id = Input::get('fuente');
+            $compromiso->url = Input::get('url','-');
             $compromiso->descripcion = Input::get('descripcion','');
             $compromiso->impacto = Input::get('impacto','');
             $compromiso->objetivo = Input::get('objetivo','');
-            	$compromiso->publico=Input::get('publico',1);
+            $compromiso->publico=Input::get('publico',1);
             $compromiso->avance_descripcion=Input::get('avance_descripcion');
             $compromiso->plazo=Input::get('plazo');
-            $compromiso->presupuesto=Input::get('presupuesto',null);
+            $compromiso->presupuesto_publico=Input::get('presupuesto_publico');
             $compromiso->institucionResposablePlan()->associate(Institucion::find(Input::get('institucion_responsable_plan')));
             $compromiso->institucionResposableImplementacion()->associate(Institucion::find(Input::get('institucion_responsable_implementacion')));
             $compromiso->departamento=Input::get('departamento');
             /*$compromiso->fuente()->associate(Fuente::find(Input::get('fuente')));*/
             /*$compromiso->usuario()->associate(Usuario::find(Input::get('usuario')));*/
-							$compromiso->fuente()->associate(Fuente::find(1));
-							//$compromiso->usuario()->associate(Usuario::find(1));
-							$compromiso->usuario()->associate(Usuario::find(Auth::user()->id));
 
-						$compromiso->presupuesto_publico=Input::get('presupuesto_publico');
-						$compromiso->porcentaje_ejec=Input::get('porcentaje_ejec');
+            $compromiso->fuente()->associate(Fuente::find(1));
+            $compromiso->usuario()->associate(Usuario::find(1));
+            $compromiso->porcentaje_ejec=Input::get('porcentaje_ejec');
 
-						/* ini: save asociados */
-							$compromiso->asociados()->delete();
-							$asociados=Input::get('asociados',array());
-							foreach($asociados as $a){
-	            	$new_asociado=new Asociado();
-									$new_asociado->asociado = $a;
-								$compromiso->asociados()->save($new_asociado);
-							}
-						/* fin: save asociados */
+            /* ini: save asociados */
+            $compromiso->asociados()->delete();
+            $asociados=Input::get('asociados',array());
+            foreach($asociados as $a){
+                $new_asociado=new Asociado();
+                $new_asociado->asociado = $a;
+                $compromiso->asociados()->save($new_asociado);
+            }
+			/* fin: save asociados */
 
-						/*UPLOAD FILES*/
-							/* ini: Archivo medio_verificacion */
-							if (Input::hasFile('medio_verificacion')){
-							    $file = Input::file('medio_verificacion');
-									$new_name = time()."_".$file->getClientOriginalName();
-							    $file->move('uploads', $new_name);
-									$compromiso->medio_verificacion = $new_name;
-							}else{
-								if(Input::get('delete_medio_verificacion')){
-									$compromiso->medio_verificacion = '';
-								}
-							}
-							/* end: Archivo medio_verificacion */
+			/*UPLOAD FILES*/
+				/* ini: Archivo medio_verificacion */
+				if (Input::hasFile('medio_verificacion')){
+				    $file = Input::file('medio_verificacion');
+						$new_name = time()."_".$file->getClientOriginalName();
+				    $file->move('uploads', $new_name);
+						$compromiso->medio_verificacion = $new_name;
+				}else{
+					if(Input::get('delete_medio_verificacion')){
+						$compromiso->medio_verificacion = '';
+					}
+				}
+				/* end: Archivo medio_verificacion */
 
             if(!Auth::user()->super && $compromiso->usuario_id!=Auth::user()->id)
                 App::abort(403, 'Unauthorized action.');
@@ -232,79 +248,80 @@ class CompromisosController extends BaseController {
 
             $compromiso->hitos()->delete();
             $hitos=Input::get('hitos',array());
-						$count_hitos = 0;
-						foreach($hitos as $h){
+			$count_hitos = 0;
+			foreach($hitos as $h){
                 $new_hito=new Hito();
                 $new_hito->descripcion=$h['descripcion'];
                 $new_hito->ponderador=$h['ponderador']/100;
                 $new_hito->avance=$h['avance']/100;
 
-								$h['fecha_inicio']	= "01-".$h['fecha_inicio'];
-								$h['fecha_termino']	= "28-".$h['fecha_termino'];
+				$h['fecha_inicio']	= "01-".$h['fecha_inicio'];
+				$h['fecha_termino']	= "28-".$h['fecha_termino'];
 
                 $new_hito->fecha_inicio=\Carbon\Carbon::parse($h['fecha_inicio']);
                 $new_hito->fecha_termino=\Carbon\Carbon::parse($h['fecha_termino']);
                 $new_hito->verificacion_descripcion=$h['verificacion_descripcion'];
                 $new_hito->verificacion_url=$h['verificacion_url'];
 
-								$new_hito->medio_verificacion = '';
-								/*UPLOAD FILES*/
-									/* ini: Archivo medio_verificacion */
-									if( Input::hasFile('medio_verificacion_hito_'.$count_hitos) ){
-									    $file = Input::file('medio_verificacion_hito_'.$count_hitos);
-											$new_name = time()."_".$file->getClientOriginalName();
-									    $file->move('uploads', $new_name);
-											$new_hito->medio_verificacion = $new_name;
-									}else{
-										if(Input::get('delete_medio_verificacion_hito_'.$count_hitos)){
-											$new_hito->medio_verificacion = '';
-										}else{
-											$new_hito->medio_verificacion = Input::get('medio_verificacion_hito_'.$count_hitos);
-										}
-									}
-									/* end: Archivo medio_verificacion */
+				$new_hito->medio_verificacion = '';
+				/*UPLOAD FILES*/
+					/* ini: Archivo medio_verificacion */
+					if( Input::hasFile('medio_verificacion_hito_'.$count_hitos) ){
+					    $file = Input::file('medio_verificacion_hito_'.$count_hitos);
+							$new_name = time()."_".$file->getClientOriginalName();
+					    $file->move('uploads', $new_name);
+							$new_hito->medio_verificacion = $new_name;
+					}else{
+						if(Input::get('delete_medio_verificacion_hito_'.$count_hitos)){
+							$new_hito->medio_verificacion = '';
+						}else{
+							$new_hito->medio_verificacion = Input::get('medio_verificacion_hito_'.$count_hitos);
+						}
+					}
+					/* end: Archivo medio_verificacion */
 
                 $compromiso->hitos()->save($new_hito);
-								$count_hitos++;
+				$count_hitos++;
             }
 
-						/*ingresar mesas*/
-						$compromiso->mesas()->delete();
-						$mesas=Input::get('mesas',array());
-						$count_mesas = 0;
-						foreach($mesas as $m){
+            /*ingresar mesas*/
+            $compromiso->mesas()->delete();
+            $mesas=Input::get('mesas',array());
+            $count_mesas = 0;
+            foreach($mesas as $m){
                 $new_mesa=new Mesa();
                 $new_mesa->nombre=$m['nombre'];
                 $new_mesa->tema=$m['tema'];
                 $new_mesa->tipo=$m['tipo'];
                 $new_mesa->sesiones=$m['sesiones'];
                 $new_mesa->verificacion=$m['verificacion'];
+                $new_mesa->frecuencia=$m['frecuencia'];
 
-								$new_mesa->medio_verificacion = '';
-								/*UPLOAD FILES*/
-									/* ini: Archivo medio_verificacion */
-									if( Input::hasFile('medio_verificacion_mesa_'.$count_mesas) ){
-									    $file = Input::file('medio_verificacion_mesa_'.$count_mesas);
-											$new_name = time()."_".$file->getClientOriginalName();
-									    $file->move('uploads', $new_name);
-											$new_mesa->medio_verificacion = $new_name;
-									}else{
-										if(Input::get('delete_medio_verificacion_mesa_'.$count_mesas)){
-											$new_mesa->medio_verificacion = '';
-										}else{
-											$new_mesa->medio_verificacion = Input::get('medio_verificacion_mesa_'.$count_mesas);
-										}
-									}
-									/* end: Archivo medio_verificacion */
+    			$new_mesa->medio_verificacion = '';
+			    /*UPLOAD FILES*/
+				/* ini: Archivo medio_verificacion */
+				if( Input::hasFile('medio_verificacion_mesa_'.$count_mesas) ){
+				    $file = Input::file('medio_verificacion_mesa_'.$count_mesas);
+						$new_name = time()."_".$file->getClientOriginalName();
+				    $file->move('uploads', $new_name);
+						$new_mesa->medio_verificacion = $new_name;
+				}else{
+					if(Input::get('delete_medio_verificacion_mesa_'.$count_mesas)){
+						$new_mesa->medio_verificacion = '';
+					}else{
+						$new_mesa->medio_verificacion = Input::get('medio_verificacion_mesa_'.$count_mesas);
+					}
+				}
+				/* end: Archivo medio_verificacion */
 
                 $compromiso->mesas()->save($new_mesa);
-								$count_mesas++;
+				$count_mesas++;
             }
 
-						/*ingresar noticias*/
-						$compromiso->noticias()->delete();
-						$noticias=Input::get('noticias',array());
-						$count_noticias = 0;
+			/*ingresar noticias*/
+			$compromiso->noticias()->delete();
+			$noticias=Input::get('noticias',array());
+			$count_noticias = 0;
             foreach($noticias as $n){
                 $new_noticia=new Noticia();
 								$new_noticia->titulo=$n['titulo'];
@@ -350,14 +367,13 @@ class CompromisosController extends BaseController {
 						}
 
             DB::connection()->getPdo()->commit();
-
-            exec('cd '.base_path().'/sphinx; searchd; indexer --rotate --all');
-            sleep(1); //Tiempo para que el indexador termine.
+            exec('killall searchd && cd '.base_path().'/sphinx && searchd && indexer --rotate --all');
+            sleep(2); //Tiempo para que el indexador termine.
 
             $json->errors = array();
             $json->redirect = URL::to('backend/compromisos');
 
-            Session::flash('messages', array('success' => 'El compromiso "'. $compromiso->nombre .'" ha sido creado.'));
+            Session::flash('messages', array('success' => 'El compromiso "'. $compromiso->nombre .'" ha sido '.$done_label.'.'));
 
             $response = Response::json($json, 200);
         } else {

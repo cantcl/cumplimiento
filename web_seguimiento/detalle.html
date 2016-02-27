@@ -1,0 +1,92 @@
+<div class="page-content {{medida.eje.nombre}}">
+	<div class="container">
+
+		<div class="row detalle-seguimiento">
+			<div class="pull-left eje-tab {{medida.eje.nombre}}"></div>
+			<h1 ng-bind="medida.eje.titulo"></h1>
+			<hr>
+			<h2 ng-bind="medida.eje.descripcion"></h2>
+		</div>
+		
+		<div class="row fichas detalle-medida">
+
+			<div class="col-xs-8 col-md-8 col-lg-8">
+
+				<div class="mark-down {{medida.eje.nombre}} fa fa-caret-down"></div>
+				<div class="titulo-detalle">
+					<h2 ng-bind="medida.titulo"></h2>
+				</div>
+
+				<div class="contenido">{{medida.descripcion}}<div class="fadeout"></div></div>
+				<a href class="ver-mas" ng-click="verMas()"></a>
+				<br>
+				<h3>Impacto</h3>
+				<p class="impacto" ng-bind-html="medida.impacto"></p>
+
+				<table class="lista hitos" ng-if="medida.hitos.length">
+					<tbody>
+						<tr>
+							<th><h3>Hitos</h3></th>
+							<th class="thcol">Inicio</th>
+							<th class="thcol">Término</th>
+							<th class="thcol">Avance</th>
+							<th class="thcol">Verificación</th>
+						</tr>
+						<tr ng-repeat="hito in medida.hitos">
+							<td ng-bind="hito.titulo"></td>
+							<td ng-bind="hito.inicio"></td>
+							<td ng-bind="hito.termino"></td>
+							<td>{{hito.avance}}%</td>
+							<td><a ng-href="{{hito.verificacion.url}}"><div class="ico-doc ico-doc-{{hito.verificacion.mime}}"></div></a></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<table class="lista mesas" ng-if="medida.mesas.length">
+					<tbody>
+						<tr>
+							<th><h3>Mesas de Trabajo</h3></th>
+							<th>Participantes</th>
+							<th>Nº Sesiones</th>
+							<th>Periodicidad</th>
+						</tr>
+						<tr ng-repeat="mesa in medida.mesas">
+							<td ng-bind="mesa.titulo"></td>
+							<td ng-bind="mesa.participantes"></td>
+							<td ng-bind="mesa.sesiones"></td>
+							<td ng-bind="mesa.periodicidad"></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+
+			<div class="detalle-lateral col-der col-xs-4 col-md-4 col-lg-4">
+
+				<div class="grafico pull-right">
+					<div class="progress-radial progress-{{medida.eje.id}}-{{medida.avance}}">
+	          <div class="overlay">{{medida.avance}}%</div>
+	        </div>
+	      </div>
+
+	      <div class="items">
+	      	<div class="item"><h5>Avance de la Medida</h5><p>{{medida.estado_avance}}</p></div>
+	      	<div class="item"><h5>Meta</h5><p>{{medida.meta}}</p></div>
+	      	<div class="item"><h5>Territorio</h5><p>{{medida.territorio}}</p></div>
+	      	<div class="item"><h5>Responsable</h5><p>{{medida.ministerio}}/{{medida.entidad}}</p></div>
+	      	<div class="item"><h5>Presupuesto</h5><p>${{medida.presupuesto}} MM</p></div>
+	      	<div class="item"><h5>Plazo</h5><p>{{medida.plazo}}</p></div>
+	      	<div class="item"><h5>Otros Actores</h5><p>{{medida.otros_actores.join(', ')}}</p></div>
+	      	<div class="item"><h5>Etiquetas</h5><p><span ng-repeat="t in medida.tags">{{t}}</span></p></div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="row actualizaciones">
+			<h3>Últimas Actualizaciones</h3>
+		</div>
+
+	</div>
+</div>

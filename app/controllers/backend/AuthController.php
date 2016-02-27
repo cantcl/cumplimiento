@@ -53,7 +53,15 @@ class AuthController extends BaseController {
 
     public function responseOauth() {
         $flow = new Basic($this->authConfig);
-        $token = $flow->getAccessToken($_GET['code']);
+        if (isset($_GET['error']) && isset($_GET['error_message'])) { // salida por si presionan cancelar
+            return View::make('backend/auth/login')->with('error_msg', 'Claveúnica ha entregado el siguiente error: <strong>' . $_GET['error'] . "</strong>.<p>Por favor, contacte al Administrador del Sistema</p>");
+        }
+        if (isset($_GET['code'])) {
+            $token = $flow->getAccessToken($_GET['code']);    
+        } else {
+            return View::make('backend/auth/login')->with('error_msg', "No se terminó el proceso de validación. Por favor, contacte al Administrador del Sistema");
+        }
+        
         $user_raw = file_get_contents($this->authConfig['client_info']['user_info_endpoint'] . $token);
         $infoPersonal=json_decode($user_raw,true);
         $rut = $infoPersonal['run'];

@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Cumplimiento - <?=$title?></title>
+    <title>Medidas AgendaDigital 2020 - <?=$title?></title>
 
     <!-- Bootstrap -->
     <link href="<?=URL::asset('bower_components/bootstrap/dist/css/bootstrap.min.css')?>" rel="stylesheet">
     <link href="<?=URL::asset('bower_components/select2/select2.css')?>" rel="stylesheet">
     <link href="<?=URL::asset('bower_components/select2-bootstrap-css/select2-bootstrap.css')?>" rel="stylesheet">
     <link href="<?=URL::asset('bower_components/bootstrap-datepicker/css/datepicker3.css')?>" rel="stylesheet">
-    <link rel="stylesheet" href="<?= URL::asset('css/styles.css'); ?>"/>
+    <link href="<?= URL::asset('css/styles.css'); ?>" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,6 +19,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
 </head>
 <body>
 <header>
@@ -31,7 +32,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<?= URL::to('/backend'); ?>">Cumplimiento</a>
+                <a class="navbar-brand" href="<?= URL::to('/backend'); ?>">Seguimiento Agenda Digital 2020</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -39,8 +40,8 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Menú<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="<?= URL::to('/backend/compromisos'); ?>">Compromisos</a></li>
-                            <?php if(Auth::user()->super):?><li><a href="<?= URL::to('/backend/fuentes'); ?>">Fuentes</a></li><?php endif ?>
+                            <li><a href="<?= URL::to('/backend/compromisos'); ?>">Medidas</a></li>
+                            <?php if(Auth::user()->super):?><li><a href="<?= URL::to('/backend/fuentes'); ?>">Ejes estratégicos</a></li><?php endif ?>
                             <li><a href="<?= URL::to('/backend/hitos'); ?>">Hitos</a></li>
                             <?php if(Auth::user()->super):?><li><a href="<?= URL::to('/backend/usuarios'); ?>">Usuarios</a></li><?php endif ?>
                         </ul>
@@ -87,6 +88,7 @@
 </div>
 
 <script src="<?=URL::asset('bower_components/jquery/dist/jquery.min.js')?>"></script>
+<script src="<?=URL::asset('js/jquery.Rut.js')?>"></script>
 <script src="<?=URL::asset('bower_components/bootstrap/dist/js/bootstrap.min.js')?>"></script>
 <script src="<?=URL::asset('bower_components/select2/select2.min.js')?>"></script>
 <script src="<?=URL::asset('bower_components/tinymce/tinymce.min.js')?>"></script>

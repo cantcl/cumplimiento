@@ -1,0 +1,9 @@
+<div class="listado noticias">
+		
+	<div class="noticia" ng-repeat="noticia in otrasnoticias">
+    <a ng-href="#/noticias/{{noticia.id}}" class="titulo">{{noticia.titulo}}</a>
+    <img ng-src="{{noticia.img}}"/>
+    <p class="bajada" ng-bind-html="noticia.bajada"></p>
+  </div>
+
+</div>

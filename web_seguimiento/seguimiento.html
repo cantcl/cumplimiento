@@ -1,0 +1,47 @@
+<div class="row seguimiento">
+	<div class="container">
+		<div ng-include="'include_seguimientoejes.html'"></div>
+	</div>
+</div>
+
+<div class="row filtros">
+	<div class="container">
+		<h2> Filtrar Avances por eje temático</h2>
+		<div class="ejes">
+			<div ng-repeat="eje in ejes" class="filtro pull-left {{eje.nombre}}" ng-class="{'last':$last}" ng-click="filtrar(eje.id)">
+				<div class="eje pull-left"></div>
+				<p class="pull-left" ng-bind="eje.titulo"></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+	<div class="row updates {{eje.nombre}}" ng-repeat="eje in ejes">
+		<div class="eje pull-left"></div>
+		<div class="subtitulo pull-left" ng-bind="eje.titulo"></div>
+		<div class="pull-left ua">Últimas actualizaciones</div>
+		<div class="clearfix"></div>
+		<div class="row">
+			<div class="actualizacion" ng-repeat="actualizacion in eje.actualizaciones" ng-click="ver(actualizacion.id)">
+				<div class="hitos pull-left">
+					<span class="cumplidos" ng-bind="actualizacion.hitos.cumplidos"></span><span class="total"	>/{{actualizacion.hitos.total}}</span>
+					<p>Cumplidos/Total</p>
+					<p><strong>Hitos</strong></p>
+				</div>
+				<div class="grafico pull-right">
+					<div class="progress-radial progress-{{eje.id}}-{{actualizacion.avance}}">
+	          <div class="overlay">{{actualizacion.avance}}%</div>
+	        </div>
+	        <p><strong>Avance</strong></p>
+	      </div>
+	      <div class="clearfix"></div>
+        <hr>
+        <div class="info">
+        	<h4 ng-bind="actualizacion.titulo"></h4>
+        	<p ng-bind="actualizacion.institucion"></p>
+        </div>
+			</div>
+		</div>
+	</div>
+</div>

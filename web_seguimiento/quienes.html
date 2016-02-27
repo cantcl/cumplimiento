@@ -1,0 +1,48 @@
+<div class="quienes-somos">
+	<div class="container">
+
+		<div class="row">
+			<h1>Quienes Somos</h1>
+		</div>
+		
+		<div class="row fichas">
+
+			<div class="col-xs-8 col-md-8 col-lg-8">
+				<div class="mark-down fa fa-caret-down"></div>
+				<h2>{{titulo}}</h2>
+
+				<div id="descripcion">
+					<div ng-include="template"></div>
+				</div>
+
+				<div class="integrantes">
+					<div class="pull-left principal"><img ng-class="{'selected': selected==-1}" ng-src="{{members[0].img}}" title="{{members[0].nombre}}" ng-click="loadMember(members[0],-1)"></div>
+					<div class="pull-left detalle">
+						<p class="nombre" ng-bind="detalle.nombre"></p>
+					</div>
+					<div class="clearfix"></div>
+					<div class="miembro">
+						<img class="pull-left" ng-class="{'selected': $index==selected}" ng-repeat="(key, member) in members" ng-src="{{member.img}}" ng-show="member.role != 'principal'" ng-click="loadMember(member,$index)"/>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+
+			</div>
+
+			<div class="col-der col-xs-4 col-md-4 col-lg-4">
+				<div class="menu">
+					<ul>
+						<li ng-class="{active: active=='comite'}"><span class="menu-bullet fa fa-play"></span><a href="#/quienes-somos/comite">Comité de Ministros</a></li>
+						<li role="separator" class="divider"></li>
+						<li ng-class="{active: active=='secretaria'}"><span class="menu-bullet fa fa-play"></span><a href="#/quienes-somos/secretaria">Secretaría Ejecutiva</a></li>
+						<li role="separator" class="divider"></li>
+					</ul>
+				</div>
+
+				<div ng-include="'include_lateral.html'" ng-controller="IncludeController"></div>
+
+			</div>
+
+		</div>
+	</div>
+</div>

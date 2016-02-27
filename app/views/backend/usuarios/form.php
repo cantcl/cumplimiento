@@ -3,7 +3,7 @@
     <li><a href="<?=URL::to('backend/usuarios'); ?>">Usuarios</a></li>
     <li class="active"><?= $usuario->id ? 'Editar' : 'Nuevo'; ?></li>
 </ol>
-<form class="ajaxForm form-horizontal form-usuario" method="post" action="<?= URL::to('backend/usuarios/guardar/' . $usuario->id); ?>">
+<form class="ajaxForm form-horizontal form-usuario" method="post" action="<?= URL::to('backend/usuarios/guardar/' . $usuario->id); ?>" name="ajaxFormName">
     <fieldset>
         <legend><?= $usuario->id ? 'Editar' : 'Nuevo'; ?> Usuario</legend>
         <div class="validacion"></div>
@@ -17,6 +17,12 @@
             <label for="apellidos" class="col-sm-3 control-label">Apellidos</label>
             <div class="col-sm-9">
                 <input type="text" class="form-control" name="apellidos" id="apellidos" value="<?= $usuario->apellidos; ?>"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email" class="col-sm-3 control-label">RUT</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="rut" id="rut" value="<?= $usuario->rut; ?>"/>
             </div>
         </div>
         <div class="form-group">
@@ -36,7 +42,7 @@
                 </div>
             </div>
         </div>
-        <div class="form-group cont-password" style="<?= $usuario->id ? '' : 'display: none;'; ?>">
+        <!-- <div class="form-group cont-password" style="<?= $usuario->id ? '' : 'display: none;'; ?>">
             <label for="cambiar-password" class="col-sm-3 control-label">Password</label>
             <div class="col-sm-9">
                 <button type="button" id="cambiar-password" class="btn btn-cambiar-password" data-disabled="true">Cambiar</button>
@@ -55,7 +61,7 @@
                     <input type="password" <?= $usuario->id ? 'disabled' : ''; ?>  class="form-control" name="password_confirmation" id="password_confirmation" value=""/>
                 </div>
             </div>
-        </div>
+        </div> -->
     </fieldset>
     <hr/>
     <div class="text-right">
