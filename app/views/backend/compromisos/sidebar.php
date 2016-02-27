@@ -1,8 +1,8 @@
 <aside>
     <div class="panel panel-default">
-        <div class="panel-heading">Compromisos</div>
+        <div class="panel-heading">Medidas</div>
         <div class="panel-body">
-            <p>Aquí podra editar los compromisos.</p>
+            <p>Aquí podra agregar y editar las medidas.</p>
         </div>
     </div>
 </aside>

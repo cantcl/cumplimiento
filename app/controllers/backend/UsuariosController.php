@@ -37,22 +37,25 @@ class UsuariosController extends BaseController {
 
         $validator = Validator::make(Input::all(),array(
             'nombres' => 'required',
+            'rut' => 'required',
             'apellidos' => 'required',
             'email' => 'required',
-            'super' => 'required',
-            'password' => ($usuario_id ? 'confirmed' : 'required|confirmed')
+            'super' => 'required'//,
+            // 'password' => ($usuario_id ? 'confirmed' : 'required|confirmed')
         ));
 
         $json = new stdClass();
         if($validator->passes()){
             $usuario = $usuario_id ? Usuario::find($usuario_id) : new Usuario();
+            $success_msg = $usuario_id ? "actualizado." : "creado.";
 
-            if(Input::get('password'))
-                $usuario->password = Hash::make(Input::get('password'));
+            // if(Input::get('password'))
+            //     $usuario->password = Hash::make(Input::get('password'));
 
             $usuario->nombres = Input::get('nombres', '');
             $usuario->apellidos = Input::get('apellidos', '');
             $usuario->email = Input::get('email', '');
+            $usuario->rut = Input::get('rut');
             $usuario->super = Input::get('super');
 
             $usuario->save();
@@ -60,7 +63,7 @@ class UsuariosController extends BaseController {
             $json->errors = array();
             $json->redirect = URL::to('backend/usuarios');
 
-            Session::flash('messages', array('success' => 'El usuario '. $usuario->nombre_completo .' ha sido creado.'));
+            Session::flash('messages', array('success' => 'El usuario '. $usuario->nombre_completo .' ha sido ' . $success_msg));
 
             $response = Response::json($json, 200);
         } else {

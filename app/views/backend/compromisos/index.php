@@ -1,12 +1,9 @@
 <ol class="breadcrumb">
     <li><a href="<?=URL::to('backend')?>">Inicio</a></li>
-    <li class="active">Compromisos</li>
+    <li class="active">Medidas</li>
 </ol>
 
-
-<?php if (Auth::user()->perfiles_id == 1): ?>
-  <p><a href="<?=URL::to('backend/compromisos/nuevo')?>" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Crear Compromiso</a></p>
-<?php endif; ?>
+<p><a href="<?=URL::to('backend/compromisos/nuevo')?>" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Crear Medida</a></p>
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
@@ -56,7 +53,7 @@
         <?=$compromisos->links()?>
         </div>
         <?php else:?>
-        <p>No se han encontrado compromisos.</p>
+        <p>No se han encontrado medidas.</p>
         <?php endif ?>
 
     </div>

@@ -9,7 +9,7 @@
     <thead>
     <tr>
         <th>Hito</th>
-        <th>Compromiso</th>
+        <th>Medida</th>
         <th>Responsable</th>
         <th>Fecha Inicio</th>
         <th>Fecha Término</th>
