@@ -40,8 +40,8 @@ class UsuariosController extends BaseController {
             'rut' => 'required',
             'apellidos' => 'required',
             'email' => 'required',
-            'super' => 'required'//,
-            // 'password' => ($usuario_id ? 'confirmed' : 'required|confirmed')
+            'super' => 'required',
+            'password' => ($usuario_id ? 'confirmed' : 'required|confirmed')
         ));
 
         $json = new stdClass();
@@ -49,14 +49,16 @@ class UsuariosController extends BaseController {
             $usuario = $usuario_id ? Usuario::find($usuario_id) : new Usuario();
             $success_msg = $usuario_id ? "actualizado." : "creado.";
 
-            // if(Input::get('password'))
-            //     $usuario->password = Hash::make(Input::get('password'));
+            if(Input::get('password'))
+              $usuario->password = Hash::make(Input::get('password'));
 
             $usuario->nombres = Input::get('nombres', '');
             $usuario->apellidos = Input::get('apellidos', '');
             $usuario->email = Input::get('email', '');
             $usuario->rut = Input::get('rut');
             $usuario->super = Input::get('super');
+
+            $usuario->perfiles_id = Input::get('perfiles_id');
 
             $usuario->save();
 

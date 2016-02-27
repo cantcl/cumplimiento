@@ -1,3 +1,9 @@
+<script>
+  function publicar(){
+    alert('La opción de Publicar esta en desarrollo');
+  }
+</script>
+
 <ol class="breadcrumb">
     <li><a href="<?=URL::to('backend')?>">Inicio</a></li>
     <li><a href="<?=URL::to('backend/compromisos')?>">Medidas</a></li>
@@ -18,7 +24,7 @@
         <legend><?= $compromiso->id ? 'Editar' : 'Nuevo'; ?> Medida</legend>
         <div class="validacion"></div>
 
-        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('number', $array_display_compromiso)) { ?>
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('numero', $array_display_compromiso)) { ?>
         <div class="form-group col-sm-3">
             <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[numero]" <?php if(array_key_exists('numero', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
             <label for="number" class="control-label">Número de la medida</label>
@@ -157,8 +163,18 @@
         <!--</div>-->
         <div class="form-group col-sm-12">
             <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[autoridad_responsable]" <?php if(array_key_exists('autoridad_responsable', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
-            <label for="number" class="control-label">Autoridad responsable</label>
-            <input type="text" class="form-control" name="autoridad_responsable" id="autoridad_responsable" value="<?= $compromiso->autoridad_responsable; ?>" placeholder="Nombre de la autoridad responsable de la medida"/>
+            <label for="number" class="control-label">Autoridad responsable
+              <?php if(Auth::user()->perfiles_id == 1): ?><a href="<?= URL::to('/backend/usuarios'); ?>">Ir al Mantenedor de Usuarios</a><?php endif; ?>
+            </label>
+
+            <select class="form-control form-control-select2" name="autoridad_responsable" id="autoridad_responsable" data-placeholder="">
+                <?php foreach(Usuario::all() as $u): ?>
+                  <?php if( $u->perfiles_id == 2 ): ?>
+                    <option value="<?= $u->id; ?>" ><?= $u->nombres; ?></option>
+                  <?php endif; ?>
+                <?php endforeach; ?>
+            </select>
+            <?php /*<input type="text" class="form-control" name="autoridad_responsable" id="autoridad_responsable" value="<?= $compromiso->autoridad_responsable; ?>" placeholder="Nombre de la autoridad responsable de la medida"/> */?>
         </div>
         <!--<div class="row form-horizontal">-->
             <div class="col-sm-12 hide">
@@ -540,8 +556,28 @@
         <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('contacto', $array_display_compromiso)) { ?>
         <div class="form-group col-sm-12">
             <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[contacto]" <?php if(array_key_exists('contacto', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
-            <label for="contacto" class="control-label">Jefe de Proyecto y Contacto.</label>
-            <textarea class="form-control tinymce" rows="6" placeholder="Jefe de Proyecto y Contacto." id="contacto" name="contacto"><?=$compromiso->contacto?></textarea>
+            <label for="contacto" class="control-label">Jefe de Proyecto</label>
+            <!--<textarea class="form-control tinymce" rows="6" placeholder="Jefe de Proyecto y Contacto." id="contacto" name="contacto"><?=$compromiso->contacto?></textarea>-->
+            <select name="contacto" id="contacto">
+              <?php foreach(Usuario::all() as $usuario): ?>
+                <?php if($usuario->perfiles_id > 1): ?>
+                  <option value="<?= $usuario->id; ?>" <?=$usuario->id==$compromiso->contacto?'selected':''?>><?= $usuario->nombres; ?> <?=$usuario->apellidos?></option>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </select>
+        </div>
+        <?php } ?>
+        <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('resp_comunicaciones', $array_display_compromiso)) { ?>
+        <div class="form-group col-sm-12">
+            <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[resp_comunicaciones]" <?php if(array_key_exists('resp_comunicaciones', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
+            <label for="resp_comunicaciones" class="control-label">Responsable de Comunicaciones</label>
+            <select name="resp_comunicaciones" id="resp_comunicaciones">
+              <?php foreach(Usuario::all() as $usuario): ?>
+                <?php if($usuario->perfiles_id > 1): ?>
+                  <option value="<?= $usuario->id; ?>" <?=$usuario->id==$compromiso->resp_comunicaciones?'selected':''?>><?= $usuario->nombres; ?> <?=$usuario->apellidos?></option>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </select>
         </div>
         <?php } ?>
         <hr />
@@ -568,7 +604,10 @@
     </fieldset>
     <hr/>
     <div class="text-right">
+      <?php if(Auth::user()->perfiles_id == 1 || Auth::user()->id = $compromiso->autoridad_responsable ): ?>
+        <button onclick="publicar()" type="button" class="btn btn-success"><span class="glyphicon glyphicon-save" ></span>Publicar</button>
         <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span>Guardar</button>
+      <?php endif; ?>
         <a href="javascript:history.back();" class="btn btn-warning"><span class="glyphicon glyphicon-ban-circle"></span>Cancelar</a>
     </div>
 </form>

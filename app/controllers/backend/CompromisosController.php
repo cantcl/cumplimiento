@@ -212,6 +212,10 @@ class CompromisosController extends BaseController {
             $compromiso->usuario()->associate(Usuario::find(1));
             $compromiso->porcentaje_ejec=Input::get('porcentaje_ejec');
 
+
+						$compromiso->resp_comunicaciones=Input::get('resp_comunicaciones');
+						$compromiso->publicado=Input::get('publicado',0);
+
             /* ini: save asociados */
             $compromiso->asociados()->delete();
             $asociados=Input::get('asociados',array());
@@ -302,7 +306,7 @@ class CompromisosController extends BaseController {
 								}else{
 									$new_mesa->nombre=$m['descripcion'];
 								}
-                $new_mesa->tema=$m['tema'];
+                $new_mesa->tema='-';//$m['tema'];
                 $new_mesa->tipo=$m['tipo'];
                 $new_mesa->sesiones=$m['sesiones'];
                 $new_mesa->verificacion=$m['verificacion'];

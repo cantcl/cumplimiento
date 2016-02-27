@@ -19,7 +19,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-    
+
 </head>
 <body>
 <header>
@@ -43,7 +43,11 @@
                             <li><a href="<?= URL::to('/backend/compromisos'); ?>">Medidas</a></li>
                             <?php if(Auth::user()->super):?><li><a href="<?= URL::to('/backend/fuentes'); ?>">Ejes estratégicos</a></li><?php endif ?>
                             <li><a href="<?= URL::to('/backend/hitos'); ?>">Hitos</a></li>
-                            <?php if(Auth::user()->super):?><li><a href="<?= URL::to('/backend/usuarios'); ?>">Usuarios</a></li><?php endif ?>
+                            <?php if(Auth::user()->super):?>
+                              <?php if(Auth::user()->perfiles_id == 1):?>
+                                <li><a href="<?= URL::to('/backend/usuarios'); ?>">Usuarios</a></li>
+                              <?php endif ?>
+                            <?php endif ?>
                         </ul>
                     </li>
                 </ul>
