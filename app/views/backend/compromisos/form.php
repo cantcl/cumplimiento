@@ -3,6 +3,10 @@
     alert('La opción de Publicar esta en desarrollo');
   }
 
+  function exportar(){
+    alert('La opción de Exportar esta en desarrollo');
+  }
+
   function saveUserJp(){
     if(
       $("#nombres").val() == '' ||
@@ -676,6 +680,11 @@
 </div>
 
     <div class="text-right">
+      <?php if(Auth::user()->perfiles_id == 1 ||
+        Auth::user()->id == $compromiso->autoridad_responsable ||
+        Auth::user()->id == $compromiso->contacto) : ?>
+        <button onclick="exportar()" type="button" class="btn btn-success"><span class="glyphicon glyphicon-cloud-upload" ></span>Exportar</button>
+      <?php endif; ?>
       <?php if(Auth::user()->perfiles_id == 0 || Auth::user()->id == $compromiso->autoridad_responsable ): ?>
         <button onclick="publicar()" type="button" class="btn btn-success"><span class="glyphicon glyphicon-cloud-upload" ></span>Publicar</button>
       <?php endif; ?>
