@@ -2,6 +2,67 @@
   function publicar(){
     alert('La opción de Publicar esta en desarrollo');
   }
+
+  function saveUserJp(){
+    if(
+      $("#nombres").val() == '' ||
+      $("#apellidos").val() == '' ||
+      $("#rut").val() == '' ||
+      $("#email").val() == '' ||
+      $("#telefono").val() == ''){
+        alert("Todos los campos son obligatorios")
+    }else{
+      $.ajax({
+          url: '<?= URL::to('backend/usuarios/guardarjp'); ?>',
+          method: "POST",
+          data: $("#new_jp").serialize()
+        })
+        .done(function( data ) {
+          reloadJp(data, $("#nombres").val(), $("#apellidos").val());
+      });
+    }
+  }
+  function saveUserRc(){
+    if(
+      $("#nombres_rc").val() == '' ||
+      $("#apellidos_rc").val() == '' ||
+      $("#rut_rc").val() == '' ||
+      $("#email_rc").val() == '' ||
+      $("#telefono_rc").val() == ''){
+        alert("Todos los campos son obligatorios")
+    }else{
+      $.ajax({
+          url: '<?= URL::to('backend/usuarios/guardarrc'); ?>',
+          method: "POST",
+          data: $("#new_rc").serialize()
+        })
+        .done(function( data ) {
+          reloadRc(data, $("#nombres_rc").val(), $("#apellidos_rc").val());
+      });
+    }
+  }
+
+  function reloadJp(data, n, a){
+    if(data == 0){
+      alert("El email ya existe en el sistema");
+    }else{
+      $("#cancel_jp").click();
+      $("#contacto").append("<option value='"+data+"' >"+n+" "+a+"</option>");
+      alert("Nuevo Jefe de Proyecto ingresado, ahora puedes seleccionarlo");
+      document.getElementById("new_jp").reset();
+    }
+  }
+  function reloadRc(data){
+    if(data == 0){
+      alert("El email ya existe en el sistema");
+    }else{
+      $("#cancel_rc").click();
+      $("#resp_comunicaciones").append("<option value='"+data+"' >"+n+" "+a+"</option>");
+      alert("Nuevo Responsable de Comunicaciones ingresado, ahora puedes seleccionarlo");
+      document.getElementById("new_rc").reset();
+    }
+  }
+
 </script>
 
 <ol class="breadcrumb">
@@ -28,7 +89,7 @@
         <div class="form-group col-sm-3">
             <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[numero]" <?php if(array_key_exists('numero', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
             <label for="number" class="control-label">Número de la medida</label>
-            <input type="number" class="form-control" name="numero" id="numero" value="<?= $compromiso->number; ?>" placeholder="Numero de la medida"/>
+            <input <?php if(Auth::user()->id == $compromiso->resp_comunicaciones){ echo "readonly='readonly'"; } ?> type="number" class="form-control" name="numero" id="numero" value="<?= $compromiso->number; ?>" placeholder="Numero de la medida"/>
         </div>
         <?php } ?>
 
@@ -36,9 +97,11 @@
         <div class="form-group col-sm-9">
             <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[nombre]" <?php if(array_key_exists('nombre', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
             <label for="nombre" class="control-label">Nombre de la medida</label>
-            <input type="text" class="form-control" name="nombre" id="nombre" value="<?= $compromiso->nombre; ?>" placeholder="Nombre de la medida"/>
+            <input <?php if(Auth::user()->id == $compromiso->resp_comunicaciones){ echo "readonly='readonly'"; } ?> type="text" class="form-control" name="nombre" id="nombre" value="<?= $compromiso->nombre; ?>" placeholder="Nombre de la medida"/>
         </div>
         <?php } ?>
+
+<div <?php if(Auth::user()->id == $compromiso->resp_comunicaciones){ echo "style='display: none'"; } ?>>
 
         <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('linea_accion', $array_display_compromiso)) { ?>
         <div class="form-group col-sm-12">
@@ -46,7 +109,6 @@
             <label for="nombre" class="control-label">Linea de acción</label>
             <input type="text" class="form-control" name="linea_accion" id="linea_accion" value="<?= $compromiso->linea_accion; ?>" placeholder="Linea de acción"/>
         </div>
-
         <div class="form-group col-sm-12 form-group-fuente">
           <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[fuente]" <?php if(array_key_exists('fuente', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                 <label for="fuente" class="control-label">Eje estratégico de la agenda al que pertenece</label>
@@ -486,9 +548,13 @@
             </div>
         </div>
         <?php } ?>
+
+</div>
+
         <hr>
         <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('noticias', $array_display_compromiso)) { ?>
         <div class="row form-noticias">
+            <div class="col-sm-12">
             <div class="col-sm-12">
                 <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[noticias]" <?php if(array_key_exists('noticias', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
                 <label>Noticias de la Medida</label>
@@ -542,8 +608,12 @@
                     </tbody>
                 </table>
             </div>
+            </div>
         </div>
         <?php } ?>
+
+<div <?php if(Auth::user()->id == $compromiso->resp_comunicaciones){ echo "style='display: none'"; } ?>>
+
         <hr />
         <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('proveedores', $array_display_compromiso)) { ?>
         <div class="form-group col-sm-12">
@@ -556,13 +626,13 @@
         <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('contacto', $array_display_compromiso)) { ?>
         <div class="form-group col-sm-12">
             <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[contacto]" <?php if(array_key_exists('contacto', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
-            <label for="contacto" class="control-label">Jefe de Proyecto</label>
+            <label for="contacto" class="control-label">Jefe de Proyecto</label>&nbsp;&nbsp;&nbsp;
+            <?php if(Auth::user()->id == $compromiso->autoridad_responsable): ?><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalJP">+</button><?php endif; ?>
+            <br />
             <!--<textarea class="form-control tinymce" rows="6" placeholder="Jefe de Proyecto y Contacto." id="contacto" name="contacto"><?=$compromiso->contacto?></textarea>-->
-            <select name="contacto" id="contacto">
+            <select class="form-control form-control-select2" name="contacto" id="contacto">
               <?php foreach(Usuario::all() as $usuario): ?>
-                <?php if($usuario->perfiles_id > 1): ?>
                   <option value="<?= $usuario->id; ?>" <?=$usuario->id==$compromiso->contacto?'selected':''?>><?= $usuario->nombres; ?> <?=$usuario->apellidos?></option>
-                <?php endif; ?>
               <?php endforeach; ?>
             </select>
         </div>
@@ -570,12 +640,11 @@
         <?php if (Auth::user()->perfiles_id == 1 || array_key_exists('resp_comunicaciones', $array_display_compromiso)) { ?>
         <div class="form-group col-sm-12">
             <?php if(Auth::user()->perfiles_id == 1): ?><input type="checkbox" name="display[resp_comunicaciones]" <?php if(array_key_exists('resp_comunicaciones', $array_display_compromiso)){ echo "checked"; } ?> /><?php endif; ?>
-            <label for="resp_comunicaciones" class="control-label">Responsable de Comunicaciones</label>
-            <select name="resp_comunicaciones" id="resp_comunicaciones">
+            <label for="resp_comunicaciones" class="control-label">Responsable de Comunicaciones</label>&nbsp;&nbsp;&nbsp;<?php if(Auth::user()->id == $compromiso->autoridad_responsable): ?><button type="button" class="btn btn-info btn-xs" data-toggle="modal" data-target="#myModalRC">+</button><?php endif; ?>
+            <br />
+            <select class="form-control form-control-select2" name="resp_comunicaciones" id="resp_comunicaciones">
               <?php foreach(Usuario::all() as $usuario): ?>
-                <?php if($usuario->perfiles_id > 1): ?>
                   <option value="<?= $usuario->id; ?>" <?=$usuario->id==$compromiso->resp_comunicaciones?'selected':''?>><?= $usuario->nombres; ?> <?=$usuario->apellidos?></option>
-                <?php endif; ?>
               <?php endforeach; ?>
             </select>
         </div>
@@ -603,11 +672,148 @@
 
     </fieldset>
     <hr/>
+
+</div>
+
     <div class="text-right">
-      <?php if(Auth::user()->perfiles_id == 1 || Auth::user()->id = $compromiso->autoridad_responsable ): ?>
-        <button onclick="publicar()" type="button" class="btn btn-success"><span class="glyphicon glyphicon-save" ></span>Publicar</button>
+      <?php if(Auth::user()->perfiles_id == 0 || Auth::user()->id == $compromiso->autoridad_responsable ): ?>
+        <button onclick="publicar()" type="button" class="btn btn-success"><span class="glyphicon glyphicon-cloud-upload" ></span>Publicar</button>
+      <?php endif; ?>
+      <?php if(Auth::user()->perfiles_id == 1 ||
+        Auth::user()->id == $compromiso->autoridad_responsable ||
+        Auth::user()->id == $compromiso->contacto ||
+        Auth::user()->id == $compromiso->resp_comunicaciones ): ?>
         <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-save"></span>Guardar</button>
       <?php endif; ?>
         <a href="javascript:history.back();" class="btn btn-warning"><span class="glyphicon glyphicon-ban-circle"></span>Cancelar</a>
     </div>
 </form>
+
+<!-- Modal -->
+<div id="myModalJP" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form name="new_jp" id="new_jp" action="<?= URL::to('backend/usuarios/guardar_jp/'); ?>" method="post">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Nuevo Usuario - Jefe de Proyecto</h4>
+      </div>
+      <div class="modal-body">
+        <fieldset>
+            <div class="form-group">
+                <input type="hidden" id="jp" name="jp" value="1" />
+                <label for="nombres" class="col-sm-3 control-label">Nombres</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="nombres" id="nombres" value=""/>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label for="apellidos" class="col-sm-3 control-label">Apellidos</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="apellidos" id="apellidos" value=""/>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label for="email" class="col-sm-3 control-label">RUT</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="rut" id="rut" value=""/>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label for="email" class="col-sm-3 control-label">E-Mail</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="email" id="email" value=""/>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label for="telefono" class="col-sm-3 control-label">Teléfono</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="telefono" id="telefono" value=""/>
+                </div>
+            </div>
+        </fieldset>
+      </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" onclick="saveUserJp()">Guardar</button>
+        <button type="button" id="cancel_jp" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div id="myModalRC" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form name="new_jp" id="new_jp" action="<?= URL::to('backend/usuarios/guardar_jp/'); ?>" method="post">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Nuevo Usuario - Responsable de Comunicaciones</h4>
+      </div>
+      <div class="modal-body">
+        <fieldset>
+            <div class="form-group">
+                <input type="hidden" id="rc" name="rc" value="1" />
+                <label for="nombres" class="col-sm-3 control-label">Nombres</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="nombres" id="nombres" value=""/>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label for="apellidos" class="col-sm-3 control-label">Apellidos</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="apellidos" id="apellidos" value=""/>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label for="email" class="col-sm-3 control-label">RUT</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="rut" id="rut" value=""/>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label for="email" class="col-sm-3 control-label">E-Mail</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="email" id="email" value=""/>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="form-group">
+                <label for="telefono" class="col-sm-3 control-label">Teléfono</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" name="telefono" id="telefono" value=""/>
+                </div>
+            </div>
+        </fieldset>
+      </div>
+      </form>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" onclick="saveUserRc()">Guardar</button>
+        <button type="button" id="cancel_rc" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+
+  </div>
+</div>

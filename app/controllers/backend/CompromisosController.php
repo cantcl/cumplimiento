@@ -145,6 +145,10 @@ class CompromisosController extends BaseController {
     }
 
     public function postGuardar($compromiso_id = null){
+
+				/*Informar por email modificaciones hechas por el Jefe de proyectos*/
+				
+
         $input = Input::all();
         $rules = array(
             'numero' => 'required',
@@ -190,6 +194,7 @@ class CompromisosController extends BaseController {
 
             $compromiso->number = Input::get('numero');
             $compromiso->nombre = Input::get('nombre');
+						$compromiso->contacto = Input::get('contacto');
             $compromiso->autoridad_responsable = Input::get('autoridad_responsable');
             $compromiso->linea_accion = Input::get('linea_accion');
             $compromiso->prioridad = Input::get('prioridad');

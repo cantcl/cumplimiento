@@ -31,6 +31,12 @@
                 <input type="text" class="form-control" name="email" id="email" value="<?= $usuario->email; ?>"/>
             </div>
         </div>
+        <div class="form-group">
+            <label for="telefono" class="col-sm-3 control-label">Teléfono</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="telefono" id="telefono" value="<?= $usuario->telefono; ?>"/>
+            </div>
+        </div>
 
       <?php if( $usuario->id != '' ): ?>
         <?php if(Perfil::where('id' , '=', $usuario->perfiles_id)->get()->first()->id ): ?>
@@ -39,9 +45,9 @@
           <div class="col-sm-9">
             <select class="form-control form-control-select2" name="perfiles_id" id="perfiles_id" data-placeholder="Perfiles">
               <?php foreach(Perfil::all() as $u): ?>
-                <?php if( $u->id != 1 ): ?>
-                  <option value="<?= $u->id; ?>" ><?= $u->titulo; ?></option>
-                <?php endif; ?>
+                <?php //if( $u->id != 1 ): ?>
+                  <option value="<?= $u->id; ?>" <?php if($u->id == $usuario->perfiles_id): ?>selected<?php endif; ?>><?= $u->titulo; ?></option>
+                <?php //endif; ?>
               <?php endforeach; ?>
             </select>
           </div>
@@ -54,8 +60,8 @@
             <select class="form-control form-control-select2" name="perfiles_id" id="perfiles_id" data-placeholder="Perfiles">
               <?php foreach(Perfil::all() as $u): ?>
                 <?php if( $u->id != 1 ): ?>
-                <option value="<?= $u->id; ?>" ><?= $u->titulo; ?></option>
-              <?php endif; ?>
+                  <option value="<?= $u->id; ?>"><?= $u->titulo; ?></option>
+                <?php endif; ?>
               <?php endforeach; ?>
             </select>
           </div>

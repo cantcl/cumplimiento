@@ -22,6 +22,7 @@ return array(
     'AddRespComunicacionesToCompromisos' => $baseDir . '/app/database/migrations/2016_02_27_220237_add_resp_comunicaciones_to_compromisos.php',
     'AddRutToTableUsers' => $baseDir . '/app/database/migrations/2016_01_25_115203_add_rut_to_table_users.php',
     'AddStatusToCompromisos' => $baseDir . '/app/database/migrations/2016_02_27_213102_add_status_to_compromisos.php',
+    'AddTelefonoToUsuarios' => $baseDir . '/app/database/migrations/2016_02_27_231705_add_telefono_to_usuarios.php',
     'AddTextsToCompromisoTable' => $baseDir . '/app/database/migrations/2016_01_21_201129_add_texts_to_compromiso_table.php',
     'AddVerificacionToHitoTable' => $baseDir . '/app/database/migrations/2014_11_06_132504_add_verificacion_to_hito_table.php',
     'Asociado' => $baseDir . '/app/models/Asociado.php',
