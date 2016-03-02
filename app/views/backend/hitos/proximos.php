@@ -22,7 +22,15 @@
     <tr>
         <td><?=$h->descripcion?></td>
         <td><a href="<?=URL::to('backend/compromisos/editar/'.$h->compromiso->id)?>"><?=$h->compromiso->nombre?></a></td>
-        <td><?=$h->compromiso->usuario->nombres?> <?=$h->compromiso->usuario->apellidos?></td>
+        <?php
+          $responsable = 'Administrador';
+          $resp_id = $h->compromiso->autoridad_responsable;
+
+          if($resp_id != ''){
+            $responsable = Usuario::where('id' , '=', $resp_id)->get()->first()->nombres;
+          }
+        ?>
+        <td><?php echo $responsable; ?></td>
         <td><time><?=$h->fecha_inicio?></time></td>
         <td><time><?=$h->fecha_termino?></time></td>
         <td><?=$h->verificacion_descripcion?></td>

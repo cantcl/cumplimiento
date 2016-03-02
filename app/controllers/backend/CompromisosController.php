@@ -14,7 +14,7 @@ class CompromisosController extends BaseController {
 
         $data['compromisos'] = $data['compromisos_chart'] = $data['fuentes'] = $data['instituciones'] = $data['tags'] = $data['usuarios'] = $data['sectores'] = $data['tipos'] = $data['avances'] = array();
         $data['input'] = array_merge(array('instituciones' => array(),'tags'=>array(), 'usuarios'=>array(), 'sectores' => array(), 'fuentes' => array(), 'tipos' => array(), 'avances'=> array(), 'lineas_accion' => array()), $input);
-       
+
         if(!Auth::user()->super)
             $data['input']['usuarios']=array(Auth::user()->id);
 
@@ -145,6 +145,10 @@ class CompromisosController extends BaseController {
     }
 
     public function postGuardar($compromiso_id = null){
+
+				/*Informar por email modificaciones hechas por el Jefe de proyectos*/
+				
+
         $input = Input::all();
         $rules = array(
             'numero' => 'required',
@@ -167,6 +171,9 @@ class CompromisosController extends BaseController {
             'presupuesto_publico.required' => '<strong>Presupuesto ($CLP)</strong> es obligatorio y debe ser un valor numérico'
         );
 
+				$input['iniciativa'] = '-';
+				$input['eje_estrategico'] = '-';
+
         $validator = Validator::make($input, $rules, $messages);
 
         $json = new stdClass();
@@ -181,8 +188,13 @@ class CompromisosController extends BaseController {
                 $compromiso = new Compromiso();
                 $done_label = 'creado';
             }
+
+						$compromiso->iniciativa = $input['iniciativa'];
+						$compromiso->eje_estrategico = $input['eje_estrategico'];
+
             $compromiso->number = Input::get('numero');
             $compromiso->nombre = Input::get('nombre');
+						$compromiso->contacto = Input::get('contacto');
             $compromiso->autoridad_responsable = Input::get('autoridad_responsable');
             $compromiso->linea_accion = Input::get('linea_accion');
             $compromiso->prioridad = Input::get('prioridad');
@@ -200,9 +212,14 @@ class CompromisosController extends BaseController {
             $compromiso->departamento=Input::get('departamento');
             /*$compromiso->fuente()->associate(Fuente::find(Input::get('fuente')));*/
             /*$compromiso->usuario()->associate(Usuario::find(Input::get('usuario')));*/
+
             $compromiso->fuente()->associate(Fuente::find(1));
             $compromiso->usuario()->associate(Usuario::find(1));
             $compromiso->porcentaje_ejec=Input::get('porcentaje_ejec');
+
+
+						$compromiso->resp_comunicaciones=Input::get('resp_comunicaciones');
+						$compromiso->publicado=Input::get('publicado',0);
 
             /* ini: save asociados */
             $compromiso->asociados()->delete();
@@ -289,12 +306,16 @@ class CompromisosController extends BaseController {
             $count_mesas = 0;
             foreach($mesas as $m){
                 $new_mesa=new Mesa();
-                $new_mesa->nombre=$m['nombre'];
-                $new_mesa->tema=$m['tema'];
+								if( isset($m['nombre']) ){
+									$new_mesa->nombre=$m['nombre'];
+								}else{
+									$new_mesa->nombre=$m['descripcion'];
+								}
+                $new_mesa->tema='-';//$m['tema'];
                 $new_mesa->tipo=$m['tipo'];
                 $new_mesa->sesiones=$m['sesiones'];
                 $new_mesa->verificacion=$m['verificacion'];
-                $new_mesa->frecuencia=$m['frecuencia'];
+                $new_mesa->frecuencia='-';//$m['frecuencia'];
 
     			$new_mesa->medio_verificacion = '';
 			    /*UPLOAD FILES*/
@@ -355,6 +376,15 @@ class CompromisosController extends BaseController {
                 $new_actor->nombre=$h['nombre'];
                 $compromiso->actores()->save($new_actor);
             }
+
+						/*GUARDAR CAMPOS ADMIN*/
+						if( Auth::user()->super ){
+							$compromiso->display_compromisos()->delete();
+							$display = json_encode(Input::get('display'));
+							$display_compromisos = new DisplayCompromiso();
+							$display_compromisos->campos=$display;
+							$compromiso->display_compromisos()->save($display_compromisos);
+						}
 
             DB::connection()->getPdo()->commit();
             exec('killall searchd && cd '.base_path().'/sphinx && searchd && indexer --rotate --all');

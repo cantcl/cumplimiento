@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFilesToCompromisoTable extends Migration {
+class AddStatusToCompromisos extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -14,7 +14,7 @@ class AddFilesToCompromisoTable extends Migration {
 	{
 		Schema::table('compromisos', function(Blueprint $table)
 		{
-			$table->string('medio_verificacion', 512)->nullable();
+			$table->boolean('publicado');
 		});
 	}
 
@@ -27,7 +27,7 @@ class AddFilesToCompromisoTable extends Migration {
 	{
 		Schema::table('compromisos', function(Blueprint $table)
 		{
-			$table->dropColumn('medio_verificacion');
+			Schema::drop('publicado');
 		});
 	}
 

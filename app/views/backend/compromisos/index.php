@@ -3,8 +3,9 @@
     <li class="active">Medidas</li>
 </ol>
 
-
+<?php if (Auth::user()->perfiles_id == 1){ ?>
 <p><a href="<?=URL::to('backend/compromisos/nuevo')?>" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span> Crear Medida</a></p>
+<?php } ?>
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
@@ -62,5 +63,3 @@
         <div class="chart pie" data-data='<?=json_encode($compromisos_chart)?>'></div>
     </div>
 </div>
-
-

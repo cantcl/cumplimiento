@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddFilesToCompromisoTable extends Migration {
+class CreatePerfilesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,11 @@ class AddFilesToCompromisoTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('compromisos', function(Blueprint $table)
+		Schema::create('perfiles', function(Blueprint $table)
 		{
-			$table->string('medio_verificacion', 512)->nullable();
+			$table->increments('id');
+				$table->string('titulo', 512);
+			$table->timestamps();
 		});
 	}
 
@@ -25,10 +27,7 @@ class AddFilesToCompromisoTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('compromisos', function(Blueprint $table)
-		{
-			$table->dropColumn('medio_verificacion');
-		});
+		Schema::drop('perfiles');
 	}
 
 }
