@@ -6,29 +6,29 @@ app.controller('DocumentosController', ['$scope', '$route', '$routeParams', '$lo
 
 	 this.loadOtras = function() {
 	 	$scope.active = $routeParams.opt;
-	 	$scope.descripcion = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+	 	$scope.descripcion = "<p>Desde fines de la década de los noventa, Chile ha reconocido la necesidad de impulsar una política Nacional de Desarrollo Digital como parte de su estrategia para potenciar el crecimiento económico y promover la inclusión social.</p><p>Las diferentes iniciativas impulsadas a nivel nacional en esta materia son:</p>";
  	 	$scope.titulo = "Otras Agendas"
 	 	$scope.descargas = [
-	 		{"titulo" : "Agenda Número Uno", "descripcion": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam", "archivo": "#"},
-	 		{"titulo" : "Agenda Número Dos", "descripcion": "Fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.", "archivo": "#"},
-	 		{"titulo" : "Agenda Número Tres", "descripcion": "Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit", "archivo": "#"}
+	 		{"titulo" : "Chile hacia la Sociedad de la Información", "descripcion": "", "archivo": "#"},
+	 		{"titulo" : "Agenda Digital 2004-2006", "descripcion": "", "archivo": "#"},
+	 		{"titulo" : "Estrategia Digital 2007-2012", "descripcion": "", "archivo": "#"},
+	 		{"titulo" : "Agenda Imagina Chile", "descripcion": "", "archivo": "#"}
 	 	]
 
 	 }
 
 	 this.loadDecreto = function() {
 	 		$scope.active = $routeParams.opt;
-	 		$scope.descripcion = "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus";
+	 		$scope.descripcion = "<p>El 15 de Enero de 2016 es promulgado el Decreto N°1 del 2016, del Ministerio Secretaría General de la Presidencia, mediante el cual se crea el Comité de Ministros para el Desarrollo Digital, conformando a su vez, a la Secretaría Ejecutiva y a sus integrantes.</p>";
 		 	$scope.titulo = "Decreto Vigente"
 		 	$scope.descargas = [
-		 		{"titulo" : "Decreto Vigente", "descripcion": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam", "archivo": "#"},
-		 		{"titulo" : "Decreto Vigente", "descripcion": "Fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.", "archivo": "#"}
-		 	]
+		 		{"titulo" : "Decreto Vigente", "descripcion": "Descarga el Decreto Vigente para conocer el detalle", "archivo": "#"}
+		 		]
 	 }
 
 	 this.loadActas = function() {
 	 		$scope.active = $routeParams.opt;
-	 		$scope.descripcion = "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi";
+	 		$scope.descripcion = "<p>El Comité de Ministros para el Desarrollo Digital, se reunirá semestralmente para avanzar en la implementación y seguimiento de la Agenda Digital 2020.</p><p>Aquí podrás conocer los temas tratados en cada una de as sesiones del Comité</p>";
 		 	$scope.titulo = "Actas del Comité"
 		 	$scope.descargas = [
 		 		{"titulo" : "Acta de Comité Número Uno", "descripcion": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam", "archivo": "#"},

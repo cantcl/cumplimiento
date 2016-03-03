@@ -10,7 +10,7 @@
 			<div class="col-xs-8 col-md-8 col-lg-8">
 				<div class="mark-down fa fa-caret-down"></div>
 				<h2>{{titulo}}</h2>
-				<p class="descripcion" ng-bind="descripcion"></p>
+				<p class="descripcion" ng-bind-html="descripcion"></p>
 				<div class="descargas">
 					<ul class="descargas">
 						<li class="row" ng-repeat="descarga in descargas">
@@ -19,7 +19,7 @@
 							</div>
 							<div class="col-xs-7 detalle">
 								<h5 ng-bind="descarga.titulo"></h5>
-								<p ng-bind="descarga.descripcion">
+								<p ng-bind-html="descarga.descripcion">
 							</div>
 							<div class="col-xs-4">
 								<a href="{{descarga.archivo}}"class="btn agenda-download"> <span class="fa fa-arrow-down">&nbsp;</span> Descarga</a>

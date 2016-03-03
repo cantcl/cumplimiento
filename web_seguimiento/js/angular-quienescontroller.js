@@ -17,6 +17,7 @@ app.controller('QuienesController', ['$scope', '$routeParams', '$location', '$an
 	  	this.secretaria = [
 	  		{"nombre": "Patricia Silva Meléndez", "role": "principal", "img": "http://www.gob.cl/wp-content/uploads/2014/03/SUBSE_patricia-silva-melendez1.jpg"},
 	  		{"nombre": "Alejandro Micco Aguayo", "role": "miembro", "img": "http://www.gob.cl/wp-content/uploads/2014/03/SUBSE_Alejandro-Micco1.jpg"},
+	  		{"nombre": "Natalia Piergentili Domenech", "role": "miembro", "img": "http://www.economia.gob.cl/wp-content/uploads/2014/03/Subsecretaria-de-Economia-Natalia-Piergentili.png"},
 	  		{"nombre": "Pedro Huinchalaf Roa", "role": "miembro", "img": "http://www.gob.cl/wp-content/uploads/2014/03/SUBSE_Pedro-Huichalaf1.jpg"}
 	  	]
 
