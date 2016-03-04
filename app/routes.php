@@ -19,6 +19,9 @@ Route::get('/oauth/callback', 'AuthController@responseOauth');
 Route::controller('/compromisos','CompromisosFrontendController');
 Route::controller('/backend/auth','AuthController');
 
+Route::controller('/api','ApiController');
+Route::get('/api', 'ApiController@getIndex');
+
 Route::group(array('before' => 'auth'), function()
 {
     Route::get('/backend/compromisos{extension?}','CompromisosController@getIndex');

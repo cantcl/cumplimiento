@@ -58,12 +58,54 @@ class Compromiso extends Eloquent{
         return $this->hasMany('Actor');
     }
 
+    public function getHitosHome(){
+      $hitos = $this->hitos;
+      $hitos_home = array();
+      $k = 0;
+      foreach ($hitos as $key => $value) {
+        $hitos_home[$k] = $value->toArray();
+        unset(
+          $hitos_home[$k]['fecha_inicio'],
+          $hitos_home[$k]['fecha_termino'],
+          $hitos_home[$k]['created_at'],
+          $hitos_home[$k]['updated_at'],
+          $hitos_home[$k]['verificacion_descripcion'],
+          $hitos_home[$k]['verificacion_url'],
+          $hitos_home[$k]['medio_verificacion']
+        );
+        $k++;
+      }
+      return $hitos_home;
+    }
+
     public function getAvanceAttribute(){
         $avance=0;
         foreach($this->hitos as $h){
             $avance+=$h->ponderador*$h->avance;
         }
         return $avance;
+    }
+
+    /*Sumatoria de los avances de los hitos asociados a un compromiso*/
+    public function getPorcentajeAvance(){
+      $compromiso = Compromiso::where('id', $this->id)->get();
+      $porcentaje_total = 0;
+      foreach ($compromiso as $key => $value) {
+        $porcentaje = number_format($value->avance*100,2,',','.');
+        $porcentaje_total += $porcentaje;
+      }
+      return $porcentaje_total;
+    }
+
+    /*Cantidad de hitos asociados a un compromiso*/
+    public function getHitosTotales(){
+      return count( $this->hitos );
+    }
+
+    /*Cantidad de hitos con un 100% de avance*/
+    public function getHitosCumplidos(){
+      $hitos = Hito::where('compromiso_id', $this->id)->where('ponderador', '100')->get();
+      return count($hitos);
     }
 
     public function getEstadoAvanceAttribute(){
