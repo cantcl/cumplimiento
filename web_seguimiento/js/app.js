@@ -8,11 +8,6 @@ app.config(['$routeProvider', '$locationProvider',
 	        controller: 'HomeController',
 	        controllerAs: 'home'
 	      })
-	      .when('/agenda', {
-	        templateUrl: 'contenido.html',
-	        controller: 'AgendaController',
-	        controllerAs: 'agenda'
-	      })
 	      .when('/quienes-somos/:opt?', {
 	        templateUrl: 'quienes.html',
 	        controller: 'QuienesController',

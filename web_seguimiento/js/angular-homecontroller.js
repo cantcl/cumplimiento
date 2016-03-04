@@ -37,6 +37,8 @@ app.controller('HomeController', ['$scope', '$route', '$routeParams', '$location
 			$scope.initIntro();
 
 			$scope.showTab = function(clase){
+				$('#navbar2 > ul.nav > li').removeClass('active');
+				$('#navbar2 > ul.nav > li.' + clase).addClass('active');
 				var newContent = $('#detalle_template').text()
 				$('.intro-agenda').empty().html(newContent).toggleClass(clase).toggleClass($scope.lastClase);
 				$('.intro-agenda .ico-eje').toggleClass(clase).toggleClass($scope.lastClase).css('-webkit-filter','brightness(10)').css('filter','brightness(10)');
