@@ -18,7 +18,7 @@ app.controller('QuienesController', ['$scope', '$routeParams', '$location', '$an
 	  		{"nombre": "Patricia Silva Meléndez", "role": "principal", "img": "http://www.gob.cl/wp-content/uploads/2014/03/SUBSE_patricia-silva-melendez1.jpg", "cargo": "Subsecretaria General de la Presidencia", "bio": "#"},
 	  		{"nombre": "Alejandro Micco Aguayo", "role": "miembro", "img": "http://www.gob.cl/wp-content/uploads/2014/03/SUBSE_Alejandro-Micco1.jpg", "cargo": "Subsecretario de Hacienda", "bio": "#"},
 	  		{"nombre": "Natalia Piergentili Domenech", "role": "miembro", "img": "http://www.economia.gob.cl/wp-content/uploads/2014/03/Subsecretaria-de-Economia-Natalia-Piergentili.png", "cargo": "Subsecretaria de Economía y Empresas de Menor Tamaño", "bio": "#"},
-	  		{"nombre": "Pedro Huinchalaf Roa", "role": "miembro", "img": "http://www.gob.cl/wp-content/uploads/2014/03/SUBSE_Pedro-Huichalaf1.jpg", "cargo": "Subsecretario de Telecomunicaciones", "bio": "#"}
+	  		{"nombre": "Pedro Huichalaf Roa", "role": "miembro", "img": "http://www.gob.cl/wp-content/uploads/2014/03/SUBSE_Pedro-Huichalaf1.jpg", "cargo": "Subsecretario de Telecomunicaciones", "bio": "#"}
 	  	]
 
 

@@ -247,7 +247,7 @@ li.eje-tab p {
 }
 
 .bottomline {
-	margin-top: 100px;
+	margin-top: 20px;
 	color: #4e5165;
 }
 .bottomline .notas h3 {
@@ -266,6 +266,7 @@ li.eje-tab p {
 }
 .bottomline .notas .detalle div.autor > div {
 	margin-top: 10px;
+	    max-width: 290px;
 }
 .bottomline .notas .detalle .autor p {
 	font-weight: 300;
