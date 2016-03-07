@@ -29,7 +29,7 @@ class Fuente extends Eloquent{
     }
 
     public function compromisos_con_hitos(){
-      $compromisos = Compromiso::where('fuente_id', $this->id)->get();
+      $compromisos = Compromiso::where('fuente_id', $this->id)->where('publicado', 1)->get();
       $hitos = array();
       $k=0;
       foreach ($compromisos as $key => $value) {
@@ -75,7 +75,7 @@ class Fuente extends Eloquent{
 
         $k++;
       }
-      
+
       return $hitos;
     }
 

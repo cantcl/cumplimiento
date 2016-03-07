@@ -97,13 +97,21 @@ class ApiController extends \BaseController {
 	public function getNoticias($new_id = null) {
 		if( $new_id != null ){
 			$noticia = Noticia::where('id',$new_id)->get();
+			$noticia = $noticia->toArray();
+			$noticia = $noticia[0];
 		}else{
-			$noticia = Noticia::get();
+			$noticia = array();
+			$noticias = Noticia::get();
+			$noticias = $noticias->toArray();
+			foreach ($noticias as $key => $value) {
+				$c = Compromiso::where('id', $value['compromiso_id'])->get();
+				if( $c[0]->publicado == 1 ){
+					array_push($noticia, $value);
+				}
+			}
 		}
 
-		return Response::json(
-			$noticia->toArray()
-		);
+		return Response::json( $noticia );
 	}
 
 	/**
