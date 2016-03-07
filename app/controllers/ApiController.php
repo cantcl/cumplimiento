@@ -101,12 +101,17 @@ class ApiController extends \BaseController {
 			$noticia = $noticia[0];
 		}else{
 			$noticia = array();
-			$noticias = Noticia::get();
+			$noticias = Noticia::orderBy('id','desc')->get();
 			$noticias = $noticias->toArray();
+			$k = 0;
 			foreach ($noticias as $key => $value) {
 				$c = Compromiso::where('id', $value['compromiso_id'])->get();
 				if( $c[0]->publicado == 1 ){
 					array_push($noticia, $value);
+					$k++;
+					if($k==3){
+						break;
+					}
 				}
 			}
 		}
