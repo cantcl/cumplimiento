@@ -9,7 +9,7 @@ class ApiController extends \BaseController {
 	 */
 	public function getIndex()
 	{
-		die("aqui");
+		die("?");
 	}
 
 	public function getAllCategories(){
@@ -26,8 +26,49 @@ class ApiController extends \BaseController {
 		if( $compromiso_id != null){
 			$compromiso = Compromiso::where('id', $compromiso_id)->get();
 			$aCompromiso = $compromiso->toArray();
+			$aComp = $aCompromiso[0];
 
-			return Response::json($aCompromiso[0]);
+			$aComp['titulo'] = $aComp['nombre'];
+			$aComp['avance'] = number_format($compromiso[0]->avance*100,2,',','.');
+			if( $compromiso[0]->avance == 0){
+				$aComp['estado_avance'] = 'No Iniciada';
+			}else{
+				if( $compromiso[0]->avance == 100 ){
+					$aComp['estado_avance'] = "Cumplida";
+				}else{
+					$aComp['estado_avance'] = "En proceso";
+				}
+			}
+			$aComp['meta'] = $aComp['objetivo'];
+
+			$sectores = '';
+			foreach ($compromiso[0]->sectores as $key => $value) {
+				$sectores += $value.' ';
+			}
+			$aComp['territorio'] = $sectores;
+
+			$aComp['ministerio'] = $compromiso[0]->institucionResposablePlan->nombre;
+			$aComp['entidad'] = $compromiso[0]->institucionResposableImplementacion->nombre;
+
+			$otros_actores = array();
+			foreach ($compromiso[0]->actores as $key => $value) {
+				array_push($otros_actores, $value->nombre);
+			}
+			$aComp['otros_actores'] = $otros_actores;
+
+			$tags = array();
+			foreach ($compromiso[0]->tags as $key => $value) {
+				array_push($tags, $value->nombre);
+			}
+			$aComp['tags'] = $tags;
+			$aComp['hitos'] = $compromiso[0]->getHitosSimplificados();
+			$aComp['mesas'] = $compromiso[0]->getMesasSimplificadas();
+
+			unset(
+				$aComp['nombre']
+			);
+
+			return Response::json($aComp);
 		}else{
 			$fuentes = Fuente::with('hijos', 'hijos.hijos')->whereNull('fuente_padre_id')->get();
 			foreach ($fuentes as $key => $value) {
