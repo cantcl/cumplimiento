@@ -38,6 +38,10 @@ class Compromiso extends Eloquent{
         return $this->hasMany('Asociado');
     }
 
+    public function display_compromisos(){
+        return $this->hasMany('DisplayCompromiso');
+    }
+
     public function hitos(){
         return $this->hasMany('Hito');
     }

@@ -32,6 +32,43 @@
             </div>
         </div>
         <div class="form-group">
+            <label for="telefono" class="col-sm-3 control-label">Teléfono</label>
+            <div class="col-sm-9">
+                <input type="text" class="form-control" name="telefono" id="telefono" value="<?= $usuario->telefono; ?>"/>
+            </div>
+        </div>
+
+      <?php if( $usuario->id != '' ): ?>
+        <?php if(Perfil::where('id' , '=', $usuario->perfiles_id)->get()->first()->id ): ?>
+        <div class="form-group">
+          <label for="email" class="col-sm-3 control-label">Perfil</label>
+          <div class="col-sm-9">
+            <select class="form-control form-control-select2" name="perfiles_id" id="perfiles_id" data-placeholder="Perfiles">
+              <?php foreach(Perfil::all() as $u): ?>
+                <?php //if( $u->id != 1 ): ?>
+                  <option value="<?= $u->id; ?>" <?php if($u->id == $usuario->perfiles_id): ?>selected<?php endif; ?>><?= $u->titulo; ?></option>
+                <?php //endif; ?>
+              <?php endforeach; ?>
+            </select>
+          </div>
+        </div>
+        <?php endif; ?>
+      <?php else: ?>
+        <div class="form-group">
+          <label for="email" class="col-sm-3 control-label">Perfil</label>
+          <div class="col-sm-9">
+            <select class="form-control form-control-select2" name="perfiles_id" id="perfiles_id" data-placeholder="Perfiles">
+              <?php foreach(Perfil::all() as $u): ?>
+                <?php if( $u->id != 1 ): ?>
+                  <option value="<?= $u->id; ?>"><?= $u->titulo; ?></option>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </select>
+          </div>
+        </div>
+      <?php endif; ?>
+
+        <div class="form-group">
             <label class="col-sm-3 control-label">Super Usuario</label>
             <div class="col-sm-9">
                 <div class="radio">
@@ -42,7 +79,7 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="form-group cont-password" style="<?= $usuario->id ? '' : 'display: none;'; ?>">
+       <div class="form-group cont-password" style="<?= $usuario->id ? '' : 'display: none;'; ?>">
             <label for="cambiar-password" class="col-sm-3 control-label">Password</label>
             <div class="col-sm-9">
                 <button type="button" id="cambiar-password" class="btn btn-cambiar-password" data-disabled="true">Cambiar</button>
@@ -61,7 +98,7 @@
                     <input type="password" <?= $usuario->id ? 'disabled' : ''; ?>  class="form-control" name="password_confirmation" id="password_confirmation" value=""/>
                 </div>
             </div>
-        </div> -->
+        </div>
     </fieldset>
     <hr/>
     <div class="text-right">

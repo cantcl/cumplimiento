@@ -13,7 +13,7 @@ class AuthController extends BaseController {
         $this->authConfig = array(
             'client_info' => array(
                 'client_id' => $_ENV['claveunica_client_id'],
-                'redirect_uri' => 'http://dev.desarrollodigital.modernizacion.gob.cl/oauth/callback',
+                'redirect_uri' => 'http://localhost:8000/oauth/callback',
                 'authorization_endpoint' => 'https://www.claveunica.cl/oauth2/auth',
                 'token_endpoint' => 'https://www.claveunica.cl/oauth2/token',
                 'user_info_endpoint' => 'https://apis.modernizacion.cl/registrocivil/informacionpersonal/v1/info.php?access_token=',
@@ -56,15 +56,23 @@ class AuthController extends BaseController {
         if (isset($_GET['error']) && isset($_GET['error_message'])) { // salida por si presionan cancelar
             return View::make('backend/auth/login')->with('error_msg', 'Claveúnica ha entregado el siguiente error: <strong>' . $_GET['error'] . "</strong>.<p>Por favor, contacte al Administrador del Sistema</p>");
         }
+
+/*
+echo "<pre>";
+print_r($flow->getAccessToken($_GET['code']));
+echo "</pre>";
+die();
+*/
+
         if (isset($_GET['code'])) {
-            $token = $flow->getAccessToken($_GET['code']);    
+            $token = 'WRegQZ5L1GrtJ8icp9YLNcOmUWd6lNFT';//$flow->getAccessToken($_GET['code']);
         } else {
             return View::make('backend/auth/login')->with('error_msg', "No se terminó el proceso de validación. Por favor, contacte al Administrador del Sistema");
         }
-        
+
         $user_raw = file_get_contents($this->authConfig['client_info']['user_info_endpoint'] . $token);
         $infoPersonal=json_decode($user_raw,true);
-        $rut = $infoPersonal['run'];
+        $rut = '16737207-4';//$infoPersonal['run'];
         $user = \Usuario::where('rut', $rut)->first();
         if ($user !== null) {
             $user->rut = $rut;
@@ -73,13 +81,13 @@ class AuthController extends BaseController {
                 $user->apellido_paterno = $infoPersonal['apellidoPaterno'];
                 $user->apellido_materno = $infoPersonal['apellidoMaterno'];
             }
-            \Auth::login($user); 
-            return Redirect::to('backend/compromisos');   
+            \Auth::login($user);
+            return Redirect::to('backend/compromisos');
         } else {
             $error_msg = "Su usuario no se encuentra registrado en esta aplicación. Contacte al Administrador del sistema";
             return View::make('backend/auth/login')->with('error_msg', $error_msg);
         }
-        
+
     }
 
     public function getLogout(){
