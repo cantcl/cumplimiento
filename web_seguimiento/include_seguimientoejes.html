@@ -2,26 +2,26 @@
             <p><strong>Seguimiento</strong> Conoce el avance de las medidas de la agenda</p>
           </div>
 
-          <div class="progress-graph" data-toggle="popover" title="Cumplimiento {{eje.titulo}}" ng-repeat="eje in ejes" ng-class="{'last':$last}">
+          <div class="progress-graph" data-toggle="popover" title="Cumplimiento {{eje.nombre.substring(0,eje.nombre.indexOf(' '))}}" ng-repeat="eje in ejes" ng-class="{'last':$last}">
             <div class="title">
-              <div class="nombre-eje pull-left" ng-bind="eje.titulo"></div>
-              <div class="ico-eje {{eje.nombre}} pull-right"></div>
+              <div class="nombre-eje pull-left" ng-bind="eje.nombre.substring(0,eje.nombre.indexOf(' '))"></div>
+              <div class="ico-eje {{eje.nombre.substring(0,eje.nombre.indexOf(' ')).toLowerCase()}} pull-right"></div>
             </div>
             <div class="clearfix"></div>
-            <div class="progress-radial progress-{{eje.id}}-{{eje.avance}}">
-              <div class="overlay">{{eje.avance}}%</div>
+            <div class="progress-radial progress-{{eje.id}}-{{eje.porcentaje_total}}">
+              <div class="overlay">{{eje.porcentaje_total}}%</div>
             </div>
             <div class="numeros">
               <div class="medidas pull-left">
-                <p class="numero">{{eje.medidas}}</p>
+                <p class="numero">{{eje.total_medidas}}</p>
                 <p class="tipo">Medidas</p>
               </div>
               <div class="desarrollo pull-left">
-                <p class="numero">{{eje.en_desarrollo}}</p>
+                <p class="numero">{{eje.medidas_desarrollo}}</p>
                 <p class="tipo">En Desarrollo</p>
               </div>
               <div class="iniciar pull-left">
-                <p class="numero">{{eje.por_iniciar}}</p>
+                <p class="numero">{{eje.medidas_nuevas}}</p>
                 <p class="tipo">Por Iniciar</p>
               </div>
             </div>

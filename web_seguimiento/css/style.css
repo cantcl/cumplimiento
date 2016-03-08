@@ -304,7 +304,7 @@ div.box.derechos {
 div.box.conectividad {
 	border: 4px solid #c9d0e0;
 }*/
-div.competencia > div.eje {
+div.competencias > div.eje {
 	background: url(../img/icono_pringles_competencia.png) -17px -92px no-repeat;
   width: 48px;
   height: 48px;
@@ -473,7 +473,7 @@ footer .row > div {
 .ico-eje.economia {
 	  background: url(../img/icono_pringles_economia.png) -18px -145px no-repeat;
 }
-.ico-eje.competencia {
+.ico-eje.competencias {
 	  background: url(../img/icono_pringles_competencia.png) -21px -145px no-repeat;
 }
 .progress-graph .numeros {
