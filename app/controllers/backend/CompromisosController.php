@@ -124,6 +124,7 @@ class CompromisosController extends BaseController {
     }
 
     public function getEditar($compromiso_id){
+        $json_display_compromiso = DisplayCompromiso::where('compromiso_id' , '=', 60)->get()->first()->campos;
         $compromiso=Compromiso::find($compromiso_id);
 
         if(!Auth::user()->super && $compromiso->usuario_id!=Auth::user()->id)
