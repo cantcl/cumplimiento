@@ -108,8 +108,8 @@ class Compromiso extends Eloquent{
         $hitos_simplificados[$k]['termino'] = $fecha_termino;
         $hitos_simplificados[$k]['avance'] = $hitos_simplificados[$k]['avance'];
         $hitos_simplificados[$k]['verificacion'] = array();
-          $hitos_simplificados[$k]['verificacion']['url'] = $hitos_simplificados[$k]['medio_verificacion'];
-          $hitos_simplificados[$k]['verificacion']['mime'] = '';
+          $hitos_simplificados[$k]['verificacion']['url'] = "http://".$_SERVER['HTTP_HOST']."/download?filename=".$hitos_simplificados[$k]['medio_verificacion'];
+          $hitos_simplificados[$k]['verificacion']['mime'] = 'pdf';
 
         unset(
           $hitos_simplificados[$k]['descripcion'],

@@ -12,6 +12,7 @@
 */
 
 Route::get('/', 'HomeController@getIndex');
+Route::get('/download', 'HomeController@getDownload');
 
 Route::post('/oauth', 'AuthController@requestOauth');
 Route::get('/oauth/callback', 'AuthController@responseOauth');

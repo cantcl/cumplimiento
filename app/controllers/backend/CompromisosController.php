@@ -231,7 +231,7 @@ class CompromisosController extends BaseController {
 
 
 						$compromiso->resp_comunicaciones=Input::get('resp_comunicaciones');
-						$compromiso->publicado=Input::get('publicado',0);
+						//$compromiso->publicado=Input::get('publicado',0);
 
             /* ini: save asociados */
             $compromiso->asociados()->delete();
