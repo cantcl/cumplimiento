@@ -1,9 +1,9 @@
 <div class="listado noticias">
-		
-	<div class="noticia" ng-repeat="noticia in otrasnoticias">
-    <a ng-href="#/noticias/{{noticia.id}}" class="titulo">{{noticia.titulo}}</a>
-    <img ng-src="{{noticia.img}}"/>
-    <p class="bajada" ng-bind-html="noticia.bajada"></p>
+	<div class="noticia" ng-repeat="notice in notices">
+    <p class="titulo">{{notice.titulo}}<p>
+    <img src="{{notice.medio_verificacion}}"/>
+    <p class="bajada">{{notice.descripcion.substring(0,250)}} ...</p>
+    <a ng-href="#/noticias/{{notice.id}}">+ Leer más</a>
   </div>
 
 </div>

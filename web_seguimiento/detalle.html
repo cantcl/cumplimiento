@@ -17,7 +17,7 @@
 					<h2 ng-bind="medida.titulo"></h2>
 				</div>
 
-				<div class="contenido">{{medida.descripcion}}<div class="fadeout"></div></div>
+				<div class="contenido" ng-bind-html="medida.descripcion"><div class="fadeout"></div></div>
 				<a href class="ver-mas" ng-click="verMas()"></a>
 				<br>
 				<h3>Impacto</h3>
@@ -71,13 +71,13 @@
 
 	      <div class="items">
 	      	<div class="item"><h5>Avance de la Medida</h5><p>{{medida.estado_avance}}</p></div>
-	      	<div class="item"><h5>Meta</h5><p>{{medida.meta}}</p></div>
+	      	<div class="item"><h5>Meta</h5><p ng-bind-html="medida.meta"></p></div>
 	      	<div class="item"><h5>Territorio</h5><p>{{medida.territorio}}</p></div>
 	      	<div class="item"><h5>Responsable</h5><p>{{medida.ministerio}}/{{medida.entidad}}</p></div>
 	      	<div class="item"><h5>Presupuesto</h5><p>${{medida.presupuesto}} MM</p></div>
 	      	<div class="item"><h5>Plazo</h5><p>{{medida.plazo}}</p></div>
 	      	<div class="item"><h5>Otros Actores</h5><p>{{medida.otros_actores.join(', ')}}</p></div>
-	      	<div class="item"><h5>Etiquetas</h5><p><span ng-repeat="t in medida.tags">{{t}}</span></p></div>
+	      	<div class="item"><h5>Etiquetas</h5><p><span ng-repeat="t in medida.tags">-{{t}} </span></p></div>
 				</div>
 
 			</div>

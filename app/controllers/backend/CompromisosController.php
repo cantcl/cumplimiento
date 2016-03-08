@@ -99,6 +99,18 @@ class CompromisosController extends BaseController {
 		$this->layout->content=View::make('backend/compromisos/index', array('compromisos' => $compromisos));
 	}
 */
+
+		public function postPublicar(){
+			$compromiso=Compromiso::find($_POST['id']);
+			$compromiso->publicado = 1;
+			$compromiso->save();
+
+			$json = array($compromiso->publicado);//new stdClass();
+      $response = Response::json($json, 200);
+      return $response;
+
+		}
+
     public function getVer($compromiso_id){
         $compromiso=Compromiso::find($compromiso_id);
 
@@ -147,7 +159,7 @@ class CompromisosController extends BaseController {
     public function postGuardar($compromiso_id = null){
 
 				/*Informar por email modificaciones hechas por el Jefe de proyectos*/
-				
+
 
         $input = Input::all();
         $rules = array(
@@ -219,7 +231,7 @@ class CompromisosController extends BaseController {
 
 
 						$compromiso->resp_comunicaciones=Input::get('resp_comunicaciones');
-						$compromiso->publicado=Input::get('publicado',0);
+						//$compromiso->publicado=Input::get('publicado',0);
 
             /* ini: save asociados */
             $compromiso->asociados()->delete();

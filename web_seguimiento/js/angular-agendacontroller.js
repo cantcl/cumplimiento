@@ -1,5 +1,5 @@
-app.controller('AgendaController', ['$scope', '$rootScope', '$routeParams', '$location', '$anchorScroll',
-		function($scope, $rootScope, $routeParams, $location, $anchorScroll) {
+app.controller('AgendaController', ['$scope', '$rootScope', '$routeParams', '$location', '$anchorScroll', '$http',
+		function($scope, $rootScope, $routeParams, $location, $anchorScroll, $http) {
 	  	this.name = "AgendaController";
 	  	this.params = $routeParams;
 	  	
