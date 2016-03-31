@@ -16,6 +16,11 @@ class Noticia extends Eloquent{
         return array('updated_at','created_at','fecha_inicio','fecha_termino');
     }*/
 
+    public function getPublicadoAttribute(){
+      $compromiso = Compromiso::where('id', $this->compromiso_id)->get();
+      return $compromiso[0]->publicado;
+    }
+
     public function compromiso(){
         return $this->belongsTo('Compromiso');
     }

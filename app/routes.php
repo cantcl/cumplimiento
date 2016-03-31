@@ -12,12 +12,16 @@
 */
 
 Route::get('/', 'HomeController@getIndex');
+Route::get('/download', 'HomeController@getDownload');
 
 Route::post('/oauth', 'AuthController@requestOauth');
 Route::get('/oauth/callback', 'AuthController@responseOauth');
 
 Route::controller('/compromisos','CompromisosFrontendController');
 Route::controller('/backend/auth','AuthController');
+
+Route::controller('/api','ApiController');
+Route::get('/api', 'ApiController@getIndex');
 
 Route::group(array('before' => 'auth'), function()
 {

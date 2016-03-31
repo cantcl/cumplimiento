@@ -325,27 +325,27 @@ div.box.derechos {
 div.box.conectividad {
 	border: 4px solid #c9d0e0;
 }*/
-.competencia > div.eje {
+.competencia > div.eje, .com > div.eje {
 	background: url(../img/icono_pringles_competencia.png) -17px -92px no-repeat;
   width: 48px;
   height: 48px;
 }
-.derechos > div.eje {
+.derechos > div.eje, .der > div.eje {
 	background: url(../img/icono_pringles_derechos.png) -17px -92px no-repeat;
   width: 48px;
   height: 48px;
 }
-.conectividad > div.eje {
+.conectividad > div.eje, .con > div.eje {
 	background: url(../img/icono_pringles_conectividad.png) -17px -92px no-repeat;
   width: 48px;
   height: 48px;
 }
-.gobierno > div.eje {
+.gobierno > div.eje, .gob > div.eje {
 	background: url(../img/icono_pringles_gobierno.png) -17px -92px no-repeat;
   width: 48px;
   height: 48px;
 }
-.economia > div.eje {
+.economia > div.eje, .eco > div.eje {
 	background: url(../img/icono_pringles_economia.png) -17px -92px no-repeat;
   width: 48px;
   height: 48px;
@@ -494,7 +494,7 @@ footer .row > div {
 .ico-eje.economia {
 	  background: url(../img/icono_pringles_economia.png) -18px -145px no-repeat;
 }
-.ico-eje.competencia {
+.ico-eje.competencias, .ico-eje.competencia {
 	  background: url(../img/icono_pringles_competencia.png) -21px -145px no-repeat;
 }
 .progress-graph .numeros {
@@ -556,7 +556,7 @@ footer .row > div {
 	font-size: 40px;
 	font-weight: 700;
 }
-.competencia .izq h1:after {
+/*.competencia .izq h1:after {
 	content: 'Competencias Digitales';
 }
 .gobierno .izq h1:after {
@@ -570,7 +570,7 @@ footer .row > div {
 }
 .conectividad .izq h1:after {
 	content: 'Conectividad Digital';
-}
+}*/
 .izq p {
 	font-size: 30px;
 	color: white;
@@ -613,30 +613,30 @@ footer .row > div {
   line-height: 1;
   margin: 0;
 }
-.der {
+.medidas.der {
 	height: 480px;
 	padding-right: 0;
 }
-.der table {
+.medidas.der table {
 	color: white;
 	width: 100%;
 }
-.der table tr td i {
+.medidas.der table tr td i {
 	font-weight: 900;
 	font-size: 18px;
 	margin-left: 35px;
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
-.der table tr td.texto {
+.medidas.der table tr td.texto {
 	font-size: 18px;
 	font-weight: 500px;
 	padding: 7px;
 }
-.der ul li i {
+.medidas.der ul li i {
 	margin-right: 15px;
 }
-.der ul li div.texto {
+.medidas.der ul li div.texto {
 	display: inline;
 	text-align: left;
 	width: 	80%;
@@ -1030,6 +1030,8 @@ ul.descargas li div a {
 	float: left;
 	height: 285px;
 	padding-top: 20px;
+	margin-bottom: 20px;
+
 }
 .actualizacion .hitos, .actualizacion .grafico {
 	color: #65839e;

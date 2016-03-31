@@ -1,3 +1,5 @@
+var api_prefix =  'http://dev.desarrollodigital.modernizacion.gob.cl/api/';
+
 var app =	angular.module('app', ['ngRoute', 'ngSanitize'])
 
 app.config(['$routeProvider', '$locationProvider',

@@ -1,0 +1,21 @@
+<div class="col-xs-3 izq">
+  <div class="ico-eje {{eje.clase}}" style="-webkit-filter: brightness(10);"></div>
+  <h1 ng-bind="eje.nombre"></h1>
+  <p ng-bind="eje.nombre"></p>
+</div>
+
+<div class="col-xs-3 cent">
+  <div ng-class='{active: $index==idx_medidas}' ng-href='#' ng-click='showCont($index)' ng-repeat="linea in eje.lineas_accion">
+    <p class='pull-left'>{{linea.nombre}}</p><i class='pull-right fa fa-play'></i>
+  </div>
+</div>
+
+<div class="col-xs-6 medidas der">        
+  <table>
+    <tbody>
+      <tr ng-repeat="medida in eje.lineas_accion[idx_medidas].medidas">
+        <td><i class="fa fa-circle-o"></i></td><td class="texto">{{medida.nombre}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

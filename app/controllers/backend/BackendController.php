@@ -6,8 +6,6 @@ class BackendController extends BaseController {
 
 	public function getIndex()
 	{
-
-
         return Redirect::to('backend/compromisos');
 	}
 

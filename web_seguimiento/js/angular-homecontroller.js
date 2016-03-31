@@ -1,24 +1,27 @@
-app.controller('HomeController', ['$scope', '$route', '$routeParams', '$location',
-	  function($scope, $route, $routeParams, $location) {
+app.controller('HomeController', ['$scope', '$route', '$routeParams', '$location','$http','$compile',
+	  function($scope, $route, $routeParams, $location, $http,$compile) {
 	    this.$route = $route;
 	    this.$location = $location;
 	    this.$routeParams = $routeParams;
 	    
 	    var homeIntro = $('.intro-agenda');
-
+	    $scope.includes = {};
 
 	    // generar servicio o factory...
-			$scope.ejes = [
-	    	{'id': "der", 'nombre': "derechos", 'titulo': 'Derechos', 'avance': "25", 'medidas': "10", 'en_desarrollo': "05", 'por_iniciar': "05"},
-	    	{'id': "con", 'nombre': "conectividad", 'titulo': 'Conectividad', 'avance': "33", 'medidas': "14", 'en_desarrollo': "06", 'por_iniciar': "04"},
-	    	{'id': "gob", 'nombre': "gobierno", 'titulo': 'Gobierno', 'avance': "59", 'medidas': "13", 'en_desarrollo': "06", 'por_iniciar': "07"},
-	    	{'id': "eco", 'nombre': "economia", 'titulo': 'Economía', 'avance': "22", 'medidas': "10", 'en_desarrollo': "04", 'por_iniciar': "06"},
-	    	{'id': "com", 'nombre': "competencia", 'titulo': 'Competencias', 'avance': "71", 'medidas': "13", 'en_desarrollo': "09", 'por_iniciar': "04"}
-	    ];
-
+	    $http
+	    	.get(api_prefix + 'compromisos')
+	    	.success(function(data,status,header,config){
+	    		$scope.notices = data.noticias;
+	    		$scope.ejes = data.ejes
+	    	})
+	    	.error(function (data, status, header, config) { utils.alert('Hubo error en la comunicación en servidor, intente más tarde!') })
+	    	
+				
 	    $scope.lastClase = '';
 
 	    $scope.initIntro = function() {
+
+	    	$scope.includes.intro	= 'include_homeintro.html';
 
 				var popover_options = {
 					'placement': 'top',
@@ -37,17 +40,28 @@ app.controller('HomeController', ['$scope', '$route', '$routeParams', '$location
 			$scope.initIntro();
 
 			$scope.showTab = function(clase){
+
+				var eje_id = clase.substr(0,3);
+				$scope.includes.intro	= 'include_homeintroeje.html';
+				pos = $scope.ejes.map(function(e) { return e.codigo; }).indexOf(eje_id);
+				$scope.eje = $scope.ejes[pos];
+				
+
+				$http.get(api_prefix + 'lineas/' + $scope.eje.id)
+		    	.success(function(data,status,header,config){
+		    		$scope.eje.lineas_accion = data.lineas_accion;
+		    		$scope.idx_medidas = 0;
+	    		})
+	    		.error(function (data, status, header, config) { 
+	    			utils.alert('Hubo error en la comunicación en servidor, intente más tarde!');
+	    		});
+				$scope.eje.clase = clase;
 				$('#navbar2 > ul.nav > li').removeClass('active');
 				$('#navbar2 > ul.nav > li.' + clase).addClass('active');
-				var newContent = $('#detalle_template').text()
-				$('.intro-agenda').empty().html(newContent).toggleClass(clase).toggleClass($scope.lastClase);
-				$('.intro-agenda .ico-eje').toggleClass(clase).toggleClass($scope.lastClase).css('-webkit-filter','brightness(10)').css('filter','brightness(10)');
-				$scope.lastClase = clase;
-				$('.close-intro').removeClass('hide');
-				$('.cent > div').on('click', function(){
-					$('.cent > div').removeClass('active');
-					$(this).addClass('active')
-				});
+			}
+
+			 $scope.showCont = function(index){
+			 	$scope.idx_medidas = index;
 			}
 
 			$scope.closeIntro = function() {

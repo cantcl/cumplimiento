@@ -1,6 +1,15 @@
 <script>
+
   function publicar(){
-    alert('La opción de Publicar esta en desarrollo');
+    $.ajax({
+        url: '<?= URL::to('backend/compromisos/publicar'); ?>',
+        method: "POST",
+        data: {'id':'<?php echo $compromiso->id; ?>'}
+      })
+      .done(function( data ) {
+        alert("Compromiso Publicado Exitosamente");
+        location.reload(true);
+    });
   }
 
   function exportar(){
@@ -680,13 +689,19 @@
 </div>
 
     <div class="text-right">
-      <?php if(Auth::user()->perfiles_id == 1 ||
-        Auth::user()->id == $compromiso->autoridad_responsable ||
-        Auth::user()->id == $compromiso->contacto) : ?>
-        <button onclick="exportar()" type="button" class="btn btn-success"><span class="glyphicon glyphicon-cloud-upload" ></span>Exportar</button>
-      <?php endif; ?>
-      <?php if(Auth::user()->perfiles_id == 0 || Auth::user()->id == $compromiso->autoridad_responsable ): ?>
-        <button onclick="publicar()" type="button" class="btn btn-success"><span class="glyphicon glyphicon-cloud-upload" ></span>Publicar</button>
+      <?php if( $compromiso->id != null ): ?>
+        <?php if(Auth::user()->perfiles_id == 1 || Auth::user()->id == $compromiso->autoridad_responsable ): ?>
+          <?php if( $compromiso->publicado == 0 ): ?>
+            <button onclick="publicar()" id="btn-publicar" type="button" class="btn btn-info"><span class="glyphicon glyphicon-cloud-upload" ></span>Publicar</button>
+          <?php else: ?>
+            <span id="span_publicado">Medida Publicada </span>
+          <?php endif; ?>
+        <?php endif; ?>
+        <?php if(Auth::user()->perfiles_id == 1 ||
+          Auth::user()->id == $compromiso->autoridad_responsable ||
+          Auth::user()->id == $compromiso->contacto) : ?>
+          <button onclick="exportar()" type="button" class="btn btn-success"><span class="glyphicon glyphicon-cloud-upload" ></span>Exportar</button>
+        <?php endif; ?>
       <?php endif; ?>
       <?php if(Auth::user()->perfiles_id == 1 ||
         Auth::user()->id == $compromiso->autoridad_responsable ||

@@ -8,38 +8,38 @@
 	<div class="container">
 		<h2> Filtrar Avances por eje temático</h2>
 		<div class="ejes">
-			<div ng-repeat="eje in ejes" class="filtro pull-left {{eje.nombre}}" ng-class="{'last':$last}" ng-click="filtrar(eje.id)">
+			<div ng-repeat="eje in ejes" class="filtro pull-left {{eje.nombre.substring(0,3).toLowerCase()}}" ng-class="{'last':$last}" ng-click="filtrar(eje.id)">
 				<div class="eje pull-left"></div>
-				<p class="pull-left" ng-bind="eje.titulo"></p>
+				<p class="pull-left" ng-bind="eje.nombre.substring(0,eje.nombre.indexOf(' ')).toLowerCase()"></p>
 			</div>
 		</div>
 	</div>
 </div>
 
 <div class="container">
-	<div class="row updates {{eje.nombre}}" ng-repeat="eje in ejes">
+	<div class="row updates {{eje.nombre.substring(0,eje.nombre.indexOf(' ')).toLowerCase().replace('í','i')}}" ng-repeat="eje in ejes" id="{{eje.nombre.substring(0,eje.nombre.indexOf(' ')).toLowerCase()}}">
 		<div class="eje pull-left"></div>
-		<div class="subtitulo pull-left" ng-bind="eje.titulo"></div>
+		<div class="subtitulo pull-left" ng-bind="eje.nombre.substring(0,eje.nombre.indexOf(' ')).toLowerCase()"></div>
 		<div class="pull-left ua">Últimas actualizaciones</div>
 		<div class="clearfix"></div>
 		<div class="row">
-			<div class="actualizacion" ng-repeat="actualizacion in eje.actualizaciones" ng-click="ver(actualizacion.id)">
+			<div class="actualizacion" ng-repeat="actualizacion in eje.compromisos" ng-click="ver(actualizacion.compromiso.id)">
 				<div class="hitos pull-left">
-					<span class="cumplidos" ng-bind="actualizacion.hitos.cumplidos"></span><span class="total"	>/{{actualizacion.hitos.total}}</span>
+					<span class="cumplidos" ng-bind="actualizacion.compromiso.hitos_cumplidos"></span><span class="total"	>/{{actualizacion.compromiso.hitos_totales}}</span>
 					<p>Cumplidos/Total</p>
 					<p><strong>Hitos</strong></p>
 				</div>
 				<div class="grafico pull-right">
-					<div class="progress-radial progress-{{eje.id}}-{{actualizacion.avance}}">
-	          <div class="overlay">{{actualizacion.avance}}%</div>
+					<div class="progress-radial progress-{{eje.codigo}}-{{actualizacion.compromiso.porcentaje_avance}}">
+	          <div class="overlay">{{actualizacion.compromiso.porcentaje_avance}}%</div>
 	        </div>
 	        <p><strong>Avance</strong></p>
 	      </div>
 	      <div class="clearfix"></div>
         <hr>
         <div class="info">
-        	<h4 ng-bind="actualizacion.titulo"></h4>
-        	<p ng-bind="actualizacion.institucion"></p>
+        	<h4 ng-bind="actualizacion.compromiso.nombre"></h4>
+        	<p ng-bind="actualizacion.compromiso.entidad"></p>
         </div>
 			</div>
 		</div>
