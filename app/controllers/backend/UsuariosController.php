@@ -22,15 +22,17 @@ class UsuariosController extends BaseController {
     }
 
     public function getNuevo(){
+        $instituciones = Institucion::whereNull('institucion_padre_id')->get();
         $this->layout->title = 'Usuarios';
-        $this->layout->sidebar=View::make('backend/usuarios/sidebar',array('item_menu'=>'usuarios'));
-        $this->layout->content = View::make('backend/usuarios/form', array('usuario' => new Usuario()));
+        $this->layout->sidebar = View::make('backend/usuarios/sidebar',array('item_menu'=>'usuarios'));
+        $this->layout->content = View::make('backend/usuarios/form', array('usuario' => new Usuario(), 'instituciones' => $instituciones));
     }
 
     public function getEditar($usuario_id){
+        $instituciones = Institucion::whereNull('institucion_padre_id')->get();
         $this->layout->title = 'Usuarios';
         $this->layout->sidebar=View::make('backend/usuarios/sidebar',array('item_menu'=>'usuarios'));
-        $this->layout->content = View::make('backend/usuarios/form', array('usuario' => Usuario::find($usuario_id)));
+        $this->layout->content = View::make('backend/usuarios/form', array('usuario' => Usuario::find($usuario_id), 'instituciones' => $instituciones));
     }
 
     public function postGuardarjp(){
@@ -87,7 +89,8 @@ class UsuariosController extends BaseController {
             'email' => 'required',
             'super' => 'required',
             'telefono' => 'required',
-            'password' => ($usuario_id ? 'confirmed' : 'required|confirmed')
+            'institucion' => 'required'
+            // 'password' => ($usuario_id ? 'confirmed' : 'required|confirmed')
         ));
 
         $json = new stdClass();
@@ -104,7 +107,7 @@ class UsuariosController extends BaseController {
             $usuario->rut = Input::get('rut');
             $usuario->telefono = Input::get('telefono');
             $usuario->super = Input::get('super');
-
+            $usuario->institucion = Input::get('institucion');
             $usuario->perfiles_id = Input::get('perfiles_id');
 
             $usuario->save();

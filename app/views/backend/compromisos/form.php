@@ -441,11 +441,13 @@
                             <td>
                               <!--<input class="form-control" type="number" min="0" max="100" value="<?=$h->avance*100?>" name="hitos[<?=$i?>][avance]" placeholder="Porcentaje de avance (Valor entre 0 y 100)"/>-->
                               <select style="width: 110px !important" class="form-control" name="hitos[<?=$i?>][avance]" placeholder="Porcentaje de avance (Valor entre 0 y 100)"/>
-                                <option <?php if( ($h->avance*100) >= 0 && ($h->avance*100) < 21 ){ echo "selected"; } ?> value="10">0 a 20%</option>
+                                <option <?php if( ($h->avance*100) == 0  ){ echo "selected"; } ?> value="10">Sin avance (0%)</option>
+                                <option <?php if( ($h->avance*100) > 0 && ($h->avance*100) < 21 ){ echo "selected"; } ?> value="10">1% a 20%</option>
                                 <option <?php if( ($h->avance*100) >= 21 && ($h->avance*100) < 41 ){ echo "selected"; } ?> value="30">21 a 40%</option>
                                 <option <?php if( ($h->avance*100) >= 41 && ($h->avance*100) < 61 ){ echo "selected"; } ?> value="50">41 a 60%</option>
                                 <option <?php if( ($h->avance*100) >= 61 && ($h->avance*100) < 81 ){ echo "selected"; } ?> value="70">61 a 80%</option>
-                                <option <?php if( ($h->avance*100) >= 81 && ($h->avance*100) <= 100  ){ echo "selected"; } ?> value="90">81 a 100%</option>
+                                <option <?php if( ($h->avance*100) >= 81 && ($h->avance*100) < 100  ){ echo "selected"; } ?> value="90">81 a 99%</option>
+                                <option <?php if( ($h->avance*100) == 100 ){ echo "selected"; } ?> value="100">Finalizado (100%)</option>
                               </select>
                             </td>
                             <td><input data-provide="datepicker" data-date-format="mm-yyyy" data-date-autoclose="true" type="text" class="form-control" value="<?=$h->fecha_inicio->format('m-Y')?>" name="hitos[<?=$i?>][fecha_inicio]" placeholder="Fecha de inicio del hito" /></td>

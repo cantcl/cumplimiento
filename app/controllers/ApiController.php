@@ -93,6 +93,23 @@ class ApiController extends \BaseController {
 		}
 	}
 
+	public function getLineas($fuente_id) {
+		$lineas_accion = Compromiso::distinct()->select(DB::raw('linea_accion as nombre'))->where('fuente_id', "=", $fuente_id)->get();
+		$lineas_accion = $lineas_accion->toArray();
+		// dd(DB::getQueryLog());
+		foreach ($lineas_accion as $key => $value) {
+			// if (!isset($lineas_accion[$value->nombre])
+			// 	$lineas_accion[$value->nombre] = array();
+			// array_push($lineas_accion[$value->nombre], )
+			$lineas_accion[$key]['medidas'] = Compromiso::select('nombre', 'id')->where('linea_accion', '=', $value['nombre'])->get()->toArray();
+		}
+		
+		return Response::json(array(
+				'eje_id' => $fuente_id,
+				'lineas_accion' => $lineas_accion
+			));
+	}
+
 	/*Show notice by id*/
 	public function getNoticias($new_id = null) {
 		if( $new_id != null ){

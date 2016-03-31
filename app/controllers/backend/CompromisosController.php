@@ -147,7 +147,7 @@ class CompromisosController extends BaseController {
         $data['compromiso'] = $compromiso;
         $data['instituciones'] = Institucion::whereIn('id',$ministerios)->get();
         $data['sectores'] = Sector::whereNull('sector_padre_id')->get();
-        	$data['comunas'] = Sector::whereNull('sector_padre_id')->get();
+        $data['comunas'] = Sector::whereNull('sector_padre_id')->get();
         $data['fuentes'] = Fuente::whereNull('fuente_padre_id')->get();
         $data['usuarios'] = Usuario::all();
         $data['tags']=Tag::all()->lists('nombre');
@@ -217,6 +217,7 @@ class CompromisosController extends BaseController {
             $compromiso->impacto = Input::get('impacto','');
             $compromiso->objetivo = Input::get('objetivo','');
             $compromiso->publico=Input::get('publico',1);
+            $compromiso->proveedores=Input::get('proveedores');
             $compromiso->avance_descripcion=Input::get('avance_descripcion');
             $compromiso->plazo=Input::get('plazo');
             $compromiso->presupuesto_publico=Input::get('presupuesto_publico');
@@ -328,7 +329,7 @@ class CompromisosController extends BaseController {
                 $new_mesa->tipo=$m['tipo'];
                 $new_mesa->sesiones=$m['sesiones'];
                 $new_mesa->verificacion=$m['verificacion'];
-                $new_mesa->frecuencia='-';//$m['frecuencia'];
+                $new_mesa->frecuencia=$m['frecuencia']?$m['frecuencia']:'-';
 
     			$new_mesa->medio_verificacion = '';
 			    /*UPLOAD FILES*/

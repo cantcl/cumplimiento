@@ -29,11 +29,12 @@ class Fuente extends Eloquent{
     }
 
     public function compromisos_con_hitos(){
+      // $compromisos = Compromiso::leftJoin('instituciones', 'compromisos.institucion_responsable_implementacion_id', '=', 'instituciones.id')->where('fuente_id', $this->id)->where('publicado', 1)->get();
       $compromisos = Compromiso::where('fuente_id', $this->id)->where('publicado', 1)->get();
       $hitos = array();
       $k=0;
       foreach ($compromisos as $key => $value) {
-        $aCompromiso = Compromiso::where('id', $value->id)->get()->toArray();
+        $aCompromiso = Compromiso::select(DB::Raw('compromisos.*, instituciones.nombre as entidad'))->leftJoin('instituciones', 'compromisos.institucion_responsable_implementacion_id', '=', 'instituciones.id')->where('compromisos.id', $value->id)->get()->toArray();
         $hitos[$k]['compromiso'] = $aCompromiso[0];
 
         $hitos[$k]['compromiso']['hitos_cumplidos'] = $value->getHitosCumplidos();
@@ -53,7 +54,7 @@ class Fuente extends Eloquent{
           $hitos[$k]['compromiso']['presupuesto'],
           $hitos[$k]['compromiso']['autoridad_responsable'],
           $hitos[$k]['compromiso']['institucion_responsable_plan_id'],
-          $hitos[$k]['compromiso']['institucion_responsable_implementacion_id'],
+          // $hitos[$k]['compromiso']['institucion_responsable_implementacion_id'],
           $hitos[$k]['compromiso']['usuario_id'],
           $hitos[$k]['compromiso']['fuente_id'],
           $hitos[$k]['compromiso']['created_at'],
@@ -72,7 +73,6 @@ class Fuente extends Eloquent{
           $hitos[$k]['compromiso']['publicado'],
           $hitos[$k]['compromiso']['resp_comunicaciones']
         );
-
         $k++;
       }
 

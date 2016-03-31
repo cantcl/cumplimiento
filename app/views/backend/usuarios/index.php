@@ -9,6 +9,7 @@
     <thead>
         <tr>
             <th>Nombres</th>
+            <th>RUT</th>
             <th>Perfil</th>
             <th>Acciones</th>
         </tr>
@@ -17,6 +18,7 @@
         <?php foreach($usuarios as $usuario): ?>
             <tr>
                 <td><?= $usuario->nombre_completo; ?></td>
+                <td><?= $usuario->rut; ?></td>
                 <td><?= Perfil::where('id' , '=', $usuario->perfiles_id)->get()->first()->titulo ?></td>
                 <td>
                     <a href="<?= URL::to('backend/usuarios/ver/'.$usuario->id); ?>" class="btn btn-xs btn-primary"><span class="glyphicon glyphicon-search"></span> Ver</a>
