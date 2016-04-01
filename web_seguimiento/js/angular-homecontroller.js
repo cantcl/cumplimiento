@@ -11,7 +11,16 @@ app.controller('HomeController', ['$scope', '$route', '$routeParams', '$location
 	    $http
 	    	.get('http://private-e8dc6-modernizacion.apiary-mock.com/compromisos')
 	    	.success(function(data,status,header,config){
-	    		$scope.notices = data.noticias;
+	    		$http
+		    	.get('http://private-e8dc6-modernizacion.apiary-mock.com/noticias')
+		    	.success(function(data,status,header,config){
+		    		$scope.notices = data;
+		    	})
+		    	.error(function (data, status, header, config) { utils.alert('Hubo error en la comunicación en servidor, intente más tarde!') })
+
+
+
+	    		//$scope.notices = data.noticias;
 	    		$scope.ejes = data.ejes
 	    	})
 	    	.error(function (data, status, header, config) { utils.alert('Hubo error en la comunicación en servidor, intente más tarde!') })

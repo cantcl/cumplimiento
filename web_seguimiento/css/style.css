@@ -74,11 +74,7 @@ p {
 	max-height: 90px;
 }
 #navbar ul {
-	margin: 30px 22px 0 0;
-}
-#navbar ul li a:hover {
-	background: #546173 !important;
-	color: white;
+	margin: 30px 10px 0 180px;
 }
 #navbar ul.dropdown-menu {
 	margin-top: 0px;
@@ -91,16 +87,33 @@ p {
 	font-weight: 300 !important;
 	height: 40px;
 }
+#navbar > ul > li > a:hover,
+#navbar > ul > li > a:focus {
+	background: #546173 !important;
+	color: white;
+}
+#navbar > ul > li > a.home {
+	display: block;
+    width: 40px;
+    height: 60px;
+    background: url(../img/ico_home_2.png) 0px 14px no-repeat;
+    padding: 0 10px;
+    margin: 0;
+}
+#navbar ul > li > a.home:hover,
+#navbar ul > li > a.home:focus {
+    background: #546173 url(../img/ico_home_2.png) -40px 14px no-repeat !important;
+}
 .navbar-nav > .open > a,
 .navbar-nav > .open > a:hover,
 .navbar-nav > .open > a:focus {
   color: white !important;
   background-color: #546173;
 }
-#navbar ul li {
+#navbar > ul > li {
 	font-size: 20px;
 }
-#navbar ul li > a {
+#navbar > ul > li > a {
 	color: black;
 	height: 60px;
 }
@@ -129,7 +142,7 @@ p {
 	margin-right: 10px;
 }
 .navbar-search-ico {
-	    margin: 40px 20px;
+	margin: 40px 20px 0px;
     font-size: 22px;
     color: #788ba4;
 }
@@ -149,15 +162,16 @@ p {
 }
 .btn.agenda-download {
 	background-color: #788ba4;
-  padding: 10px 40px 10px 17px;
+  	padding: 10px 20px;
 	color: white;
 	font-weight: 500;
 	font-size: 18px;
-	letter-spacing: -1px;
+    margin-bottom: 30px;
 }
 .intro-agenda {
-	height: 480px;
+	height: auto;
 	width: 100%;
+    margin-bottom: 25px;
 }
 .intro-agenda > div {
 	max-height: 480px;
@@ -167,10 +181,10 @@ p {
 }
 #contenido {
 	position: relative;
-	height: 480px;
+	height: auto;
 }
 #contenido .container.actions{
-	position: absolute;
+	position: relative;
 	bottom: 0;
 }
 li.eje-tab {
@@ -181,16 +195,16 @@ li.eje-tab p {
 }
 #navbar2 {
 	width: 900px;
-  margin: 0 auto;
+	height: 114px;
+  margin: 0 auto 10px;
 }
 #navbar2 > ul.nav {
 	width: 100%;
 	margin: 0 auto;
 }
 #navbar2 > ul.nav > li {
-	width: 115px;
-	margin-right: 30px;
-	margin-left: 30px;
+	width: 20%;
+	margin:0px;
 	text-align: center;
 }
 #navbar2 > ul.nav > li > p {
@@ -227,7 +241,7 @@ li.eje-tab p {
 }
 
 .bottomline {
-	margin-top: 100px;
+	margin-top: 50px;
 	color: #4e5165;
 }
 .bottomline .notas h3 {
@@ -239,6 +253,7 @@ li.eje-tab p {
 	margin-bottom: 20px;
 	min-height: 160px;
 	border-bottom: 1px solid #ccc;
+    float: left;
 }
 .bottomline .notas .detalle p {
 	font-weight: 300;
@@ -268,12 +283,13 @@ li.eje-tab p {
 	margin-left: 55px;
 }
 div.box.actualizacion {
-	width: 358px;
-	height: 148px;
-	margin-bottom: 45px;
-	background: white;
-	position:relative;
-	padding: 10px 30px;
+	width: 94%;
+    height: auto;
+    margin-bottom: 45px;
+    margin-left: 6%;
+    background: white;
+    position: relative;
+    padding: 10px 30px;
 }
 div.box.actualizacion .content{
 	font-size: 18px;
@@ -293,7 +309,7 @@ div.box.actualizacion > div.eje{
 }
 .bottomline .actualizaciones h3 {
     margin-bottom: 20px;
-    margin-left: -25px;
+    margin-left: 0px;
 }
 /*div.box.competencia {
 	border: 4px solid #d4e4c7;
@@ -333,19 +349,19 @@ div.noticia {
 	margin-bottom: 30px;
 }
 div.noticia .titulo {
-	color: #4e5165;
-	font-weight: 600;
-	font-size: 20px;
+	color: #788ba4;
+	font-weight: 300;
+	font-size: 25px;
 }
 div.noticia .bajada {
 	color: #4e5165;
-	font-weight: 400;
+	font-weight: 300;
 	font-size: 16px;
 	    margin: 10px 0;
 }
 
 footer {
-	height: 280px;
+	height: auto;
 	background: #0f263b;
 }
 
@@ -392,9 +408,13 @@ footer .row > div {
 	color: white;
 	text-decoration: none;
 }
-
+.footer-navbar ul li a:hover,
+.footer-navbar ul li a:focus {
+	color: rgba(255,255,255,.6);
+}
 .footer-bottom {
 	background-color: #001323;
+	padding-bottom: 50px;
 }
 .footer-bottom .container div {
 	padding-top: 50px;
@@ -433,8 +453,8 @@ footer .row > div {
 }
 .progress-graph {
   background-color: #0f263b;
-  padding: 20px 0 0;
-  width: 234px;
+  padding: 15px 0 0;
+  width: 20%;
   min-height: 265px;
   text-align: center;
   border-left: 1px solid #788ba4;
@@ -443,23 +463,32 @@ footer .row > div {
   float: left;
   cursor: pointer;
 }
-
+.progress-graph .title {
+    width: 100%;
+    float: left;
+    padding-bottom: 5px;
+}
 .progress-graph .progress-radial {
-  margin: 2px 70px 17px;
+  margin: 2px 0 17px -50px;
+  left: 50%;
 }
 .progress-graph .title .nombre-eje {
-	  color: white;
+	color: white;
     font-size: 22px;
     font-weight: 500;
     padding-left: 15px;
+	width: 70%;
+    height: 42px;
+    line-height: 42px;
+    text-align: left;
 }
 .progress-graph.last {
 	border-right: 1px solid #788ba4;
 }
-.ico-eje{
-	width: 42px;
-	height: 42px;
-	margin: 0px 10px 0 0;
+.progress-graph .title .ico-eje{
+    width: 25%;
+    height: 42px;
+    margin: 0 0 0 5%;
 }
 .ico-eje.derechos {
 	  background: url(../img/icono_pringles_derechos.png) -21px -145px no-repeat;
@@ -478,7 +507,8 @@ footer .row > div {
 }
 .progress-graph .numeros {
 	color: #788ba4;
-	width: 240px;
+	width: 100%;
+	clear: both;
 }
 .progress-graph .numeros > div {
 	border-top: 1px solid #788ba4;
@@ -943,10 +973,19 @@ ul.descargas li div a {
 }
 .noticia-principal p {
 	font-size: 20px;
-  margin: 20px 65px;
+  	margin: 20px 65px;
 }
 .listado.noticias {
-	margin: 40px 25px;
+	margin: 20px 0px;
+}
+.listado.noticias .noticia img {
+	width: 100%;
+}
+.listado.noticias .noticia .titulo,
+.listado.noticias .noticia .bajada,
+.listado.noticias .noticia a {
+	margin: 10px 5px 5px;
+    display: block;
 }
 .noticia-principal h2 {
 	font-size: 38px;
@@ -1280,4 +1319,421 @@ table.lista.mesas tr td:nth-child(3){
 .top-buffer-70 { margin-top:70px; }
 
 
+/* MEDIAQUERIES */
+
+
+@media (max-width: 1200px) {
+
+	#navbar ul {
+		margin: 30px 0 0;
+	}
+	.navbar-search-ico {
+	    margin: 40px 0px 0px 20px ;
+	}
+	.progress-graph .title .nombre-eje {
+	    font-size: 18px;
+	}
+	#navbar2 {
+		width: 100%;
+	}
+	.footer-navbar {
+		width: 19.9%;
+	}
+	.footer-navbar p.subtitulo {
+		padding: 5px 10px 15px;
+	}
+	.footer-navbar ul {
+		padding-left: 20px;
+	    padding-right: 10px;
+	}
+	.footer-bottom {
+	    background-color: #001323;
+	    padding-bottom: 25px;
+	}
+	.footer-bottom .ad2020 {
+		margin: 0 15px 0 0;
+	}
+	.footer-bottom .ministerios1, 
+	.footer-bottom .ministerios2 {
+		margin-right: 15px;
+	}
+	.footer-bottom .ministerios1 ul, 
+	.footer-bottom .ministerios2 ul {
+		padding-left: 20px;
+	}
+	.footer-bottom .container div {
+		padding-top: 25px;
+	}
+	.footer-bottom .container div.gobcl {
+		width: 150px;
+    	margin-left: 27px;
+	 }
+	.footer-bottom .container div.gobcl img {
+		margin-top: -70px;
+    	width: 100%;
+	 }
+}
+@media (max-width: 991px) {
+
+	#navbar > ul > li {
+		font-size: 14px;
+	}
+	#navbar > ul > li > a {
+		padding: 15px 11px;
+	}
+	#navbar ul.dropdown-menu li > a {
+		font-size: 14px;
+		padding: 0px 7px;
+		line-height: 48px;
+	}
+	.navbar-search-ico {
+	    margin: 40px 0px 0px 10px;
+	}
+	.progress-graph {
+	    width: 100%;
+	    border-left: 0;
+	}
+	.progress-graph .title .nombre-eje {
+	    font-size: 24px;
+	    width: auto;
+	}
+	.progress-graph .title .ico-eje {
+    	width: 25%;
+    	float: left !important;
+    }
+    .progress-graph.last {
+	    margin-bottom: 20px;
+	}
+	.footer-navbar {
+		width: 100%;
+		border-left:none;
+		border-left:0;
+		padding-top: 0;
+	}
+	.footer-navbar.otros {
+		border:0;
+		height: auto;
+	}
+	.footer-navbar.documentos,
+	.footer-navbar.quienes,
+	.footer-navbar.descarga,
+	.footer-navbar.agenda {
+		height: 56px;
+		overflow: hidden;
+		cursor: pointer;
+	}
+	.footer-navbar.documentos.activo,
+	.footer-navbar.quienes.activo,
+	.footer-navbar.descarga.activo,
+	.footer-navbar.agenda.activo {
+		height: auto;
+	}
+	.footer-navbar ul {
+	    padding: 5px 10px 5px 20px;
+	    margin-bottom: 0;
+	}
+	.footer-navbar ul li a {
+	    color: white;
+	    text-decoration: none;
+	    line-height: 30px;
+	    padding-left: 20px;
+	    display: block;
+	    height: 30px;
+	}
+	.footer-navbar p.subtitulo {
+		padding: 20px 10px 15px;
+		margin: 0;
+	}
+	footer .container {
+	    width: 100%;
+    	padding: 0 70px !important;
+    }
+    .footer-bottom .ad2020 {
+    	display: none;
+    }
+    .footer-bottom .container div.gobcl {
+	    width: 90px;
+	    position: absolute;
+	    margin-left: 0;
+	}
+	.footer-bottom .container div.gobcl img {
+	    margin-top: 0;
+	    width: 100%;
+	}
+	.footer-bottom .ministerios1.pull-left {
+		margin-left: 110px;
+	}
+	.footer-bottom .ministerios2.pull-left {
+		margin-right: 0px;
+	}
+}
+
+@media (max-width: 767px) {
+	.container-fluid>.navbar-collapse, 
+	.container-fluid>.navbar-header, 
+	.container>.navbar-collapse, 
+	.container>.navbar-header {
+		margin: 0;
+		padding:0;
+	}
+	.container>#navbar.navbar-collapse {
+	    margin: 0px 0 0 0;
+	    padding: 0;
+	    background: #0f263b;
+	    z-index: 1002;
+	    position: absolute;
+	    top: 0;
+	}
+	.navbar-search-ico {
+	    margin: 0;
+	    padding: 15px 10px 20px 70px;
+	    width: 43px;
+	}
+	#navbar .header-collapse {
+		height: 90px;
+		float: left;
+		width: 100%;
+		color: white;
+	}
+	#navbar .header-collapse .navbar-toggle {
+	    margin: 20px 25px 0 0;
+	    font-size: 30px;
+	}
+	#navbar ul {
+		margin: 0px 0px 0 0;
+		float: left;
+		width: 100%;
+	}
+	.navbar-nav>li>a {
+	    padding-top: 10px;
+	    padding-bottom: 10px;
+	    line-height: 20px;
+	    font-size: 20px;
+	    border-bottom: 1px solid #334658;
+		color: white;
+	}
+	#navbar ul.dropdown-menu > li > a {
+		font-size: 20px;
+    	padding: 0 20px;
+	}
+	#navbar > ul > li > a {
+		color: white;
+		padding-left: 70px;
+	}
+	#navbar ul > li  > a.home {
+	    padding: 15px 11px 15px 70px;
+	    height: 60px;
+	    background: transparent;
+	    width: 100%;
+	}
+	#navbar ul > li  > a.home:hover,
+	#navbar ul > li  > a.home:focus {
+		background: #546173 !important;
+		color: rgba(255,255,255,0.8);
+	}
+	.navbar-toggle {
+		margin: 25px 25px 0 0;
+	}
+	.navbar-toggle .icon-bar {
+		background: #788ba4;
+	    width: 40px;
+	    height: 4px;
+	}
+	.navbar-brand {
+		margin-left: 35px;
+	}
+
+	.progress-title {
+		height: 90px;
+	}
+	.intro-agenda {
+		height: auto;
+	}
+	.intro-agenda > .texto {
+		width: 86%;
+		margin:15px 7%;
+	}
+	.intro-agenda > .texto p {
+		display: block !important;
+    	font-size: 17px;
+	}
+	.intro-agenda > .texto img {
+		display: none;
+	}
+	.btn.agenda-download {
+		font-size: 16px;
+		float: right;
+		margin-bottom: 0;
+	}
+	.container.intro-agenda .pull-left.logotipo {
+	    width: 37%;
+	    margin-top: 30px;
+	    margin-left: 7%;
+	}
+	.container.intro-agenda .pull-left.logo {
+	    width: 44%;
+	    margin-top: 30px;
+	    margin-left: 0;
+	}
+	.container.intro-agenda .pull-left.logotipo img,
+	.container.intro-agenda .pull-left.logo img {
+		width: 100%;
+	}
+	#contenido {
+		height: auto;
+	}
+	#contenido .container.actions {
+		position: relative;
+		float: left;
+		width: 100%;
+		margin: 0;
+		padding:0;
+	}
+	#contenido .container.actions #navbar2.menu-ejes-estrategicos {
+		width: 100%;
+    	padding-bottom: 20px;
+	}
+	#contenido .container.actions .menu-ejes-estrategicos ul li {
+		float: left !important;
+		width: 100% !important;
+		margin:0 !important;
+		padding:0 0 0 0 !important;
+    	text-align: left !important;
+	    overflow: hidden;
+	    height: 60px;
+    	border-top: solid 2px rgba(0,0,0,0.2);
+    	cursor: pointer;
+	}
+	#contenido .container.actions .menu-ejes-estrategicos ul li.listado-derechos {
+		background: #FBBC10;
+	}
+	#contenido .container.actions .menu-ejes-estrategicos ul li.listado-conectividad {
+		background: #9573AA;
+	}
+	#contenido .container.actions .menu-ejes-estrategicos ul li.listado-gobierno {
+		background: #6480C0;
+	}
+	#contenido .container.actions .menu-ejes-estrategicos ul li.listado-economia {
+		background: #F19130;
+	}
+	#contenido .container.actions .menu-ejes-estrategicos ul li.listado-competencia {
+		background: #87BE66;
+	}
+	#contenido .container.actions .menu-ejes-estrategicos ul li .eje-tab {
+		margin: 0;
+		float: left;
+	    height: 60px;
+	}
+	.eje-tab.derechos {
+		background: url(../img/icono_pringles_derechos.png) center -86px no-repeat;
+	}
+	.eje-tab.conectividad {
+		background: url(../img/icono_pringles_conectividad.png) center -86px no-repeat;
+	}
+	.eje-tab.gobierno {
+		background: url(../img/icono_pringles_gobierno.png) center -86px no-repeat;
+	}
+	.eje-tab.economia {
+		background: url(../img/icono_pringles_economia.png) center -86px no-repeat;
+	}
+	.eje-tab.competencia {
+		background: url(../img/icono_pringles_competencia.png) center -86px no-repeat;
+	}
+	#contenido .container.actions .menu-ejes-estrategicos ul li p {
+		margin: 0;
+	    float: left;
+	    height: 60px;
+	    line-height: 60px;
+	    color: #fff;
+    	font-size: 22px;
+	}
+
+
+	.listado.noticias .noticia .titulo,
+	.listado.noticias .noticia .bajada,
+	.listado.noticias .noticia a {
+		margin: 10px 25px 5px;
+	    display: block;
+	}
+	.row.bottomline {
+		margin:0;
+	}
+	.bottomline > div {
+		padding-right: 0;
+		padding-left: 0;
+	}
+	.bottomline * h3 {
+		margin: 10px 25px !important;
+	}
+	div.box.actualizacion {
+	    width: 100%;
+	    margin: 0;
+	    padding: 10px 15px 10px 70px;
+	}
+	div.box.actualizacion > div.eje {
+	    top: 10px;
+	    left: 10px;
+    }
+    .time-ago {
+    	margin-left: 70px;
+    	margin-top: 20px;
+    }
+    div.noticias {
+    	margin-top:30px;
+    }
+    .bottomline .notas .detalle {
+    	padding: 10px 25px;
+    }
+	footer .container .row {
+		margin-right: 0px;
+	    margin-left: 0px;
+	}
+	.footer-navbar p.subtitulo {
+		padding: 20px 10px 15px 70px;
+		margin: 0;
+	}
+	.footer-navbar ul {
+	    background: #001323;
+	}
+	.footer-navbar ul li a {
+	    padding-left: 60px;
+	}
+	.footer-bottom .ad2020 {
+		display: none;
+	}
+	.footer-bottom .ministerios1.pull-left,
+	.footer-bottom .ministerios2.pull-left {
+		float: right !important;
+	    width: 70%;
+	    margin: 0;
+    	padding-top: 20px;
+	}
+	.footer-bottom .ministerios2.pull-left {
+		padding-top: 0;
+	}
+	.footer-bottom .container ul {
+		border: 0;
+		padding-left: 10px;
+		padding-right: 10px;
+		margin-bottom: 0;
+	}
+	.footer-bottom .container ul li a {
+	    height: 25px;
+	    line-height: 25px;
+	}
+	.footer-bottom .container div.gobcl {
+	    position: absolute;
+	    padding-top: 20px;
+	    width: 22%;
+	    margin-left: 6%;
+	 }
+	.footer-bottom .container div.gobcl img {
+		margin-top: 0;
+    	width: 100%;
+	 }
+	 footer .container {
+	    width: 100%;
+	    padding: 0px !important;
+	}
+}
 

@@ -10,12 +10,12 @@
             <img src="img/agenda-digital_logo-intro.png"/>
           </div>
           <div class="pull-left texto top-buffer-70">
-            <!-- <p>
+            <p style="display: none;">
               Es una hoja de ruta para avanzar hacia 
               un desarrollo inclusivo y sostenible 
               a través de la Tecnologías de la 
               Información y la Comunicación
-            </p> -->
+            </p>
             <img src="img/agenda-digital_texto-intro.png" />
             <a href class="btn agenda-download"> <span class="fa fa-arrow-down">&nbsp;</span> Descarga la Agenda</a>
           </div>
@@ -23,11 +23,11 @@
         <div class="container actions">
           <div id="navbar2" class="menu-ejes-estrategicos">
             <ul class="nav navbar-nav">
-              <li><div class="eje-tab derechos" ng-click="showTab('derechos')"></div><p>Derechos</p></li>
-              <li><div class="eje-tab conectividad" ng-click="showTab('conectividad')"></div><p>Conectividad</p></li>
-              <li><div class="eje-tab gobierno" ng-click="showTab('gobierno')"></div><p>Gobierno</p></li>
-              <li><div class="eje-tab economia" ng-click="showTab('economia')"></div><p>Economia</p></li>
-              <li><div class="eje-tab competencia" ng-click="showTab('competencia')"></div><p>Competencias</p></li>
+              <li class="listado-derechos" ng-click="showTab('derechos')"><div class="eje-tab derechos"></div><p>Derechos</p></li>
+              <li class="listado-conectividad" ng-click="showTab('conectividad')"><div class="eje-tab conectividad"></div><p>Conectividad</p></li>
+              <li class="listado-gobierno" ng-click="showTab('gobierno')"><div class="eje-tab gobierno"></div><p>Gobierno</p></li>
+              <li class="listado-economia" ng-click="showTab('economia')"><div class="eje-tab economia"></div><p>Economia</p></li>
+              <li class="listado-competencia" ng-click="showTab('competencia')"><div class="eje-tab competencia"></div><p>Competencias</p></li>
             </ul>
 
           </div>
@@ -35,7 +35,7 @@
         </div>
       </div>
 
-      <div class="container">
+      <div class="container hidden-xs">
           
         <div ng-include="'include_seguimientoejes.html'"></div>
         
@@ -43,7 +43,7 @@
 
       <div class="row bottomline">
         
-        <div class="col-xs-4 col-md-4 col-lg-4 notas">
+        <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 notas hidden-xs">
           <h3>Voces</h3>
           <div class="detalle">
             <p>sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt</p>
@@ -71,13 +71,13 @@
           </div>
           <div class="clearfix"></div>
 
-          <h3>Multimedia</h3>
+          <!-- <h3>Multimedia</h3>
           <div class="multimedia">
             <img src="img/video-sps.jpg"/>
-          </div>
+          </div> -->
         </div>
 
-        <div class="col-xs-4 col-md-4 col-lg-4 actualizaciones">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 actualizaciones hidden-xs">
           <h3>Últimas Actualizaciones</h3>
 
           <p class="time-ago">hace 5 minutos</p>
@@ -96,10 +96,28 @@
 
         </div>
 
-        <div class="col-xs-4 col-md-4 col-lg-4 noticias">
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 noticias hidden-xs">
 
           <h3>Noticias</h3>
-          <div ng-include="'include_noticias.html'"></div>
+          <!-- <div ng-include="'include_noticias.html'"></div> -->
+
+          <!-- NOTICIAS PROVISORIAS / BORRAR -->
+          <div class="listado noticias">
+            <div class="noticia">
+              <p class="titulo">Lorem ipsum dolor</p>
+              <img src="http://lorempixel.com/g/800/350/business"/>
+              <p class="bajada">Donec accumsan iaculis turpis. Nam porta enim sed blandit blandit...</p>
+              <a title="Enlace al sitio de la noticia" ng-href="#/noticias/{{notice.id}}">Ir al sitio de la noticia</a>
+            </div>
+            <div class="noticia">
+              <p class="titulo">Sit amet</p>
+              <img src="http://lorempixel.com/800/350/city"/>
+              <p class="bajada">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+              <a title="Enlace al sitio de la noticia" ng-href="#/noticias/{{notice.id}}">Ir al sitio de la noticia</a>
+            </div>
+          </div>
+          <!-- FIN NOTICIAS PROVISORIAS / BORRAR -->
+
         </div>
       
       </div>

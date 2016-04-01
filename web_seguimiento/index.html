@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -15,6 +14,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/radial-progress.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -44,8 +44,16 @@
           </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
+          <div class="header-collapse">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#/"><img src="img/ico_home.png"></a></li>
+            <li class="active">
+              <a class="home" href="#/"><span class="visible-xs">Inicio</span></a>
+            </li>
             <li class="active dropdown">
               <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Agenda Digital</a>
               <ul class="dropdown-menu">
@@ -93,6 +101,31 @@
 
           </ul>
           <i class="navbar-search-ico fa fa-search"></i>
+          <footer class="footer-bottom visible-xs">
+            <div class="container">
+              <div class="ad2020 pull-left">
+                <img src="img/ad2020-footer.png" width="170">
+              </div>
+              <div class="ministerios1 pull-left">
+                <ul>
+                  <li><a href="#">Ministerio Secretaría General de la Presidencia</a></li>
+                  <li><a href="#">Ministerio del Interior y Seguridad Pública</a></li>
+                  <li><a href="#">Ministerio de Hacienda</a></li>
+                  <li><a href="#">Ministerio de Economía Fomento y Turismo</a></li>
+                </ul>
+              </div>
+              <div class="ministerios2 pull-left">
+                <ul>
+                  <li><a href="#">Ministerio de Educación</a></li>
+                  <li><a href="#">Ministerio de Salud</a></li>
+                  <li><a href="#">Ministerio de Transporte y Telecomunicaciones</a></li>
+                </ul>
+              </div>
+              <div class="gobcl pull-left">
+                <img src="http://www.gob.cl/wp-content/themes/gobcl2/img/logo-main.png" width="170">
+              </div>
+            </div>
+          </footer>
         </div><!--/.nav-collapse -->
       </div>
     </nav>
@@ -103,11 +136,11 @@
     <div ng-view class=""></div>
 
     
-    <footer>
+    <footer class=" hidden-xs">
       <div class="container">
         <div class="row">
           <div class="footer-navbar col-xs-3 agenda">
-            <p class="subtitulo">Agenda Digital</p>
+            <p class="subtitulo expandir">Agenda Digital</p>
             <ul>
               <li><a href="#/agenda/que">Características</a></li>
               <li><a href="#/agenda/como">Cómo se construyó</a></li>
@@ -115,7 +148,7 @@
             </ul>
           </div>
           <div class="footer-navbar col-xs-3 descarga">
-            <p class="subtitulo">Descarga la Agenda</p>
+            <p class="subtitulo expandir">Descarga la Agenda</p>
             <ul>
               <li><a href="#/agenda/derechos">Derechos para el Desarrollo Digital</a></li>
               <li><a href="#/agenda/">Conectividad Digital</a></li>
@@ -125,14 +158,14 @@
             </ul>
           </div>
           <div class="footer-navbar col-xs-3 quienes">
-            <p class="subtitulo">Quienes Somos</p>
+            <p class="subtitulo expandir">Quienes Somos</p>
             <ul>
               <li><a href="#/quienes-somos/comite">Comité de Ministros</a></li>
               <li><a href="#/quienes-somos/secretaria">Secretaría Ejecutiva</a></li>
             </ul>
           </div>
           <div class="footer-navbar col-xs-3 documentos">
-            <p class="subtitulo">Documentos</p>
+            <p class="subtitulo expandir">Documentos</p>
             <ul>
               <li><a href="#">Otras Agendas</a></li>
               <li><a href="#">Decreto Vigente</a></li>
@@ -149,7 +182,7 @@
 
     </footer>
 
-    <footer class="footer-bottom">
+    <footer class="footer-bottom hidden-xs">
       <div class="container">
         <div class="ad2020 pull-left">
           <img src="img/ad2020-footer.png" width="170">
@@ -193,6 +226,15 @@
     <script src="js/angular-noticiascontroller.js"></script>
     <script src="js/angular-seguimientocontroller.js"></script>
     <script src="js/angular-detallecontroller.js"></script>
+
+    <script type="text/javascript">
+      $( document ).ready(function() {
+        $('.footer-navbar p.subtitulo.expandir').click(function() { 
+          $(this).parent('.footer-navbar').toggleClass('activo');
+          $(this).parent('.footer-navbar').siblings('.footer-navbar.activo').toggleClass('activo');
+        });
+      });
+    </script>
 
   </body>
 </html>
