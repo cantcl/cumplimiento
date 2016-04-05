@@ -43,6 +43,7 @@ ul {
 p {
 	line-height: 1;
 }
+.visible-m {display: none;}
 .container {
     padding-right: 0;
     padding-left: 0;
@@ -159,6 +160,7 @@ p {
 }
 .intro-agenda > .texto p {
 	line-height: 130%;
+	margin-bottom: 15px;
 }
 .btn.agenda-download {
 	background-color: #788ba4;
@@ -181,11 +183,13 @@ p {
 }
 #contenido {
 	position: relative;
-	height: auto;
+	height: 480px;
+	margin-bottom: 15px;
 }
 #contenido .container.actions{
-	position: relative;
-	bottom: 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 li.eje-tab {
 	font-weight: 500;
@@ -194,23 +198,44 @@ li.eje-tab p {
 	color: black;
 }
 #navbar2 {
-	width: 900px;
-	height: 114px;
-  margin: 0 auto 10px;
+	width: 100%;
+	height: auto;
+  	margin: 0 auto 10px;
 }
 #navbar2 > ul.nav {
 	width: 100%;
 	margin: 0 auto;
+	height: 60px;
+	position: relative;
 }
 #navbar2 > ul.nav > li {
 	width: 20%;
 	margin:0px;
+	margin-right: 0px;
+	margin-left: 0px;
+	margin-top: 10px;
 	text-align: center;
+	cursor: pointer;
+	border: 1px solid #f4f2ee;
+	border-bottom: none !important;
+	height: 50px;
+	bottom: 0;
+}
+#navbar2 > ul.nav > li.active {
+	height: 60px;
+	margin-top: 0px;
+}
+#navbar2 > ul.nav > li.first {
+	border-left: none !important;
+}
+#navbar2 > ul.nav > li.last {
+	border-right: none !important;
 }
 #navbar2 > ul.nav > li > p {
 	font-size: 20px;
 	font-weight: 600;
-	color: #788ba4;
+	color: #fff;
+	margin-top: 15px;
 }
 .eje-tab {
 	width: 84px;
@@ -241,7 +266,11 @@ li.eje-tab p {
 }
 
 .bottomline {
+/* <<<<<<< HEAD */
 	margin-top: 50px;
+/*
+	margin-top: 20px;
+*/
 	color: #4e5165;
 }
 .bottomline .notas h3 {
@@ -261,6 +290,7 @@ li.eje-tab p {
 }
 .bottomline .notas .detalle div.autor > div {
 	margin-top: 10px;
+	    max-width: 290px;
 }
 .bottomline .notas .detalle .autor p {
 	font-weight: 300;
@@ -320,27 +350,27 @@ div.box.derechos {
 div.box.conectividad {
 	border: 4px solid #c9d0e0;
 }*/
-div.competencias > div.eje {
+.competencia > div.eje, .com > div.eje {
 	background: url(../img/icono_pringles_competencia.png) -17px -92px no-repeat;
   width: 48px;
   height: 48px;
 }
-div.derechos > div.eje {
+.derechos > div.eje, .der > div.eje {
 	background: url(../img/icono_pringles_derechos.png) -17px -92px no-repeat;
   width: 48px;
   height: 48px;
 }
-div.conectividad > div.eje {
+.conectividad > div.eje, .con > div.eje {
 	background: url(../img/icono_pringles_conectividad.png) -17px -92px no-repeat;
   width: 48px;
   height: 48px;
 }
-div.gobierno > div.eje {
+.gobierno > div.eje, .gob > div.eje {
 	background: url(../img/icono_pringles_gobierno.png) -17px -92px no-repeat;
   width: 48px;
   height: 48px;
 }
-div.economia > div.eje {
+.economia > div.eje, .eco > div.eje {
 	background: url(../img/icono_pringles_economia.png) -17px -92px no-repeat;
   width: 48px;
   height: 48px;
@@ -485,26 +515,48 @@ footer .row > div {
 .progress-graph.last {
 	border-right: 1px solid #788ba4;
 }
+.izq .ico-eje {
+    width: 100%;
+    height: 47px;
+    margin: 0;
+}
 .progress-graph .title .ico-eje{
     width: 25%;
-    height: 42px;
+    height: 40px;
     margin: 0 0 0 5%;
 }
 .ico-eje.derechos {
-	  background: url(../img/icono_pringles_derechos.png) -21px -145px no-repeat;
+	  background: url(../img/icono_pringles_derechos.png) -10px -19px no-repeat;
 }
 .ico-eje.conectividad {
-	  background: url(../img/icono_pringles_conectividad.png) -21px -145px no-repeat;
+	  background: url(../img/icono_pringles_conectividad.png) -10px -19px no-repeat;
 }
 .ico-eje.gobierno {
-	  background: url(../img/icono_pringles_gobierno.png) -21px -145px no-repeat;
+	  background: url(../img/icono_pringles_gobierno.png) -10px -19px no-repeat;
 }
 .ico-eje.economia {
+	  background: url(../img/icono_pringles_economia.png) -10px -19px no-repeat;
+}
+.ico-eje.competencias, .ico-eje.competencia {
+	  background: url(../img/icono_pringles_competencia.png) -10px -19px no-repeat;
+}
+
+.progress-graph .title .ico-eje.derechos {
+	  background: url(../img/icono_pringles_derechos.png) -21px -145px no-repeat;
+}
+.progress-graph .title .ico-eje.conectividad {
+	  background: url(../img/icono_pringles_conectividad.png) -21px -145px no-repeat;
+}
+.progress-graph .title .ico-eje.gobierno {
+	  background: url(../img/icono_pringles_gobierno.png) -21px -145px no-repeat;
+}
+.progress-graph .title .ico-eje.economia {
 	  background: url(../img/icono_pringles_economia.png) -18px -145px no-repeat;
 }
-.ico-eje.competencias {
+.progress-graph .title .ico-eje.competencias, .ico-eje.competencia {
 	  background: url(../img/icono_pringles_competencia.png) -21px -145px no-repeat;
 }
+
 .progress-graph .numeros {
 	color: #788ba4;
 	width: 100%;
@@ -558,14 +610,9 @@ footer .row > div {
 	padding: 20px;
 	height: 480px;
 }
-.izq > * {
-	margin: 15px;
-} 
-.izq h1 {
-	font-size: 44px;
-	font-weight: 700;
-}
-.competencia .izq h1:after {
+
+
+/*.competencia .izq h1:after {
 	content: 'Competencias Digitales';
 }
 .gobierno .izq h1:after {
@@ -579,6 +626,13 @@ footer .row > div {
 }
 .conectividad .izq h1:after {
 	content: 'Conectividad Digital';
+}*/
+.izq > * {
+	margin: 15px;
+} 
+.izq h1 {
+	font-size: 35px;
+	font-weight: 700;
 }
 .izq p {
 	font-size: 30px;
@@ -619,33 +673,33 @@ footer .row > div {
 	font-weight: 700;
 	display: inline-block;
   vertical-align: middle;
-  line-height: normal;
+  line-height: 1;
   margin: 0;
 }
-.der {
+.medidas.der {
 	height: 480px;
 	padding-right: 0;
 }
-.der table {
+.medidas.der table {
 	color: white;
 	width: 100%;
 }
-.der table tr td i {
+.medidas.der table tr td i {
 	font-weight: 900;
 	font-size: 18px;
 	margin-left: 35px;
 	margin-top: 15px;
 	margin-bottom: 15px;
 }
-.der table tr td.texto {
+.medidas.der table tr td.texto {
 	font-size: 18px;
 	font-weight: 500px;
 	padding: 7px;
 }
-.der ul li i {
+.medidas.der ul li i {
 	margin-right: 15px;
 }
-.der ul li div.texto {
+.medidas.der ul li div.texto {
 	display: inline;
 	text-align: left;
 	width: 	80%;
@@ -771,6 +825,17 @@ footer .row > div {
 	font-size: 14px;
 	min-height: 170px;
 	min-width: 340px;
+	position: relative;
+}
+.quienes-somos .integrantes .detalle p.nombre{
+	font-weight: 700;
+  font-size: 18px;
+}
+.quienes-somos .integrantes .detalle a{
+	position: absolute;
+	bottom: 10px;
+	font-weight: 500;
+	color: #ccc;
 }
 .quienes-somos .integrantes .miembro {
 	cursor: pointer;
@@ -1037,6 +1102,8 @@ ul.descargas li div a {
 	float: left;
 	height: 285px;
 	padding-top: 20px;
+	margin-bottom: 20px;
+
 }
 .actualizacion .hitos, .actualizacion .grafico {
 	color: #65839e;
@@ -1174,13 +1241,16 @@ div.actualizacion {
 	position: absolute;
 	margin-left: 0px !important;
 }
-.row.fichas div.contenido {
-	position: relative;
-	margin-top: 120px;
-	margin-bottom: 20px;
-	overflow: hidden;
-	height: 55px;
-  line-height: 1;
+
+.fichas.detalle-medida .mark-down {
+    margin: -19px 0 20px 0;
+    position: relative;
+    z-index: 20;
+}
+.row.fichas.detalle-medida div.contenido {
+    position: relative;
+    margin-top: 60px;
+    line-height: 1;
 }
 .row.fichas div.contenido > div.fadeout {
     position: absolute;
@@ -1317,6 +1387,7 @@ table.lista.mesas tr td:nth-child(3){
 /*helpers*/
 
 .top-buffer-70 { margin-top:70px; }
+/* <<<<<<< HEAD */
 
 
 /* MEDIAQUERIES */
@@ -1332,6 +1403,36 @@ table.lista.mesas tr td:nth-child(3){
 	}
 	.progress-graph .title .nombre-eje {
 	    font-size: 18px;
+	}
+
+	.intro-agenda > .texto {
+	    margin-left: 38px;
+	    width: 395px;
+	    font-size: 27px;
+	    font-weight: 100;
+	}
+	.btn.agenda-download {
+	    margin-bottom: 0px;
+	    margin-top: 10px;
+	}
+	.izq > * {
+		margin: 15px 10px;
+	} 
+	.izq h1 {
+		font-size: 25px;
+		font-weight: 700;
+	}
+	.izq p {
+		font-size: 20px;
+	}
+	.cent > div {
+		font-size: 17px;
+	}
+	.medidas.der table tr td i {
+	    margin-left: 10px;
+	}
+	.medidas.der table tr td.texto {
+	    font-size: 16px;
 	}
 	#navbar2 {
 		width: 100%;
@@ -1388,6 +1489,29 @@ table.lista.mesas tr td:nth-child(3){
 	}
 	.navbar-search-ico {
 	    margin: 40px 0px 0px 10px;
+	}
+	.cent > div {
+		font-size: 15px;
+	}
+	#navbar2 > ul.nav > li > p {
+		font-size: 15px;
+	}
+	#contenido {
+		height: auto;
+	}
+	.intro-agenda > .texto {
+		width: 100%;
+		margin-left: 0;
+	}
+	.btn.agenda-download {
+	    margin-bottom: 40px;
+	    float: right;
+	}
+	.medidas.der table tr td i {
+	    margin-left: 10px;
+	}
+	.medidas.der table tr td.texto {
+	    font-size: 16px;
 	}
 	.progress-graph {
 	    width: 100%;
@@ -1469,6 +1593,7 @@ table.lista.mesas tr td:nth-child(3){
 }
 
 @media (max-width: 767px) {
+	.visible-m {display: block;}
 	.container-fluid>.navbar-collapse, 
 	.container-fluid>.navbar-header, 
 	.container>.navbar-collapse, 
@@ -1496,7 +1621,7 @@ table.lista.mesas tr td:nth-child(3){
 		color: white;
 	}
 	#navbar .header-collapse .navbar-toggle {
-	    margin: 20px 25px 0 0;
+	    margin: 15px 32px 0 0;
 	    font-size: 30px;
 	}
 	#navbar ul {
@@ -1512,14 +1637,40 @@ table.lista.mesas tr td:nth-child(3){
 	    border-bottom: 1px solid #334658;
 		color: white;
 	}
+	#navbar ul.dropdown-menu {
+		padding: 0;
+	    position: relative;
+	    z-index: 2;
+	}
+	.dropdown-menu .divider.divider-last {
+		margin-bottom: 0;
+	}
+	#navbar > ul > li{
+	    float: left;
+	    width: 100%;
+	}
 	#navbar ul.dropdown-menu > li > a {
 		font-size: 20px;
     	padding: 0 20px;
+    	background: rgba(15,38,59,0.5);
+    	color: rgba(255,255,255,0.7);
+	}
+	#navbar ul.dropdown-menu > li > a:hover,
+	#navbar ul.dropdown-menu > li > a:focus {
+    	background: rgba(15,38,59,0.7);
+    	color: rgba(255,255,255,1);
 	}
 	#navbar > ul > li > a {
 		color: white;
 		padding-left: 70px;
 	}
+	.header-collapse {
+    	border-bottom: 1px solid #334658;
+	 }
+	.header-collapse > img {
+		width: 150px;
+	    margin: 10px 10px 10px 45px;
+    }
 	#navbar ul > li  > a.home {
 	    padding: 15px 11px 15px 70px;
 	    height: 60px;
@@ -1530,6 +1681,9 @@ table.lista.mesas tr td:nth-child(3){
 	#navbar ul > li  > a.home:focus {
 		background: #546173 !important;
 		color: rgba(255,255,255,0.8);
+	}
+	#navbar2 > ul.nav {
+		height: auto;
 	}
 	.navbar-toggle {
 		margin: 25px 25px 0 0;
@@ -1542,12 +1696,131 @@ table.lista.mesas tr td:nth-child(3){
 	.navbar-brand {
 		margin-left: 35px;
 	}
-
+	/*PANEL GROUP */
+	.actions .panel-group .panel {
+		border: 0;
+		border-radius: 0;
+		background: transparent;
+	}
+	.panel-group .panel+.panel {
+		margin-top: 0;
+	}
+	.actions .panel-default>.panel-heading {
+		background: transparent;
+		padding:0;
+	}
+	.actions .panel-default>.panel-heading h4 a {
+	    padding: 0px 15px;
+	    display: block;
+	    font-size: 23px;
+	    line-height: 28px;
+	    height: 55px;
+	    font-weight: 600;
+	    color: #fff;
+	    margin: 0;
+	    vertical-align: top;
+	    border-top: 2px solid rgba(0,0,0,0.1);
+	}
+	.actions .panel-default>.panel-heading h4 a:hover,
+	.actions .panel-default>.panel-heading h4 a:focus {
+		text-decoration: none;
+		color: rgba(255,255,255,0.7);
+	}
+	.actions .panel-default.panel-derechos>.panel-heading h4 a {background: #fbbc10;}
+	.actions .panel-default.panel-conectividad>.panel-heading h4 a {background: #9573aa;}
+	.actions .panel-default.panel-gobierno>.panel-heading h4 a {background: #6480c0;}
+	.actions .panel-default.panel-economia>.panel-heading h4 a {background: #f19130;}
+	.actions .panel-default.panel-competencia>.panel-heading h4 a {background: #87be66;}
+	.actions .panel-default>.panel-heading h4 a span.icon {
+	    width: 55px;
+	    display: inline-block;
+	    height: 55px;
+	    margin: 0;
+	    padding: 0;
+	    vertical-align: middle;
+	}
+	.actions .panel-default.panel-derechos>.panel-heading h4 a span.icon {background: url(../img/icono_pringles_derechos.png) -17px -90px no-repeat;}
+	.actions .panel-default.panel-conectividad>.panel-heading h4 a span.icon {background: url(../img/icono_pringles_conectividad.png) -17px -90px no-repeat;}
+	.actions .panel-default.panel-gobierno>.panel-heading h4 a span.icon {background: url(../img/icono_pringles_gobierno.png) -17px -90px no-repeat;}
+	.actions .panel-default.panel-economia>.panel-heading h4 a span.icon {background: url(../img/icono_pringles_economia.png) -17px -90px no-repeat;}
+	.actions .panel-default.panel-competencia>.panel-heading h4 a span.icon {background: url(../img/icono_pringles_competencia.png) -17px -90px no-repeat;}
+	.actions .panel-default .panel-body {
+		padding: 0;
+		background: #fff;
+	    border-top: 0;
+	}
+	.actions .panel-default .panel-body .title-medidas {
+    	padding: 6px 48px 0;
+	    font-size: 20px;
+	    line-height: 30px;
+	    font-weight: 600;
+	    border-bottom: 1px solid #ddd;
+	    margin-left: 0;
+	}
+	.actions .panel-default .panel-body ul {
+	    padding: 0;
+	    margin: 0;
+	}
+	.actions .panel-default .panel-body ul li a {
+		padding: 0px 30px;
+	    width: 100%;
+	    display: block;
+	    border-bottom: 1px solid #ddd;
+	    line-height: 30px;
+	    font-size: 16px;
+	    color: #333;
+	}
+	.actions .panel-default .panel-body a i {
+		font-size: 12px;
+    	width: 15px;
+    }
+	.actions .panel-default.panel-derechos .panel-body a i,
+	.actions .panel-default.panel-derechos .panel-body .nombre-eje {color: #fbbc10;}
+	.actions .panel-default.panel-conectividad .panel-body a i,
+	.actions .panel-default.panel-conectividad .panel-body .nombre-eje {color: #9573aa;}
+	.actions .panel-default.panel-gobierno .panel-body a i,
+	.actions .panel-default.panel-gobierno .panel-body .nombre-eje {color: #6480c0;}
+	.actions .panel-default.panel-economia .panel-body a i,
+	.actions .panel-default.panel-economia .panel-body .nombre-eje {color: #f19130;}
+	.actions .panel-default.panel-competencia .panel-body a i,
+	.actions .panel-default.panel-competencia .panel-body .nombre-eje {color: #87be66;}
+	.actions .panel-default .panel-body .nombre-eje {
+    	font-size: 20px;
+		height: 32px;
+		line-height: 48px;
+	}
+	.actions .panel-default .panel-body .progress-graph {
+	    padding: 5px 0 0;
+	    min-height: 165px;
+	}
+	.actions .panel-default .panel-body .progress-graph .progress-radial {
+	    left: auto;
+	    margin: 0 15px 0 0;
+	    float: right;
+	}
+	.actions .panel-default .panel-body .progress-graph .numeros {
+	    color: #788ba4;
+	    width: 100%;
+	    clear: inherit;
+	    padding-right: 115px;
+	    float: left;
+	    margin-top: -80px;
+	}
+	.actions .panel-default .panel-body .progress-graph .numeros > div {
+		border-top: 0;
+	}
 	.progress-title {
 		height: 90px;
 	}
 	.intro-agenda {
 		height: auto;
+	}
+	.container.intro-agenda.derechos,
+	.container.intro-agenda.conectividad,
+	.container.intro-agenda.gobierno,
+	.container.intro-agenda.economia,
+	.container.intro-agenda.competencia {
+		display: none;
 	}
 	.intro-agenda > .texto {
 		width: 86%;
@@ -1684,6 +1957,68 @@ table.lista.mesas tr td:nth-child(3){
     .bottomline .notas .detalle {
     	padding: 10px 25px;
     }
+
+    .quienes-somos .row {
+	    margin: 0;
+	}
+    .fichas .panel-default,
+    .fichas .panel-default>.panel-heading+.panel-collapse>.panel-body {
+    	border: 0;
+    }
+    .fichas .panel-default {
+        border-top: 1px solid #ddd;
+    }
+
+	.fichas .panel-default>.panel-heading {
+		background: transparent;
+		border: 0;
+		padding:0;
+	}
+	.fichas .panel-default>.panel-heading h4 a {
+		width: 100%;
+	    display: block;
+	    padding: 25px 10% 15px;
+	    font-size: 20px;
+	    color: #788ba4;
+	    text-decoration: none;
+	}
+	.fichas .panel-default>.panel-heading h4 a i {
+		display: inline-block;
+		float: right;
+	    line-height: 8px;
+	    font-size: 25px;
+	}
+	.fichas .mark-down {
+	    margin: -19px 0 0 10%;
+	    position: absolute;
+	}
+	.quienes-somos h1 {
+	    margin: 0px 0 0 10%;
+	    font-size: 18px;
+	    line-height: 55px;
+	}
+    .fichas .panel-default>.panel-heading+.panel-collapse>.panel-body {
+	    padding: 0px 10% 15px;
+		font-size: 17px !important;
+	}
+	.fichas .panel-default>.panel-heading+.panel-collapse>.panel-body > div {
+		margin: 0 !important;
+	}
+	.fichas .panel-default>.panel-heading+.panel-collapse>.panel-body > div,
+	.fichas .panel-default>.panel-heading+.panel-collapse>.panel-body > div p {
+		line-height: 21px;
+		font-size: 17px !important;
+	}
+	.fichas .panel-default>.panel-heading+.panel-collapse>.panel-body > div ul {
+		padding-left: 5px;
+	}
+	.fichas .panel-default>.panel-heading+.panel-collapse>.panel-body > div ul.caracteristicas li {
+		margin-top: 15px;
+	}
+	.fichas .panel-default>.panel-heading+.panel-collapse>.panel-body > div ul.caracteristicas li div.caracteristica {
+		margin-left: 0;
+		padding: 0;
+	}
 	footer .container .row {
 		margin-right: 0px;
 	    margin-left: 0px;
@@ -1735,5 +2070,124 @@ table.lista.mesas tr td:nth-child(3){
 	    width: 100%;
 	    padding: 0px !important;
 	}
+
+	.detalle-seguimiento .eje-tab {
+		width: 9%;
+	    margin: 0 2%;
+	    padding: 0;
+	    height: 73px;
+	}
+	.page-content h1 {
+	    margin: 0;
+	    padding: 10px 0 5px;
+	    font-size: 22px;
+	    float: left;
+	    width: 87%;
+	}
+	.row.detalle-seguimiento,
+	.row.fichas.detalle-medida {
+		margin: 0;
+	}
+	.detalle-seguimiento hr {
+	    float: left;
+	    width: 87%;
+	    margin: 0;
+	}
+	.detalle-seguimiento h2 {
+	    width: 87%;
+	    float: left;
+	    margin: 0;
+	    font-size: 16px;
+	    padding: 8px 0;
+	}
+	.detalle-medida > div {
+	    padding: 0;
+	}
+	.fichas .titulo-detalle {
+		padding: 0;
+		height: auto;
+	}
+	.page-content .fichas h2 {
+        margin: 0;
+	    padding: 10px 10%;
+	    line-height: 38px;
+	    font-size: 22px;
+	}
+	.row.fichas.detalle-medida div.contenido {
+	    margin-top: 20px;
+	    font-size: 16px;
+	}
+	.fichas.detalle-medida .mark-down,
+	.row.fichas.detalle-medida div.contenido,
+	.row.fichas.detalle-medida a.ver-mas {
+		padding:0 10%;
+	}
+	.row.fichas.detalle-medida a.ver-mas {
+		font-size: 15px;
+	}
+	.row.fichas div.contenido.expanded {
+	    overflow: auto;
+	    height: auto;
+	    max-height: auto;
+	    padding-bottom: 22px;
+	}
+
+	table.lista.mesas {
+	    margin-top: 0px;
+	}
+	th.thcol {
+	    padding-top: 0px;
+	}
+	.detalle-medida > div.detalle-lateral {
+		padding:0 10%;
+		background: #fff;
+		min-height: auto;
+	}
+	.detalle-medida .detalle-lateral .progress-radial {
+	    margin: 0;
+	    width: 120px;
+	    height: 120px;
+	}
+	.detalle-lateral .progress-radial .overlay {
+	    margin-left: 21px;
+	    margin-top: 21px;
+	    width: 79px;
+	    height: 79px;
+	    line-height: 79px;
+	    font-size: 32px;
+	    font-weight: 300;
+	    padding-left: 5px;
+	}
+	.detalle-lateral .grafico {
+	    top: 0px;
+	}
+	.detalle-lateral .items {
+	    margin: 0;
+	}
+	.detalle-lateral .items .item h5,
+	.detalle-lateral .items .item p {
+	    font-size: 17px;
+	    line-height: 20px;
+	    margin:0 0 5px 0;
+	}
+	.detalle-lateral .items .item:first-child{
+	    padding-right: 125px;
+	}
+	.detalle-lateral .items .item:nth-child(2){
+	    padding-right: 125px;
+	}
+	#contenido-agenda .portada img {
+		margin-top: 0;
+	}
+
+
+
 }
+
+.bg-derechos { background-color: #fbbc10; }
+.bg-conectividad { background-color: #9573aa; }
+.bg-gobierno { background-color: #6480c0; }
+.bg-economia { background-color: #f19130; }
+.bg-competencia { background-color: #87be66; }
+
 

@@ -5,11 +5,11 @@ app.controller('HomeController', ['$scope', '$route', '$routeParams', '$location
 	    this.$routeParams = $routeParams;
 	    
 	    var homeIntro = $('.intro-agenda');
-
+	    $scope.includes = {};
 
 	    // generar servicio o factory...
 	    $http
-	    	.get('http://private-e8dc6-modernizacion.apiary-mock.com/compromisos')
+	    	.get(api_prefix + 'compromisos')
 	    	.success(function(data,status,header,config){
 	    		$http
 		    	.get('http://private-e8dc6-modernizacion.apiary-mock.com/noticias')
@@ -30,6 +30,8 @@ app.controller('HomeController', ['$scope', '$route', '$routeParams', '$location
 
 	    $scope.initIntro = function() {
 
+	    	$scope.includes.intro	= 'include_homeintro.html';
+
 				var popover_options = {
 					'placement': 'top',
 					'trigger': 'hover',
@@ -44,47 +46,32 @@ app.controller('HomeController', ['$scope', '$route', '$routeParams', '$location
 
 			}
 
+
 			$scope.initIntro();
 
 			$scope.showTab = function(clase){
-				var newContent = $('#detalle_template').text();				
-				$('.intro-agenda').empty().html(newContent).toggleClass(clase).toggleClass($scope.lastClase);
-				$('.intro-agenda .ico-eje').toggleClass(clase).toggleClass($scope.lastClase).css('-webkit-filter','brightness(10)').css('filter','brightness(10)');
-				$scope.lastClase = clase;
-				$('.close-intro').removeClass('hide');
-				$("#contenido .cent").children().remove();
-				$.each($scope.ejes,function(index,eje){
-					if(clase.substring(0,3)==eje.codigo){
-						$scope.eje = eje;
-						$.each(eje.compromisos,function(index,compromiso){
-							if(index==0){
-								var element = $compile("<div class='active' ng-href='#' ng-click='showCont("+compromiso.compromiso.id+")'><p class='pull-left'>"+compromiso.compromiso.nombre+"</p><i class='pull-right fa fa-play'></i></div>")($scope);
-								$("#contenido .der table").children().remove();
-								$.each(compromiso.compromiso.hitos,function(index,hito){
-									$("#contenido .der table").append("<tr><td><i class='fa fa-circle-o'></i></td><td class='texto'>"+hito.descripcion+"</td></tr>");
-								});
-							}
-							else
-								var element = $compile("<div ng-href='#' ng-click='showCont("+compromiso.compromiso.id+")'><p class='pull-left'>"+compromiso.compromiso.nombre+"</p><i class='pull-right fa fa-play'></i></div>")($scope);
-							$("#contenido .cent").append(element);
-						})
-					}
-				});
-				$('.cent > div').on('click', function(){
-					$('.cent > div').removeClass('active');
-					$(this).addClass('active')
-				});
+
+				var eje_id = clase.substr(0,3);
+				$scope.includes.intro	= 'include_homeintroeje.html';
+				pos = $scope.ejes.map(function(e) { return e.codigo; }).indexOf(eje_id);
+				$scope.eje = $scope.ejes[pos];
+				
+
+				$http.get(api_prefix + 'lineas/' + $scope.eje.id)
+		    	.success(function(data,status,header,config){
+		    		$scope.eje.lineas_accion = data.lineas_accion;
+		    		$scope.idx_medidas = 0;
+	    		})
+	    		.error(function (data, status, header, config) { 
+	    			utils.alert('Hubo error en la comunicación en servidor, intente más tarde!');
+	    		});
+				$scope.eje.clase = clase;
+				$('#navbar2 > ul.nav > li').removeClass('active');
+				$('#navbar2 > ul.nav > li.' + clase).addClass('active');
 			}
 
-			 $scope.showCont = function(id){
-				$("#contenido .der table").children().remove();
-				$.each($scope.eje.compromisos,function(index,compromiso){
-					if((compromiso.compromiso.id+"")==id){
-						$.each(compromiso.compromiso.hitos,function(index,hito){
-							$("#contenido .der table").append("<tr><td><i class='fa fa-circle-o'></i></td><td class='texto'>"+hito.descripcion+"</td></tr>");
-						});
-					}
-			 	})
+			 $scope.showCont = function(index){
+			 	$scope.idx_medidas = index;
 			}
 
 			$scope.closeIntro = function() {

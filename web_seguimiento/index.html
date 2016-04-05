@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Unidad de Modernización y Gobierno Digital. Ministerio Secretaría general de la Presidencia. Gobierno de Chile">
 
     <title>Agenda Digital 2020 - Gobierno de Chile</title>
@@ -44,7 +45,8 @@
           </a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
-          <div class="header-collapse">
+          <div class="visible-xs header-collapse">
+            <img src="img/ad2020-header-m.png" >
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
               <span class="sr-only">Toggle navigation</span>
               <i class="fa fa-times"></i>
@@ -59,18 +61,30 @@
               <ul class="dropdown-menu">
                 <li><a href="#/agenda/que"><span class="bullet fa fa-circle-o">&nbsp;</span>¿Qué es la Agenda?</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#/agenda/caracteristicas"><span class="bullet fa fa-circle-o">&nbsp;</span>Características</a></li>
-                <li role="separator" class="divider"></li>
                 <li><a href="#/agenda/como"><span class="bullet fa fa-circle-o">&nbsp;</span>¿Como se construyó?</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#/agenda/contenido"><span class="bullet fa fa-circle-o">&nbsp;</span>Contenido de la Agenda</a></li>
-                <li role="separator" class="divider divider-last"></li>
+                <li role="separator" class="divider"></li>
                 <li><a href="#/quienes-somos/comite"><span class="bullet fa fa-circle-o">&nbsp;</span>Comité de Ministros</a></li>
                 <li role="separator" class="divider"></li>
                 <li><a href="#/quienes-somos/secretaria"><span class="bullet fa fa-circle-o">&nbsp;</span>Secretaría Ejecutiva</a></li>
                 <li role="separator" class="divider divider-last"></li>
               </ul>
-            </li><li class="active dropdown">
+            </li>
+            <li class="hidden-xs"><a href="#/seguimiento">Seguimiento</a></li>
+            <li><a href="#/noticias">Noticias</a></li>
+            <li class="dropdown">
+              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documentos</a>
+              <ul class="dropdown-menu">
+                <li><a href="#/documentos/otras-agendas"><span class="bullet fa fa-circle-o">&nbsp;</span>Agendas Anteriores</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#/documentos/decreto-vigente"><span class="bullet fa fa-circle-o">&nbsp;</span>Decreto Vigente</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#/documentos/actas-comite"><span class="bullet fa fa-circle-o">&nbsp;</span>Actas del Comité</a></li>
+                <li role="separator" class="divider divider-last"></li>
+              </ul>
+            </li>
+            <li class="active dropdown">
               <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Descarga la Agenda</a>
               <ul class="dropdown-menu">
                 <li><a href="#/agenda/contenido#der"><span class="bullet fa fa-circle-o">&nbsp;</span>Derechos para el Desarrollo Digital</a></li>
@@ -85,19 +99,7 @@
                 <li role="separator" class="divider divider-last"></li>
               </ul>
             </li>
-            <li class="dropdown">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documentos</a>
-              <ul class="dropdown-menu">
-                <li><a href="#/documentos/otras-agendas"><span class="bullet fa fa-circle-o">&nbsp;</span>Agendas Anteriores</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#/documentos/decreto-vigente"><span class="bullet fa fa-circle-o">&nbsp;</span>Decreto Vigente</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="#/documentos/actas-comite"><span class="bullet fa fa-circle-o">&nbsp;</span>Actas del Comité</a></li>
-                <li role="separator" class="divider divider-last"></li>
-              </ul>
-            </li>
-            <li><a href="#/seguimiento">Seguimiento</a></li>
-            <li><a href="#/noticias">Noticias</a></li>
+            
 
           </ul>
           <i class="navbar-search-ico fa fa-search"></i>
@@ -142,26 +144,21 @@
           <div class="footer-navbar col-xs-3 agenda">
             <p class="subtitulo expandir">Agenda Digital</p>
             <ul>
-              <li><a href="#/agenda/que">Características</a></li>
+              <li><a href="#/agenda/que">¿Qué es la Agenda?</a></li>
               <li><a href="#/agenda/como">Cómo se construyó</a></li>
               <li><a href="#/agenda/contenido">Contenido de la Agenda</a></li>
+              <li><a href="#/quienes-somos/comite">Comité de Ministros</a></li>
+              <li><a href="#/quienes-somos/secretaria">Secretaría Ejecutiva</a></li>
             </ul>
           </div>
           <div class="footer-navbar col-xs-3 descarga">
-            <p class="subtitulo expandir">Descarga la Agenda</p>
+            <p class="subtitulo expandir">Seguimiento</p>
             <ul>
-              <li><a href="#/agenda/derechos">Derechos para el Desarrollo Digital</a></li>
-              <li><a href="#/agenda/">Conectividad Digital</a></li>
-              <li><a href="#/agenda/">Gobierno Digital</a></li>
-              <li><a href="#/agenda/">Economía Digital</a></li>
-              <li><a href="#/agenda/">Competencias Digitales</a></li>
-            </ul>
-          </div>
-          <div class="footer-navbar col-xs-3 quienes">
-            <p class="subtitulo expandir">Quienes Somos</p>
-            <ul>
-              <li><a href="#/quienes-somos/comite">Comité de Ministros</a></li>
-              <li><a href="#/quienes-somos/secretaria">Secretaría Ejecutiva</a></li>
+              <li><a href="#/seguimiento/">Derechos</a></li>
+              <li><a href="#/seguimiento/">Conectividad </a></li>
+              <li><a href="#/seguimiento/">Gobierno </a></li>
+              <li><a href="#/seguimiento/">Economía </a></li>
+              <li><a href="#/seguimiento/">Competencias </a></li>
             </ul>
           </div>
           <div class="footer-navbar col-xs-3 documentos">
@@ -172,8 +169,19 @@
               <li><a href="#">Actas Comité</a></li>
             </ul>
           </div>
+          
+          <div class="footer-navbar col-xs-3 documentos">
+            <p class="subtitulo expandir">Descarga la Agenda</p>
+            <ul>
+              <li><a href="#/agenda/contenido">Agenda Completa</a></li>
+              <li><a href="#/agenda/contenido#der">Capítulo Derechos</a></li>
+              <li><a href="#/agenda/contenido#con">Capítulo Conectividad Digital</a></li>
+              <li><a href="#/agenda/contenido#gob">Capítulo Gobierno Digital</a></li>
+              <li><a href="#/agenda/contenido#eco">Capítulo Economía Digital</a></li>
+              <li><a href="#/agenda/contenido#com">Capítulo Competencias Digitales</a></li>
+            </ul>
+          </div>
           <div class="footer-navbar col-xs-3 otros">
-            <p class="subtitulo"><a href="#">Seguimiento</a></p>
             <p class="subtitulo"><a href="#/noticias/">Noticias</a></p>
             <p class="subtitulo"><a href="#">Voces</a></p>
           </div>
@@ -233,7 +241,18 @@
           $(this).parent('.footer-navbar').toggleClass('activo');
           $(this).parent('.footer-navbar').siblings('.footer-navbar.activo').toggleClass('activo');
         });
+
       });
+
+      $(document).on("click", ".collapse-link", function(){
+        if ($(this).hasClass("collapsed")) {
+          //$("#intro-agenda").removeClass("oculto");
+          $("#intro-agenda").show(500);
+        } else {
+          //$("#intro-agenda").addClass("oculto");
+          $("#intro-agenda").hide(500);
+        }
+      })
     </script>
 
   </body>

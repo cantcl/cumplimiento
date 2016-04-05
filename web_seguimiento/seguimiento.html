@@ -8,7 +8,7 @@
 	<div class="container">
 		<h2> Filtrar Avances por eje temático</h2>
 		<div class="ejes">
-			<div ng-repeat="eje in ejes" class="filtro pull-left {{eje.nombre.substring(0,eje.nombre.indexOf(' ')).toLowerCase()}}" ng-class="{'last':$last}" ng-click="filtrar(eje.id)">
+			<div ng-repeat="eje in ejes" class="filtro pull-left {{eje.nombre.substring(0,3).toLowerCase()}}" ng-class="{'last':$last}" ng-click="filtrar(eje.id)">
 				<div class="eje pull-left"></div>
 				<p class="pull-left" ng-bind="eje.nombre.substring(0,eje.nombre.indexOf(' ')).toLowerCase()"></p>
 			</div>
@@ -39,7 +39,7 @@
         <hr>
         <div class="info">
         	<h4 ng-bind="actualizacion.compromiso.nombre"></h4>
-        	<p ng-bind="actualizacion.compromiso.institucion"></p>
+        	<p ng-bind="actualizacion.compromiso.entidad"></p>
         </div>
 			</div>
 		</div>

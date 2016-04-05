@@ -78,7 +78,8 @@ function initPlugins(c) {
 }
 
 function initAjaxForm(){
-    $('#rut').Rut();
+    console.log('rut');
+    $('#rut_usuario').Rut();
     $(".ajaxForm :submit").attr("disabled",false);
     $(document).on("submit",".ajaxForm",function(){
         var form=this;

@@ -5,10 +5,10 @@
           <div class="progress-graph" data-toggle="popover" title="Cumplimiento {{eje.nombre.substring(0,eje.nombre.indexOf(' '))}}" ng-repeat="eje in ejes" ng-class="{'last':$last}">
             <div class="title">
               <div class="nombre-eje pull-left" ng-bind="eje.nombre.substring(0,eje.nombre.indexOf(' '))"></div>
-              <div class="ico-eje {{eje.nombre.substring(0,eje.nombre.indexOf(' ')).toLowerCase()}} pull-right"></div>
+              <div class="ico-eje {{eje.class}} pull-right"></div>
             </div>
             <div class="clearfix"></div>
-            <div class="progress-radial progress-{{eje.id}}-{{eje.porcentaje_total}}">
+            <div class="progress-radial progress-{{eje.codigo}}-{{eje.porcentaje_total}}">
               <div class="overlay">{{eje.porcentaje_total}}%</div>
             </div>
             <div class="numeros">

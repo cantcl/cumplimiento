@@ -10,13 +10,14 @@ class AuthController extends BaseController {
     protected $authConfig;
 
     public function __construct(){
+
         $this->authConfig = array(
             'client_info' => array(
                 'client_id' => $_ENV['claveunica_client_id'],
-                'redirect_uri' => 'http://localhost:8000/oauth/callback',
-                'authorization_endpoint' => 'https://www.claveunica.cl/oauth2/auth',
-                'token_endpoint' => 'https://www.claveunica.cl/oauth2/token',
-                'user_info_endpoint' => 'https://apis.modernizacion.cl/registrocivil/informacionpersonal/v1/info.php?access_token=',
+                'redirect_uri' => 'http://dev.desarrollodigital.modernizacion.gob.cl/oauth/callback',
+                'authorization_endpoint' => 'https://www.claveunica.gob.cl/openid/authorize',
+                'token_endpoint' => 'https://www.claveunica.gob.cl/openid/token',
+                'user_info_endpoint' => 'https://www.claveunica.gob.cl/openid/userinfo',
                 'authentication_info' => array(
                     'method' => 'client_secret_post',
                     'params' => array(
@@ -33,10 +34,9 @@ class AuthController extends BaseController {
 
     public function requestOauth() {
         $flow = new Basic($this->authConfig);
-
         if (! isset($_GET['redirect'])) {
             try {
-                $uri = $flow->getAuthorizationRequestUri('basico');
+                $uri = $flow->getAuthorizationRequestUri('openid nombre');
                 return Redirect::to($uri);
             } catch (\Exception $e) {
                 printf("Exception during authorization URI creation: [%s] %s", get_class($e), $e->getMessage());
@@ -52,27 +52,21 @@ class AuthController extends BaseController {
     }
 
     public function responseOauth() {
+
         $flow = new Basic($this->authConfig);
+
         if (isset($_GET['error']) && isset($_GET['error_message'])) { // salida por si presionan cancelar
             return View::make('backend/auth/login')->with('error_msg', 'Claveúnica ha entregado el siguiente error: <strong>' . $_GET['error'] . "</strong>.<p>Por favor, contacte al Administrador del Sistema</p>");
         }
-
-/*
-echo "<pre>";
-print_r($flow->getAccessToken($_GET['code']));
-echo "</pre>";
-die();
-*/
-
+        
         if (isset($_GET['code'])) {
-            $token = 'WRegQZ5L1GrtJ8icp9YLNcOmUWd6lNFT';//$flow->getAccessToken($_GET['code']);
+            $token = $flow->getAccessToken($_GET['code']);
         } else {
             return View::make('backend/auth/login')->with('error_msg', "No se terminó el proceso de validación. Por favor, contacte al Administrador del Sistema");
         }
 
-        $user_raw = file_get_contents($this->authConfig['client_info']['user_info_endpoint'] . $token);
-        $infoPersonal=json_decode($user_raw,true);
-        $rut = '16737207-4';//$infoPersonal['run'];
+        $infoPersonal = $flow->getUserInfo($token);
+        $rut = $infoPersonal['RUT'];
         $user = \Usuario::where('rut', $rut)->first();
         if ($user !== null) {
             $user->rut = $rut;

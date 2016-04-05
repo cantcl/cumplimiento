@@ -15,11 +15,15 @@ app.controller('DetalleController', ['$scope', '$rootScope', '$routeParams', '$l
 	  	}
 
 	  	$http
-    	.get('http://private-e8dc6-modernizacion.apiary-mock.com/compromisos/'+this.params.opt)
-    	.success(function(data,status,header,config){
-    		$scope.medida = data
-    	})
-    	.error(function (data, status, header, config) { utils.alert('Hubo error en la comunicación en servidor, intente más tarde!') })
+	    	.get(api_prefix + 'compromisos/'+this.params.opt)
+	    	.success(function(data,status,header,config){
+	    		console.log(data);
+	    		$scope.medida = data
+	    		$scope.medida.avance = Math.ceil(parseFloat($scope.medida.avance));
+	    	})
+	    	.error(function (data, status, header, config) { 
+	    		console.error('Hubo error en la comunicación en servidor, intente más tarde!')
+	    	});
 	  	//$scope.medida = this.medida;
 
 	}

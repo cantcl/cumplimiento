@@ -8,7 +8,7 @@ app.controller('NoticiasController', ['$scope', '$rootScope', '$routeParams', '$
   		$anchorScroll();
   	}
   	$http
-    	.get('http://private-e8dc6-modernizacion.apiary-mock.com/noticias')
+    	.get(api_prefix + '/noticias')
     	.success(function(data,status,header,config){
     		$scope.notices = data;
     		if ($scope.noticias.params.opt == undefined){

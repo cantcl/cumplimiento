@@ -20,7 +20,10 @@ class ApiController extends \BaseController {
 			200
 		);
 	}
-
+	function stripAccents($string){
+        return strtr($string,'àáâãäçèéêëìíîïñòóôõöùúûüýÿÀÁÂÃÄÇÈÉÊËÌÍÎÏÑÒÓÔÕÖÙÚÛÜÝ',
+    'aaaaaceeeeiiiinooooouuuuyyAAAAACEEEEIIIINOOOOOUUUUY');
+    }
 	/*category <- Eje*/
 	public function getCompromisos($compromiso_id = null){
 		if( $compromiso_id != null){
@@ -73,6 +76,7 @@ class ApiController extends \BaseController {
 			$fuentes = Fuente::with('hijos', 'hijos.hijos')->whereNull('fuente_padre_id')->get();
 			foreach ($fuentes as $key => $value) {
 				$fuentes[$key]['codigo'] = strtolower(substr($fuentes[$key]['nombre'],0,3));
+				$fuentes[$key]['class'] = strtolower(stripAccents($fuentes[$key]['nombre']));
 				$fuentes[$key]['porcentaje_total'] = $value->porcentajeTotal();
 				$fuentes[$key]['total_medidas'] = $value->cantidadMedidas();
 				$fuentes[$key]['medidas_desarrollo'] = $value->cantidadMedidasDesarrollo();
@@ -91,6 +95,23 @@ class ApiController extends \BaseController {
 				'ejes' => $fuentes->toArray())
 			);
 		}
+	}
+
+	public function getLineas($fuente_id) {
+		$lineas_accion = Compromiso::distinct()->select(DB::raw('linea_accion as nombre'))->where('fuente_id', "=", $fuente_id)->get();
+		$lineas_accion = $lineas_accion->toArray();
+		// dd(DB::getQueryLog());
+		foreach ($lineas_accion as $key => $value) {
+			// if (!isset($lineas_accion[$value->nombre])
+			// 	$lineas_accion[$value->nombre] = array();
+			// array_push($lineas_accion[$value->nombre], )
+			$lineas_accion[$key]['medidas'] = Compromiso::select('nombre', 'id')->where('linea_accion', '=', $value['nombre'])->get()->toArray();
+		}
+		
+		return Response::json(array(
+				'eje_id' => $fuente_id,
+				'lineas_accion' => $lineas_accion
+			));
 	}
 
 	/*Show notice by id*/

@@ -20,9 +20,9 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="email" class="col-sm-3 control-label">RUT</label>
+            <label for="rut" class="col-sm-3 control-label">RUT</label>
             <div class="col-sm-9">
-                <input type="text" class="form-control" name="rut" id="rut" value="<?= $usuario->rut; ?>"/>
+                <input type="text" class="form-control" name="rut" id="rut_usuario" value="<?= $usuario->rut; ?>"/>
             </div>
         </div>
         <div class="form-group">
@@ -79,13 +79,13 @@
                 </div>
             </div>
         </div>
-       <div class="form-group cont-password" style="<?= $usuario->id ? '' : 'display: none;'; ?>">
+       <div class="form-group cont-password hide" style="<?= $usuario->id ? '' : 'display: none;'; ?>">
             <label for="cambiar-password" class="col-sm-3 control-label">Password</label>
             <div class="col-sm-9">
                 <button type="button" id="cambiar-password" class="btn btn-cambiar-password" data-disabled="true">Cambiar</button>
             </div>
         </div>
-        <div class="cont-cambiar-password" style="<?= $usuario->id ? 'display: none;' : ''; ?>">
+        <div class="cont-cambiar-password hide" style="<?= $usuario->id ? 'display: none;' : ''; ?>">
             <div class="form-group">
                 <label for="password" class="col-sm-3 control-label"><?= $usuario->id ? 'Nuevo ' : ''; ?>Password</label>
                 <div class="col-sm-9">
@@ -97,6 +97,21 @@
                 <div class="col-sm-9">
                     <input type="password" <?= $usuario->id ? 'disabled' : ''; ?>  class="form-control" name="password_confirmation" id="password_confirmation" value=""/>
                 </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label">Institución</label>
+            <div class="col-sm-9">
+                <select class="form-control form-control-select2" name="institucion" id="institucion" data-placeholder="Seleccionar institución">
+                  <option></option>
+                  <?php foreach($instituciones as $i): ?>
+                      <optgroup label="<?= $i->nombre; ?>">
+                      <?php foreach($i->hijos as $h): ?>
+                          <option value="<?= $h->id; ?>" <?=$h->id==$usuario->institucion?'selected':''?>><?= $h->nombre; ?></option>
+                      <?php endforeach; ?>
+                      </optgroup>
+                  <?php endforeach; ?>
+                </select>
             </div>
         </div>
     </fieldset>

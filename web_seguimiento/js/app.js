@@ -1,3 +1,5 @@
+var api_prefix =  'http://private-e8dc6-modernizacion.apiary-mock.com/';
+
 var app =	angular.module('app', ['ngRoute', 'ngSanitize'])
 
 app.config(['$routeProvider', '$locationProvider',
@@ -7,11 +9,6 @@ app.config(['$routeProvider', '$locationProvider',
 	        templateUrl: 'home.html',
 	        controller: 'HomeController',
 	        controllerAs: 'home'
-	      })
-	      .when('/agenda', {
-	        templateUrl: 'contenido.html',
-	        controller: 'AgendaController',
-	        controllerAs: 'agenda'
 	      })
 	      .when('/quienes-somos/:opt?', {
 	        templateUrl: 'quienes.html',

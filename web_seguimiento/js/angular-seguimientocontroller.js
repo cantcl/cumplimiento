@@ -15,11 +15,12 @@ app.controller('SeguimientoController', ['$scope', '$route', '$routeParams', '$l
    }
 
 	$http
-  	.get('http://private-e8dc6-modernizacion.apiary-mock.com/compromisos')
+  	.get(api_prefix + 'compromisos')
   	.success(function(data,status,header,config){
+      console.log(data.ejes);
   		$scope.ejes = data.ejes
   	})
-  	.error(function (data, status, header, config) { utils.alert('Hubo error en la comunicación en servidor, intente más tarde!') })  
+  	.error(function (data, status, header, config) { console.error('Hubo error en la comunicación en servidor, intente más tarde!') })  
 	}
 
 	

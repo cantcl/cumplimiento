@@ -2,39 +2,348 @@
    
       <div id="contenido" class="row intro">
         <div class="close close-intro hide" ng-click="closeIntro()"><i class="fa fa-times-circle"></i></div>
-        <div class="container intro-agenda">
-          <div class="pull-left logotipo top-buffer-70">
-            <img src="img/agenda-digital-logotipo-intro.png"/>
-          </div>
-          <div class="pull-left logo top-buffer-70">
-            <img src="img/agenda-digital_logo-intro.png"/>
-          </div>
-          <div class="pull-left texto top-buffer-70">
-            <p style="display: none;">
-              Es una hoja de ruta para avanzar hacia 
-              un desarrollo inclusivo y sostenible 
-              a través de la Tecnologías de la 
-              Información y la Comunicación
-            </p>
-            <img src="img/agenda-digital_texto-intro.png" />
-            <a href class="btn agenda-download"> <span class="fa fa-arrow-down">&nbsp;</span> Descarga la Agenda</a>
-          </div>
-        </div>
-        <div class="container actions">
+
+        <!-- DESKTOP -->
+        <div class="hidden-xs container intro-agenda {{eje.clase}}" ng-include="includes.intro"></div>
+        <div class="hidden-xs container actions">
           <div id="navbar2" class="menu-ejes-estrategicos">
             <ul class="nav navbar-nav">
-              <li class="listado-derechos" ng-click="showTab('derechos')"><div class="eje-tab derechos"></div><p>Derechos</p></li>
-              <li class="listado-conectividad" ng-click="showTab('conectividad')"><div class="eje-tab conectividad"></div><p>Conectividad</p></li>
-              <li class="listado-gobierno" ng-click="showTab('gobierno')"><div class="eje-tab gobierno"></div><p>Gobierno</p></li>
-              <li class="listado-economia" ng-click="showTab('economia')"><div class="eje-tab economia"></div><p>Economia</p></li>
-              <li class="listado-competencia" ng-click="showTab('competencia')"><div class="eje-tab competencia"></div><p>Competencias</p></li>
+              <li class="bg-derechos derechos first" ng-click="showTab('derechos')"><div class="eje pull-left"></div><p class="pull-left">Derechos</p></li>
+              <li class="bg-conectividad conectividad" ng-click="showTab('conectividad')"><div class="eje pull-left"></div><p class="pull-left">Conectividad</p></li>
+              <li class="bg-gobierno gobierno" ng-click="showTab('gobierno')"><div class="eje pull-left"></div><p class="pull-left">Gobierno</p></li>
+              <li class="bg-economia economia" ng-click="showTab('economia')"><div class="eje pull-left"></div><p class="pull-left">Economia</p></li>
+              <li class="bg-competencia competencia last" ng-click="showTab('competencia')"><div class="eje pull-left"></div><p class="pull-left">Competencias</p></li>
             </ul>
-
           </div>
           <div class="clearfix"></div>
         </div>
+
+        <!-- MOBILE -->
+        <div id="intro-agenda" class="visible-m container intro-agenda" ng-include="'include_homeintro.html'"></div>
+        <div class="visible-xs container actions">
+ 
+
+          <div class="panel-group" id="actions-accordion" role="tablist" aria-multiselectable="true">
+
+            <div class="panel panel-default panel-derechos">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a class="collapsed collapse-link" role="button" data-toggle="collapse" data-parent="#actions-accordion" href="javascript:void(0);" data-target="#collapse-uno" aria-expanded="false" aria-controls="collapse-uno">
+                    <span class="icon"></span> Derechos
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse-uno" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <p class="title-medidas">Medidas</p>
+                  <ul>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                  </ul>
+
+                  <div class="progress-graph" data-toggle="popover" title="Cumplimiento {{eje.nombre.substring(0,eje.nombre.indexOf(' '))}}" ng-class="{'last':$last}">
+                    <div class="title">
+                      <div class="nombre-eje pull-left">Seguimiento</div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="progress-radial progress-{{eje.codigo}}-{{eje.porcentaje_total}}">
+                      <div class="overlay">{{eje.porcentaje_total}}%</div>
+                    </div>
+                    <div class="numeros">
+                      <div class="medidas pull-left">
+                        <p class="numero">{{eje.total_medidas}}</p>
+                        <p class="tipo">Medidas</p>
+                      </div>
+                      <div class="desarrollo pull-left">
+                        <p class="numero">{{eje.medidas_desarrollo}}</p>
+                        <p class="tipo">En Desarrollo</p>
+                      </div>
+                      <div class="iniciar pull-left">
+                        <p class="numero">{{eje.medidas_nuevas}}</p>
+                        <p class="tipo">Por Iniciar</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div><!-- Fin Panel -->
+
+            <div class="panel panel-default panel-conectividad">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a class="collapsed collapse-link" role="button" data-toggle="collapse" data-parent="#actions-accordion" href="javascript:void(0);" data-target="#collapse-dos" aria-expanded="false" aria-controls="collapse-dos">
+                    <span class="icon"></span> Conectividad
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse-dos" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <p class="title-medidas">Medidas</p>
+                  <ul>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                  </ul>
+
+                  <div class="progress-graph" data-toggle="popover" title="Cumplimiento {{eje.nombre.substring(0,eje.nombre.indexOf(' '))}}" ng-class="{'last':$last}">
+                    <div class="title">
+                      <div class="nombre-eje pull-left">Seguimiento</div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="progress-radial progress-{{eje.codigo}}-{{eje.porcentaje_total}}">
+                      <div class="overlay">{{eje.porcentaje_total}}%</div>
+                    </div>
+                    <div class="numeros">
+                      <div class="medidas pull-left">
+                        <p class="numero">{{eje.total_medidas}}</p>
+                        <p class="tipo">Medidas</p>
+                      </div>
+                      <div class="desarrollo pull-left">
+                        <p class="numero">{{eje.medidas_desarrollo}}</p>
+                        <p class="tipo">En Desarrollo</p>
+                      </div>
+                      <div class="iniciar pull-left">
+                        <p class="numero">{{eje.medidas_nuevas}}</p>
+                        <p class="tipo">Por Iniciar</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div><!-- Fin Panel -->
+
+            <div class="panel panel-default panel-gobierno">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a class="collapsed collapse-link" role="button" data-toggle="collapse" data-parent="#actions-accordion" href="javascript:void(0);" data-target="#collapse-tres" aria-expanded="false" aria-controls="collapse-tres">
+                    <span class="icon"></span> Gobierno
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse-tres" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <p class="title-medidas">Medidas</p>
+                  <ul>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                  </ul>
+
+                  <div class="progress-graph" data-toggle="popover" title="Cumplimiento {{eje.nombre.substring(0,eje.nombre.indexOf(' '))}}" ng-class="{'last':$last}">
+                    <div class="title">
+                      <div class="nombre-eje pull-left">Seguimiento</div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="progress-radial progress-{{eje.codigo}}-{{eje.porcentaje_total}}">
+                      <div class="overlay">{{eje.porcentaje_total}}%</div>
+                    </div>
+                    <div class="numeros">
+                      <div class="medidas pull-left">
+                        <p class="numero">{{eje.total_medidas}}</p>
+                        <p class="tipo">Medidas</p>
+                      </div>
+                      <div class="desarrollo pull-left">
+                        <p class="numero">{{eje.medidas_desarrollo}}</p>
+                        <p class="tipo">En Desarrollo</p>
+                      </div>
+                      <div class="iniciar pull-left">
+                        <p class="numero">{{eje.medidas_nuevas}}</p>
+                        <p class="tipo">Por Iniciar</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div><!-- Fin Panel -->
+
+            <div class="panel panel-default panel-economia">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a class="collapsed collapse-link" role="button" data-toggle="collapse" data-parent="#actions-accordion" href="javascript:void(0);" data-target="#collapse-cuatro" aria-expanded="false" aria-controls="collapse-cuatro">
+                    <span class="icon"></span> Economía
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse-cuatro" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <p class="title-medidas">Medidas</p>
+                  <ul>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                  </ul>
+
+                  <div class="progress-graph" data-toggle="popover" title="Cumplimiento {{eje.nombre.substring(0,eje.nombre.indexOf(' '))}}" ng-class="{'last':$last}">
+                    <div class="title">
+                      <div class="nombre-eje pull-left">Seguimiento</div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="progress-radial progress-{{eje.codigo}}-{{eje.porcentaje_total}}">
+                      <div class="overlay">{{eje.porcentaje_total}}%</div>
+                    </div>
+                    <div class="numeros">
+                      <div class="medidas pull-left">
+                        <p class="numero">{{eje.total_medidas}}</p>
+                        <p class="tipo">Medidas</p>
+                      </div>
+                      <div class="desarrollo pull-left">
+                        <p class="numero">{{eje.medidas_desarrollo}}</p>
+                        <p class="tipo">En Desarrollo</p>
+                      </div>
+                      <div class="iniciar pull-left">
+                        <p class="numero">{{eje.medidas_nuevas}}</p>
+                        <p class="tipo">Por Iniciar</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div><!-- Fin Panel -->
+
+            <div class="panel panel-default panel-competencia">
+              <div class="panel-heading" role="tab" id="headingOne">
+                <h4 class="panel-title">
+                  <a class="collapsed collapse-link" role="button" data-toggle="collapse" data-parent="#actions-accordion" href="javascript:void(0);" data-target="#collapse-cinco" aria-expanded="false" aria-controls="collapse-cinco">
+                    <span class="icon"></span> Competencias
+                  </a>
+                </h4>
+              </div>
+              <div id="collapse-cinco" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="panel-body">
+                  <p class="title-medidas">Medidas</p>
+                  <ul>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                    <li>
+                      <a href="">
+                        <i class="fa fa-circle-o"></i> Lorem ipsum dolor sit amet
+                      </a>
+                    </li>
+                  </ul>
+
+                  <div class="progress-graph" data-toggle="popover" title="Cumplimiento {{eje.nombre.substring(0,eje.nombre.indexOf(' '))}}" ng-class="{'last':$last}">
+                    <div class="title">
+                      <div class="nombre-eje pull-left">Seguimiento</div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="progress-radial progress-{{eje.codigo}}-{{eje.porcentaje_total}}">
+                      <div class="overlay">{{eje.porcentaje_total}}%</div>
+                    </div>
+                    <div class="numeros">
+                      <div class="medidas pull-left">
+                        <p class="numero">{{eje.total_medidas}}</p>
+                        <p class="tipo">Medidas</p>
+                      </div>
+                      <div class="desarrollo pull-left">
+                        <p class="numero">{{eje.medidas_desarrollo}}</p>
+                        <p class="tipo">En Desarrollo</p>
+                      </div>
+                      <div class="iniciar pull-left">
+                        <p class="numero">{{eje.medidas_nuevas}}</p>
+                        <p class="tipo">Por Iniciar</p>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div><!-- Fin Panel -->
+
+          </div>
+
+
+          <div class="clearfix"></div>
+        </div>
+ 
       </div>
 
+      <!-- DESKTOP -->
       <div class="container hidden-xs">
           
         <div ng-include="'include_seguimientoejes.html'"></div>
@@ -42,7 +351,7 @@
       </div>
 
       <div class="row bottomline">
-        
+        <!-- DESKTOP -->
         <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 notas hidden-xs">
           <h3>Voces</h3>
           <div class="detalle">
@@ -50,9 +359,9 @@
             <div class="autor">
               <img class="pull-left" src="img/agenda_foto-perfil-01.png"/>
               <div class="pull-left">
-                <p>Claudia Santibañez</p>
-                <p>Subsecretaria</p>
-                <p>Ministerio de Economía</p>
+                <p><strong>Pedro Huichalaf Roa</strong></p>
+                <p>Subsecretario</p>
+                <p>Ministerio de Transportes y de Telecomunicaciones</p>
               </div>
             </div>
           </div>
@@ -63,9 +372,9 @@
             <div class="autor">
               <img class="pull-left" src="img/agenda_foto-perfil-02.png"/>
               <div class="pull-left">
-                <p>Claudia Santibañez</p>
+                <p><strong>Patricia Silva Melendez</strong></p>
                 <p>Subsecretaria</p>
-                <p>Ministerio de Economía</p>
+                <p>Ministerio Secretaría General de la Presidencia</p>
               </div>
             </div>
           </div>
@@ -76,7 +385,7 @@
             <img src="img/video-sps.jpg"/>
           </div> -->
         </div>
-
+        <!-- DESKTOP -->
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 actualizaciones hidden-xs">
           <h3>Últimas Actualizaciones</h3>
 
@@ -95,7 +404,7 @@
 
 
         </div>
-
+        <!-- DESKTOP -->
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 noticias hidden-xs">
 
           <h3>Noticias</h3>
@@ -105,13 +414,13 @@
           <div class="listado noticias">
             <div class="noticia">
               <p class="titulo">Lorem ipsum dolor</p>
-              <img src="http://lorempixel.com/g/800/350/business"/>
+              <img src=""/>
               <p class="bajada">Donec accumsan iaculis turpis. Nam porta enim sed blandit blandit...</p>
               <a title="Enlace al sitio de la noticia" ng-href="#/noticias/{{notice.id}}">Ir al sitio de la noticia</a>
             </div>
             <div class="noticia">
               <p class="titulo">Sit amet</p>
-              <img src="http://lorempixel.com/800/350/city"/>
+              <img src=""/>
               <p class="bajada">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
               <a title="Enlace al sitio de la noticia" ng-href="#/noticias/{{notice.id}}">Ir al sitio de la noticia</a>
             </div>
@@ -169,6 +478,7 @@
             <td><i class="fa fa-circle-o"></i></td><td class="texto">Siste,a de información para la gestion de emergencia y desastre</td>
           </tr>
 
-        </ul>
+        </table>
       </div>
     </script>
+
