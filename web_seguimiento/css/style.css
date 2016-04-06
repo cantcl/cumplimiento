@@ -74,7 +74,7 @@ p {
 .navbar-ad2020 > * {
 	max-height: 90px;
 }
-#navbar ul {
+#navbar > ul {
 	margin: 30px 10px 0 180px;
 }
 #navbar ul.dropdown-menu {
@@ -82,7 +82,7 @@ p {
 	border: 0;
 	background-color: #546173;
 	color: white;
-	padding-right: 25px;
+	padding-right: 0px;
 }
 .dropdown-menu>li>a {
 	font-weight: 300 !important;
@@ -136,6 +136,12 @@ p {
     font-size: 20px;
     padding: 12px;
     height: 48px;
+	color: rgba(255,255,255,.7);
+}
+#navbar ul.dropdown-menu li > a:hover,
+#navbar ul.dropdown-menu li > a:focus {
+	background: rgba(15,38,59,0.7);
+	color: rgba(255,255,255,1);
 }
 .bullet.fa.fa-circle-o {
 	font-size: 12px;
@@ -248,6 +254,9 @@ li.eje-tab p {
 	top: 5px;
 	right: 5px;
 	z-index: 1001;
+	opacity: 1;
+	text-shadow: none;
+	color: #fff;
 }
 .eje-tab.derechos {
 	background: url(../img/icono_pringles_derechos.png) 0 0 no-repeat;
@@ -1035,6 +1044,7 @@ ul.descargas li div a {
 .noticia-principal img {
 	margin-left: -15px;
 	margin-bottom: 35px;
+	max-width: 100%;
 }
 .noticia-principal p {
 	font-size: 20px;
@@ -1988,14 +1998,12 @@ table.lista.mesas tr td:nth-child(3){
 	    line-height: 8px;
 	    font-size: 25px;
 	}
+	.noticia-principal {
+		padding: 0;
+	}
 	.fichas .mark-down {
 	    margin: -19px 0 0 10%;
 	    position: absolute;
-	}
-	.quienes-somos h1 {
-	    margin: 0px 0 0 10%;
-	    font-size: 18px;
-	    line-height: 55px;
 	}
     .fichas .panel-default>.panel-heading+.panel-collapse>.panel-body {
 	    padding: 0px 10% 15px;
@@ -2004,6 +2012,7 @@ table.lista.mesas tr td:nth-child(3){
 	.fichas .panel-default>.panel-heading+.panel-collapse>.panel-body > div {
 		margin: 0 !important;
 	}
+
 	.fichas .panel-default>.panel-heading+.panel-collapse>.panel-body > div,
 	.fichas .panel-default>.panel-heading+.panel-collapse>.panel-body > div p {
 		line-height: 21px;
@@ -2017,6 +2026,26 @@ table.lista.mesas tr td:nth-child(3){
 	}
 	.fichas .panel-default>.panel-heading+.panel-collapse>.panel-body > div ul.caracteristicas li div.caracteristica {
 		margin-left: 0;
+		padding: 0;
+	}
+	.noticias-despliegue.row,
+	.noticias-titulo.row {
+		margin:0;
+	}
+	.noticias-despliegue img {
+		max-width: 100%;
+	}
+	.noticia-principal img {
+		margin-left: 0;
+		margin-bottom: 20px;
+	}
+	.noticia-principal p {
+	    padding: 0px 10% 15px;
+	    margin: 0;
+	    line-height: 21px;
+	    font-size: 17px !important;
+	}
+	.col-der {
 		padding: 0;
 	}
 	footer .container .row {
@@ -2084,6 +2113,14 @@ table.lista.mesas tr td:nth-child(3){
 	    float: left;
 	    width: 87%;
 	}
+
+	.quienes-somos h1,
+	.noticias-titulo h1 {
+	    margin: 0px 0 0 10%;
+	    font-size: 18px;
+	    line-height: 55px;
+	    padding: 0;
+	}
 	.row.detalle-seguimiento,
 	.row.fichas.detalle-medida {
 		margin: 0;
@@ -2108,7 +2145,7 @@ table.lista.mesas tr td:nth-child(3){
 		height: auto;
 	}
 	.page-content .fichas h2 {
-        margin: 0;
+        margin: 0 !important;
 	    padding: 10px 10%;
 	    line-height: 38px;
 	    font-size: 22px;
@@ -2179,8 +2216,61 @@ table.lista.mesas tr td:nth-child(3){
 	#contenido-agenda .portada img {
 		margin-top: 0;
 	}
-
-
+	#contenido-agenda .intro-eje > div {
+		padding:0;
+	}
+	#contenido-agenda .portada,
+	#contenido-agenda .intro {
+		padding: 0;
+	}
+	.quienes-somos .integrantes .detalle {
+	    min-width: auto;
+	    font-size: 17px;
+	}
+	.intro-eje div.eje {
+	    left: -11px;
+	    position: relative;
+	    float: left;
+    	top: -5px;
+	}
+	#contenido-agenda h4 {
+	    padding-left: 48px;
+	    padding-bottom: 0px;
+	}
+	.quienes-somos .descripcion.p-descargas {
+		margin: 0;
+	    font-size: 17px;
+	}
+	.quienes-somos .descargas ul.descargas {
+		margin:0;
+		padding: 0 !important;
+	}
+	.quienes-somos .descargas ul.descargas li div.col-xs-1 {
+		padding: 0;
+	}
+	.quienes-somos .descargas ul.descargas li div span.bullet {
+    	margin-top: 9px;
+    	color: #788ba4;
+	}
+	.quienes-somos .descargas ul.descargas li div.detalle {
+	    margin-left: 0;
+	    float: right;
+	    padding: 0;
+	}
+	.quienes-somos .descargas ul.descargas li div.detalle h5 {
+	    font-size: 17px;
+	    margin: 5px 0;
+	    margin-top: 5px;
+	    border-bottom: 1px solid #ddd;
+	    padding-bottom: 4px;
+	}
+	.quienes-somos .descargas ul.descargas li .btn.agenda-download {
+	    margin-bottom: 11px;
+	    margin-top: 0;
+	    margin-left: 9%;
+	    font-size: 15px;
+	    padding: 5px 15px;
+	}
 
 }
 

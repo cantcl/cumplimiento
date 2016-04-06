@@ -68,10 +68,34 @@ app.controller('QuienesController', ['$scope', '$routeParams', '$location', '$an
 
 	  	switch(this.params.opt) {
 	  		case 'comite':
-	  			this.loadComite();
+	  			if(document.getElementById('top-page').offsetWidth < 768) {
+		  			$('#headingFour').find('h4').find('a').attr('aria-expanded',true);
+		  			$('#headingOne').find('h4').find('a').attr('aria-expanded',false);
+		  			$('#collapseFour').addClass('in');
+		  			$('#collapseFour').attr('aria-expanded', true);
+		  			$('#collapseOne').removeClass('in');
+		  			$('#collapseOne').attr('aria-expanded', false);
+		  			this.loadComite();
+		  			$scope.secretaria = this.secretaria;
+	  				$scope.detalle_secretaria = $scope.secretaria[0];
+		  		}
+		  		else
+		  			this.loadComite();
 	  			break;
 	  		case 'secretaria':
-	  			this.loadSecretaria();
+	  			if(document.getElementById('top-page').offsetWidth < 768) {
+		  			$('#headingFive').find('h4').find('a').attr('aria-expanded',true);
+		  			$('#headingOne').find('h4').find('a').attr('aria-expanded',false);
+		  			$('#collapseFive').addClass('in');
+		  			$('#collapseFive').attr('aria-expanded', true);
+		  			$('#collapseOne').removeClass('in');
+		  			$('#collapseOne').attr('aria-expanded', false);
+		  			this.loadComite();
+		  			$scope.secretaria = this.secretaria;
+	  				$scope.detalle_secretaria = $scope.secretaria[0];	  			
+		  		}
+		  		else
+		  			this.loadSecretaria();
 	  			break;
 	  		default:
 	  			this.loadComite();

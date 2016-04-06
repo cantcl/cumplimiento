@@ -1,7 +1,7 @@
 <div class="container">
    
       <div id="contenido" class="row intro">
-        <div class="close close-intro hide" ng-click="closeIntro()"><i class="fa fa-times-circle"></i></div>
+        <div class="close close-intro hide" ng-click="closeIntro()"><i class="fa fa-times"></i></div>
 
         <!-- DESKTOP -->
         <div class="hidden-xs container intro-agenda {{eje.clase}}" ng-include="includes.intro"></div>
@@ -408,24 +408,7 @@
         <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 noticias hidden-xs">
 
           <h3>Noticias</h3>
-          <!-- <div ng-include="'include_noticias.html'"></div> -->
-
-          <!-- NOTICIAS PROVISORIAS / BORRAR -->
-          <div class="listado noticias">
-            <div class="noticia">
-              <p class="titulo">Lorem ipsum dolor</p>
-              <img src=""/>
-              <p class="bajada">Donec accumsan iaculis turpis. Nam porta enim sed blandit blandit...</p>
-              <a title="Enlace al sitio de la noticia" ng-href="#/noticias/{{notice.id}}">Ir al sitio de la noticia</a>
-            </div>
-            <div class="noticia">
-              <p class="titulo">Sit amet</p>
-              <img src=""/>
-              <p class="bajada">Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
-              <a title="Enlace al sitio de la noticia" ng-href="#/noticias/{{notice.id}}">Ir al sitio de la noticia</a>
-            </div>
-          </div>
-          <!-- FIN NOTICIAS PROVISORIAS / BORRAR -->
+          <div ng-include="'include_noticias.html'"></div>
 
         </div>
       

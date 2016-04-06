@@ -43,9 +43,25 @@ app.controller('DocumentosController', ['$scope', '$route', '$routeParams', '$lo
   			this.loadOtras();
   			break;
   		case 'decreto-vigente':
+  			if(document.getElementById('top-page').offsetWidth < 768) {
+	  			$('#headingTwo').find('h4').find('a').attr('aria-expanded',true);
+	  			$('#headingOne').find('h4').find('a').attr('aria-expanded',false);
+	  			$('#collapseTwo').addClass('in');
+	  			$('#collapseTwo').attr('aria-expanded', true);
+	  			$('#collapseOne').removeClass('in');
+	  			$('#collapseOne').attr('aria-expanded', false);
+  			}
   			this.loadDecreto();
   			break;
   		case 'actas-comite':
+  			if(document.getElementById('top-page').offsetWidth < 768) {
+	  			$('#headingThree').find('h4').find('a').attr('aria-expanded',true);
+	  			$('#headingOne').find('h4').find('a').attr('aria-expanded',false);
+	  			$('#collapseThree').addClass('in');
+	  			$('#collapseThree').attr('aria-expanded', true);
+	  			$('#collapseOne').removeClass('in');
+	  			$('#collapseOne').attr('aria-expanded', false);
+  			}
   			this.loadActas();
   			break;
   		default:

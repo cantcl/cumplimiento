@@ -1,22 +1,22 @@
 <div class="page-content">
 	<div class="container">
 
-		<div class="row">
+		<div class="row noticias-titulo">
 			<h1>Noticias</h1>
 		</div>
 		
-		<div class="row fichas">
+		<div class="row fichas noticias-despliegue">
 
-			<div class="col-xs-8 col-md-8 col-lg-8 noticia-principal">
+			<div class="col-xs-12 col-md-8 col-lg-8 noticia-principal">
 				<div class="mark-down fa fa-caret-down"></div>
 				<h2>{{notice.titulo}}</h2>
-				<img ng-src="{{notice.medio_verificacion}}" width="655"/>
+				<img ng-src="{{notice.medio_verificacion}}" />
 
 				<p class="contenido" ng-bind-html="notice.descripcion"></p>
 
 			</div>
 
-			<div class="col-der col-xs-4 col-md-4 col-lg-4">
+			<div class="col-der col-xs-12 col-md-4 col-lg-4">
 
 				<div ng-include="'include_noticias.html'"></div>
 

@@ -1,5 +1,110 @@
 <div class="quienes-somos">
-	<div class="container">
+	<div class="visible-xs container">
+		
+		<div class="row"> 
+			<h1>Agenda Digital</h1>
+		</div>
+		<div class="row fichas">
+			<div class="mark-down fa fa-caret-down"></div>
+			<div class="panel-group" id="content-accordion" role="tablist" aria-multiselectable="true">
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingOne">
+			      <h4 class="panel-title">
+			        <a role="button" data-toggle="collapse" data-parent="#content-accordion" href="javascript:void(0);" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+			          Otras Agendas  <i class="fa fa-sort-down"></i>
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+			      <div class="panel-body">
+					<p class="descripcion p-descargas" ng-bind-html="descripcion"></p>
+					<div class="descargas">
+						<ul class="descargas">
+							<li class="row" ng-repeat="descarga in descargas">
+								<div class="col-xs-1">
+									<span class="bullet fa fa-circle-o">&nbsp;</span>
+								</div>
+								<div class="col-xs-11 col-md-7 detalle">
+									<h5 ng-bind="descarga.titulo"></h5>
+									<p ng-bind-html="descarga.descripcion">
+								</div>
+								<div class="col-xs-12 col-md-4">
+									<a href="{{descarga.archivo}}"class="btn agenda-download"> <span class="fa fa-arrow-down">&nbsp;</span> Descarga</a>
+								</div>
+								<div class="col-xs-12"><hr></div>
+							</li>
+						</ul>
+					</div>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingTwo">
+			      <h4 class="panel-title">
+			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#content-accordion" href="javascript:void(0);" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+			          Decreto Vigente <i class="fa fa-sort-down"></i>
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+			      <div class="panel-body">
+					<p class="descripcion p-descargas" ng-bind-html="descripcion"></p>
+					<div class="descargas">
+						<ul class="descargas">
+							<li class="row" ng-repeat="descarga in descargas">
+								<div class="col-xs-1">
+									<span class="bullet fa fa-circle-o">&nbsp;</span>
+								</div>
+								<div class="col-xs-11 col-md-7 detalle">
+									<h5 ng-bind="descarga.titulo"></h5>
+									<p ng-bind-html="descarga.descripcion">
+								</div>
+								<div class="col-xs-12 col-md-4">
+									<a href="{{descarga.archivo}}"class="btn agenda-download"> <span class="fa fa-arrow-down">&nbsp;</span> Descarga</a>
+								</div>
+								<div class="col-xs-12"><hr></div>
+							</li>
+						</ul>
+					</div>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingThree">
+			      <h4 class="panel-title">
+			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#content-accordion" href="javascript:void(0);" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+			         Actas del Comité <i class="fa fa-sort-down"></i>
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+			      <div class="panel-body">
+					<p class="descripcion p-descargas" ng-bind-html="descripcion"></p>
+					<div class="descargas">
+						<ul class="descargas">
+							<li class="row" ng-repeat="descarga in descargas">
+								<div class="col-xs-1">
+									<span class="bullet fa fa-circle-o">&nbsp;</span>
+								</div>
+								<div class="col-xs-11 col-md-7 detalle">
+									<h5 ng-bind="descarga.titulo"></h5>
+									<p ng-bind-html="descarga.descripcion">
+								</div>
+								<div class="col-xs-12 col-md-4">
+									<a href="{{descarga.archivo}}"class="btn agenda-download"> <span class="fa fa-arrow-down">&nbsp;</span> Descarga</a>
+								</div>
+								<div class="col-xs-12"><hr></div>
+							</li>
+						</ul>
+					</div>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	</div>
+
+	<div class="hidden-xs container">
 
 		<div class="row">
 			<h1>Agenda Digital</h1>

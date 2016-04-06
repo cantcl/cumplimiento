@@ -1,12 +1,109 @@
 <div class="quienes-somos">
-	<div class="container">
+	<div class="visible-xs container">
 
 		<div class="row">
-			<h1>Quienes Somos</h1>
+			<h1>Quiénes Somos</h1>
 		</div>
 		
 		<div class="row fichas">
+			<div class="mark-down fa fa-caret-down"></div>
+			<div class="panel-group" id="content-accordion" role="tablist" aria-multiselectable="true">
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingOne">
+			      <h4 class="panel-title">
+			        <a  href="#/agenda/que">
+			          ¿Qué es la Agenda?  <i class="fa fa-sort-down"></i>
+			        </a>
+			      </h4>
+			    </div>
+			  </div>
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingTwo">
+			      <h4 class="panel-title">
+			        <a href="#/agenda/como">
+			          Cómo se Construyó  <i class="fa fa-sort-down"></i>
+			        </a>
+			      </h4>
+			    </div>
+			  </div>
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingThree">
+			      <h4 class="panel-title">
+			        <a href="#/agenda/contenido" >
+			          Contenido de la Agenda <i class="fa fa-sort-down"></i>
+			        </a>
+			      </h4>
+			    </div>
+			  </div>
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingFour">
+			      <h4 class="panel-title">
+			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#content-accordion" href="javascript:void(0);" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+			          Comité de Ministros <i class="fa fa-sort-down"></i>
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+			      <div class="panel-body">
+			        <div id="descripcion">
+			        	<div ng-include="'include_comite.html'"></div>
+					</div>
+					<div class="integrantes">
+						<div class="pull-left principal"><img ng-class="{'selected': selected==-1}" ng-src="{{members[0].img}}" title="{{members[0].nombre}}" ng-click="loadMember(members[0],-1)"></div>
+						<div class="pull-left detalle">
+							<p class="nombre" ng-bind="detalle.nombre"></p>
+							<p class="cargo" ng-bind="detalle.cargo"></p>
+							<a ng-href="{{detalle.bio}}" >Ver biografía completa</a>
+						</div>
+						<div class="clearfix"></div>
+						<div class="miembro">
+							<img class="pull-left" ng-class="{'selected': $index==selected}" ng-repeat="(key, member) in members" ng-src="{{member.img}}" ng-show="member.role != 'principal'" ng-click="loadMember(member,$index)"/>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+			      </div>
+			    </div>
+			  </div>
+			  <div class="panel panel-default">
+			    <div class="panel-heading" role="tab" id="headingFive">
+			      <h4 class="panel-title">
+			        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#content-accordion" href="javascript:void(0);" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+			          Secretaría Ejecutiva <i class="fa fa-sort-down"></i>
+			        </a>
+			      </h4>
+			    </div>
+			    <div id="collapseFive" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFive">
+			      <div class="panel-body">
+			        <div id="descripcion">
+			        	<div ng-include="'include_secretaria.html'"></div>
+					</div>
+					<div class="integrantes">
+						<div class="pull-left principal"><img ng-class="{'selected': selected==-1}" ng-src="{{secretaria[0].img}}" title="{{secretaria[0].nombre}}" ng-click="loadMember(secretaria[0],-1)"></div>
+						<div class="pull-left detalle">
+							<p class="nombre" ng-bind="detalle_secretaria.nombre"></p>
+							<p class="cargo" ng-bind="detalle_secretaria.cargo"></p>
+							<a ng-href="{{detalle_secretaria.bio}}" >Ver biografía completa</a>
+						</div>
+						<div class="clearfix"></div>
+						<div class="miembro">
+							<img class="pull-left" ng-class="{'selected': $index==selected}" ng-repeat="(key, member) in secretaria" ng-src="{{member.img}}" ng-show="member.role != 'principal'" ng-click="loadMember(member,$index)"/>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	</div>
 
+
+	<div class="hidden-xs container">
+		
+		<div class="row"> 
+			<h1>Quiénes Somos</h1>
+		</div>
+		<div class="row fichas">
 			<div class="col-xs-8 col-md-8 col-lg-8">
 				<div class="mark-down fa fa-caret-down"></div>
 				<h2>{{titulo}}</h2>

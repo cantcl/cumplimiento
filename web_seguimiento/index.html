@@ -47,55 +47,55 @@
         <div id="navbar" class="collapse navbar-collapse">
           <div class="visible-xs header-collapse">
             <img src="img/ad2020-header-m.png" >
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button id="close-nav-button" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
               <span class="sr-only">Toggle navigation</span>
               <i class="fa fa-times"></i>
             </button>
           </div>
           <ul class="nav navbar-nav">
             <li class="active">
-              <a class="home" href="#/"><span class="visible-xs">Inicio</span></a>
+              <a class="home close-nav" href="#/"><span class="visible-xs">Inicio</span></a>
             </li>
             <li class="active dropdown">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Agenda Digital</a>
-              <ul class="dropdown-menu">
-                <li><a href="#/agenda/que"><span class="bullet fa fa-circle-o">&nbsp;</span>¿Qué es la Agenda?</a></li>
+              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="drop-agenda">Agenda Digital</a>
+              <ul class="dropdown-menu" aria-labelledby="drop-agenda">
+                <li><a class="close-nav" href="#/agenda/que"><span class="bullet fa fa-circle-o">&nbsp;</span>¿Qué es la Agenda?</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#/agenda/como"><span class="bullet fa fa-circle-o">&nbsp;</span>¿Como se construyó?</a></li>
+                <li><a class="close-nav" href="#/agenda/como"><span class="bullet fa fa-circle-o">&nbsp;</span>¿Como se construyó?</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#/agenda/contenido"><span class="bullet fa fa-circle-o">&nbsp;</span>Contenido de la Agenda</a></li>
+                <li><a class="close-nav" href="#/agenda/contenido"><span class="bullet fa fa-circle-o">&nbsp;</span>Contenido de la Agenda</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#/quienes-somos/comite"><span class="bullet fa fa-circle-o">&nbsp;</span>Comité de Ministros</a></li>
+                <li><a class="close-nav" href="#/quienes-somos/comite"><span class="bullet fa fa-circle-o">&nbsp;</span>Comité de Ministros</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#/quienes-somos/secretaria"><span class="bullet fa fa-circle-o">&nbsp;</span>Secretaría Ejecutiva</a></li>
+                <li><a class="close-nav" href="#/quienes-somos/secretaria"><span class="bullet fa fa-circle-o">&nbsp;</span>Secretaría Ejecutiva</a></li>
                 <li role="separator" class="divider divider-last"></li>
               </ul>
             </li>
             <li class="hidden-xs"><a href="#/seguimiento">Seguimiento</a></li>
-            <li><a href="#/noticias">Noticias</a></li>
+            <li><a class="close-nav" href="#/noticias">Noticias</a></li>
             <li class="dropdown">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Documentos</a>
-              <ul class="dropdown-menu">
-                <li><a href="#/documentos/otras-agendas"><span class="bullet fa fa-circle-o">&nbsp;</span>Agendas Anteriores</a></li>
+              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="drop-documentos">Documentos</a>
+              <ul class="dropdown-menu" aria-labelledby="drop-documentos">
+                <li><a class="close-nav" href="#/documentos/otras-agendas"><span class="bullet fa fa-circle-o">&nbsp;</span>Agendas Anteriores</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#/documentos/decreto-vigente"><span class="bullet fa fa-circle-o">&nbsp;</span>Decreto Vigente</a></li>
+                <li><a class="close-nav" href="#/documentos/decreto-vigente"><span class="bullet fa fa-circle-o">&nbsp;</span>Decreto Vigente</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#/documentos/actas-comite"><span class="bullet fa fa-circle-o">&nbsp;</span>Actas del Comité</a></li>
+                <li><a class="close-nav" href="#/documentos/actas-comite"><span class="bullet fa fa-circle-o">&nbsp;</span>Actas del Comité</a></li>
                 <li role="separator" class="divider divider-last"></li>
               </ul>
             </li>
             <li class="active dropdown">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Descarga la Agenda</a>
-              <ul class="dropdown-menu">
-                <li><a href="#/agenda/contenido#der"><span class="bullet fa fa-circle-o">&nbsp;</span>Derechos para el Desarrollo Digital</a></li>
+              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="drop-descarga">Descarga la Agenda</a>
+              <ul class="dropdown-menu" aria-labelledby="drop-descarga">
+                <li><a class="close-nav" href="#/agenda/contenido#der"><span class="bullet fa fa-circle-o">&nbsp;</span>Derechos para el Desarrollo Digital</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#/agenda/contenido#con"><span class="bullet fa fa-circle-o">&nbsp;</span>Conectividad Digital</a></li>
+                <li><a class="close-nav" href="#/agenda/contenido#con"><span class="bullet fa fa-circle-o">&nbsp;</span>Conectividad Digital</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#/agenda/contenido#gob"><span class="bullet fa fa-circle-o">&nbsp;</span>Gobierno Digital</a></li>
+                <li><a class="close-nav" href="#/agenda/contenido#gob"><span class="bullet fa fa-circle-o">&nbsp;</span>Gobierno Digital</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#/agenda/contenido#eco"><span class="bullet fa fa-circle-o">&nbsp;</span>Economía Digital</a></li>
+                <li><a class="close-nav" href="#/agenda/contenido#eco"><span class="bullet fa fa-circle-o">&nbsp;</span>Economía Digital</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="#/agenda/contenido#com"><span class="bullet fa fa-circle-o">&nbsp;</span>Competencias Digitales</a></li>
+                <li><a class="close-nav" href="#/agenda/contenido#com"><span class="bullet fa fa-circle-o">&nbsp;</span>Competencias Digitales</a></li>
                 <li role="separator" class="divider divider-last"></li>
               </ul>
             </li>
@@ -252,6 +252,10 @@
           //$("#intro-agenda").addClass("oculto");
           $("#intro-agenda").hide(500);
         }
+      });
+
+      $(document).on("click", ".close-nav", function(){
+        $('#close-nav-button').click();
       })
     </script>
 

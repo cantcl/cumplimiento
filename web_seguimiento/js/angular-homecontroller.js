@@ -68,6 +68,7 @@ app.controller('HomeController', ['$scope', '$route', '$routeParams', '$location
 				$scope.eje.clase = clase;
 				$('#navbar2 > ul.nav > li').removeClass('active');
 				$('#navbar2 > ul.nav > li.' + clase).addClass('active');
+				$('.close-intro').removeClass('hide');
 			}
 
 			 $scope.showCont = function(index){
